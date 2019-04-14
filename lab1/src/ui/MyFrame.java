@@ -48,7 +48,7 @@ public class MyFrame extends JFrame {
 		textScrollPane.setRowHeaderView(new LineNumberHeaderView());
 
 		// 符号表
-		String[] symbolColName = { "地址", "符号表" };
+		String[] symbolColName = { "序号", "符号表" };
 		symbolTbMd = new DefaultTableModel(null, symbolColName);
 		symbolTb = new JTable(symbolTbMd);
 		symbolTb.setEnabled(false);// 不可修改
@@ -56,7 +56,7 @@ public class MyFrame extends JFrame {
 		symbolScrollPane.setBounds(520, 280, 140, 260);
 
 		// token序列
-		String[] tokenColName = { "行号", "TOKEN", "宏", "属性值" };
+		String[] tokenColName = { "行号", "TOKEN", "种别码", "属性值" };
 		tokenTbMd = new DefaultTableModel(null, tokenColName);
 		tokenTb = new JTable(tokenTbMd);
 		tokenTb.setEnabled(false);// 不可修改
