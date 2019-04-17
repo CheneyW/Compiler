@@ -1,27 +1,61 @@
 package lexical;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 public class LexicalAnalysis {
-	private static final int KEYWORD = 1;// 关键字
-	private static final int IDENTIFIER = 2;// 标识符
-	private static final int CONSTANT = 3;// 常数
-	private static final int OPERATOR = 4;// 运算符
-	private static final int SEPARATOR = 8;// 分界符
-	private static final int COMMENT = 9;// 注释
+	private static final int KEYWORD = 0;// 关键字
+	private static final int IDENTIFIER = 1;// 标识符
+	private static final int CONSTANT = 2;// 常数
+	private static final int OPERATOR = 3;// 运算符
+	private static final int SEPARATOR = 4;// 分界符
+	private static final int COMMENT = 5;// 注释
 
-	private static final List<String> keyWords = Arrays.asList("int", "short", "long", "char", "float", "double",
-			"enum", "if", "else", "switch", "do", "while", "for", "printf", "scanf", "main", "void", "return");
+	private static final List<String> keyWords = Arrays.asList("int", "float", "double", "if", "else", "switch", "do",
+			"while", "for", "void", "return");
+	private Map<String, String> operatorCOF = new HashMap<String, String>() {
+		{
+			put("+", "0");
+			put("-", "1");
+			put("*", "2");
+			put("/", "3");
+			put("&", "4");
+			put("|", "5");
+			put("!", "6");
+			put("&&", "7");
+			put("||", "8");
+			put("==", "9");
+			put("!=", "10");
+			put("<", "11");
+			put(">", "12");
+			put("<=", "13");
+			put(">=", "14");
+		}
+	};
+	private Map<String, String> separatorCOF = new HashMap<String, String>() {
+		{
+			put("=", "0");
+			put(";", "1");
+			put("(", "2");
+			put(")", "3");
+			put("[", "4");
+			put("]", "5");
+			put("{", "6");
+			put("}", "7");
+		}
+	};
 
 	private MyBuffer buffer;
 	private DefaultTableModel tokenTbMd, errorTbMd, symbolTbMd;
-	private Set<String> symbolTable = new HashSet<String>();
+	private List<String> symbolTable = new ArrayList<String>();
 
 	public LexicalAnalysis(JTextArea inputText, DefaultTableModel tokenTbMd, DefaultTableModel errorTbMd,
 			DefaultTableModel symbolTbMd) {
@@ -38,14 +72,11 @@ public class LexicalAnalysis {
 
 	private boolean scanToken() {
 		char ch = buffer.getChar();
-		while (ch == ' ' || ch == '\t') {
+		while (ch == ' ' || ch == '\t' || ch == '\n') {
+			if (ch == '\n')
+				buffer.nextLine();
 			ch = buffer.getChar();
 		}
-		while (ch == '\n') {
-			buffer.nextLine();
-			ch = buffer.getChar();
-		}
-
 		// 字母开头
 		if (isLetter(ch)) {
 			do {
@@ -86,9 +117,21 @@ public class LexicalAnalysis {
 					do {
 						buffer.push(ch);
 						ch = buffer.getChar();
+						if (ch == '\n') {
+							outputError("ERROR: Comment is not closed", buffer.getRowNum());
+							buffer.clear();
+							return true;
+						}
 					} while (ch != '*');
+
 					buffer.push(ch);
 					ch = buffer.getChar();
+					if (ch == '\n') {
+						outputError("ERROR: Comment is not closed", buffer.getRowNum());
+						buffer.clear();
+						return true;
+					}
+
 					if (ch == '/') {
 						buffer.push(ch);
 						break;
@@ -99,9 +142,9 @@ public class LexicalAnalysis {
 			}
 			return true;
 
-		case '*':
 		case '+':
 		case '-':
+		case '*':
 			acceptToken(OPERATOR, "" + ch, buffer.getRowNum());
 			return true;
 
@@ -158,7 +201,7 @@ public class LexicalAnalysis {
 		case '\0':
 			return false;
 		default:
-			outputError("" + ch, buffer.getRowNum());
+			outputError("ERROR: Unrecognized character '" + "" + ch + "'", buffer.getRowNum());
 			return true;
 		}
 	}
@@ -166,29 +209,29 @@ public class LexicalAnalysis {
 	private void acceptToken(int type, String token, int row) {
 		switch (type) {
 		case KEYWORD:
-			outputToken(row, token, token.toUpperCase(), "");
+			outputToken(row, token, Integer.toString(KEYWORD), Integer.toString(keyWords.indexOf(token)));
 			break;
 		case IDENTIFIER:
-			outputToken(row, token, "IDN", token);
 			if (!symbolTable.contains(token)) {
 				symbolTable.add(token);
-				outputSymbol(token);
+				outputSymbol(symbolTable.size() - 1, token);
 			}
+			outputToken(row, token, Integer.toString(IDENTIFIER), Integer.toString(symbolTable.indexOf(token)));
 			break;
 		case CONSTANT:
-			outputToken(row, token, "CONST", token);
+			outputToken(row, token, Integer.toString(CONSTANT), token);
 			break;
 		case OPERATOR:
-			outputToken(row, token, kindOfOperator(token), "");
+			outputToken(row, token, Integer.toString(OPERATOR), operatorCOF.get(token));
 			break;
 		case SEPARATOR:
-			outputToken(row, token, kindOfSeparator(token), "");
+			outputToken(row, token, Integer.toString(SEPARATOR), separatorCOF.get(token));
 			break;
 		case COMMENT:
-			if (token.length() > 5) {
-				token = token.substring(0, 5) + "...";
-			}
-			outputToken(row, token, "COMMENT", token);
+//			if (token.length() > 10) {
+//				token = token.substring(0, 10) + "...";
+//			}
+//			outputToken(row, token, Integer.toString(COMMENT), token);
 			break;
 		}
 	}
@@ -198,72 +241,12 @@ public class LexicalAnalysis {
 	}
 
 	private void outputError(String description, int row) {
-		String str = "ERROR: Unrecognized character '" + description + "' , line " + Integer.toString(row) + ".";
+		String str = description + " , line " + Integer.toString(row) + ".";
 		this.errorTbMd.addRow(new String[] { str });
 	}
 
-	private void outputSymbol(String name) {
-		this.symbolTbMd.addRow(new String[] { name });
-	}
-
-	private String kindOfOperator(String token) {
-		switch (token) {
-		case "+":
-			return "PLUS";
-		case "-":
-			return "MINUS";
-		case "*":
-			return "MULTI";
-		case "/":
-			return "RDIV";
-		case "&":
-			return "AND";
-		case "|":
-			return "OR";
-		case "!":
-			return "NOT";
-		case "&&":
-			return "RE_AND";
-		case "||":
-			return "RE_OR";
-		case "==":
-			return "EQ";
-		case "!=":
-			return "NE";
-		case ">":
-			return "GT";
-		case "<":
-			return "LT";
-		case ">=":
-			return "GE";
-		case "<=":
-			return "LE";
-		default:
-			return "";
-		}
-	}
-
-	private String kindOfSeparator(String token) {
-		switch (token) {
-		case ";":
-			return "SEMIC";
-		case "(":
-			return "LR_BRAC";
-		case ")":
-			return "RR_BRAC";
-		case "[":
-			return "LS_BRAC";
-		case "]":
-			return "RS_BRAC";
-		case "{":
-			return "LB_BRAC";
-		case "}":
-			return "RB_BRAC";
-		case "=":
-			return "ASSIGN";
-		default:
-			return "";
-		}
+	private void outputSymbol(int idx, String name) {
+		this.symbolTbMd.addRow(new String[] { Integer.toString(idx), name });
 	}
 
 	private boolean isDigit(char c) {

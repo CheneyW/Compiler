@@ -44,24 +44,24 @@ public class MyFrame extends JFrame {
 	private void setPanel() {
 		// 文本编辑区
 		JScrollPane textScrollPane = new JScrollPane(inputText);
-		textScrollPane.setBounds(20, 10, 500, 260);
+		textScrollPane.setBounds(20, 10, 480, 260);
 		textScrollPane.setRowHeaderView(new LineNumberHeaderView());
 
 		// 符号表
-		String[] symbolColName = { "符号表" };
+		String[] symbolColName = { "序号", "符号表" };
 		symbolTbMd = new DefaultTableModel(null, symbolColName);
 		symbolTb = new JTable(symbolTbMd);
 		symbolTb.setEnabled(false);// 不可修改
 		JScrollPane symbolScrollPane = new JScrollPane(symbolTb);
-		symbolScrollPane.setBounds(540, 280, 140, 260);
+		symbolScrollPane.setBounds(520, 280, 140, 260);
 
 		// token序列
-		String[] tokenColName = { "行号", "TOKEN", "宏", "属性值" };
+		String[] tokenColName = { "行号", "TOKEN", "种别码", "属性值" };
 		tokenTbMd = new DefaultTableModel(null, tokenColName);
 		tokenTb = new JTable(tokenTbMd);
 		tokenTb.setEnabled(false);// 不可修改
 		JScrollPane tokenScrollPane = new JScrollPane(tokenTb);
-		tokenScrollPane.setBounds(20, 280, 500, 260);
+		tokenScrollPane.setBounds(20, 280, 480, 260);
 
 		// 错误分析
 		String[] errorColName = { "错误说明" };
