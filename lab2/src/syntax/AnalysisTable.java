@@ -27,7 +27,12 @@ public class AnalysisTable {
 		ACTION = new ArrayList<Map<String, String>>();
 		for (int i = 0; i < closures.size(); i++) {
 			GOTO.add(new HashMap<String, Integer>());
-			ACTION.add(new HashMap<String, String>());
+
+			HashMap<String, String> map = new HashMap<String, String>();
+			for (String s : terminals) {
+				map.put(s, "err");
+			}
+			ACTION.add(map);
 		}
 		constructGoto();
 		constructAction();

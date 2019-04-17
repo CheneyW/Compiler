@@ -28,11 +28,7 @@ public class SyntaxAnalysis {
 	private List<Map<String, Integer>> GOTO;
 	private List<Map<String, String>> ACTION;
 
-	public static void main(String[] args) {
-		SyntaxAnalysis a = new SyntaxAnalysis();
-	}
-
-	public SyntaxAnalysis() {
+	public SyntaxAnalysis(List<String> token) {
 		// 产生式 终结符 非终结符
 		getProduction();
 		getNonterminal();
@@ -49,6 +45,9 @@ public class SyntaxAnalysis {
 		GOTO = table.getGoto();
 		ACTION = table.getAction();
 
+		// 分析器
+		Analyzer analyzer = new Analyzer(GOTO, ACTION, token, productions);
+		List<String> actions = analyzer.getActions();
 	}
 
 	// 构造LR(1)项集族
