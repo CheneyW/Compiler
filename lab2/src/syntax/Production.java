@@ -1,6 +1,8 @@
 package syntax;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Production {
 	@Override
@@ -11,7 +13,6 @@ public class Production {
 		result = prime * result + Arrays.hashCode(right);
 		return result;
 	}
-
 
 	protected String left; // 产生式左边部分
 	protected String[] right;// 产生式右边部分
@@ -32,8 +33,8 @@ public class Production {
 	@Override
 	public String toString() {
 		String str = left + " -> ";
-		for(String s : right) {
-			str += s+" ";
+		for (String s : right) {
+			str += s + " ";
 		}
 		return str;
 	}
@@ -55,5 +56,18 @@ public class Production {
 		if (!Arrays.equals(right, other.right))
 			return false;
 		return true;
+	}
+
+	// test
+	public static void main(String[] args) {
+		List<String> symbols1 = new ArrayList<String>();
+		symbols1.add("a");
+
+		LR1Item it1 = new LR1Item("A", new String[] { "1", "3" }, symbols1, 0);
+		Production p = new Production("A", new String[] { "1", "3" });
+
+		System.out.println(it1.left.equals(p.getLeft()) && Arrays.equals(it1.right, p.getRight()));
+		System.out.println(p.equals(it1));
+
 	}
 }

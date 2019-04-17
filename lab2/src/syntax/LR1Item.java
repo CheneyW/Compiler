@@ -40,8 +40,9 @@ public class LR1Item extends Production {
 		return dot;
 	}
 
+	// P' -> P·
 	public boolean isAccept() {
-		return dot == this.right.length;
+		return dot == right.length && left.equals("P'");
 	}
 
 	public String getNext() {

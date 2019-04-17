@@ -16,23 +16,25 @@ public class Closure {
 	private Set<LR1Item> initialItem = new HashSet<LR1Item>();
 	private Set<LR1Item> items = new HashSet<LR1Item>();
 
+	public boolean visited = false;
+
 	public Closure(LR1Item[] initialItem) {
 		for (LR1Item item : initialItem) {
 			this.initialItem.add(item);
 			items.add(item);
 		}
-		generate();
 	}
 
-	public void set(Map<String, Set<Production>> productionsDict, First first) {
+	public static void set(Map<String, Set<Production>> productionsDict, First first) {
 		Closure.productionsDict = productionsDict;
 		Closure.first = first;
 	}
 
-	private void generate() {
+	public void generate() {
 		Map<String, List<LR1Item>> left2Item = new HashMap<String, List<LR1Item>>();
-		while (true) {
-			boolean update = false;
+		boolean update = true;
+		while (update) {
+			update = false;
 			Iterator<LR1Item> iterator = items.iterator();
 			while (iterator.hasNext()) {
 				LR1Item it = iterator.next();
@@ -84,13 +86,8 @@ public class Closure {
 						update = true;
 					}
 					left2Item.put(B, list);
-				} // end if
-
+				}
 			} // end while
-
-			if (!update) {
-				break;
-			}
 		} // end while
 	}
 
@@ -102,20 +99,24 @@ public class Closure {
 		return initialItem;
 	}
 
-	public Closure GOTO(String X) {
+	public Closure GO(String X) {
 		List<LR1Item> itemList = new ArrayList<LR1Item>();
 		for (LR1Item it : items) {
-			if (it.getNext().equals(X)) {
+			if (it.getNext() != null && it.getNext().equals(X)) {
 				LR1Item newIt = new LR1Item(it.getLeft(), it.getRight(), it.getExpectedSymbol(), it.getDot() + 1);
 				itemList.add(newIt);
 			}
+		}
+		if (itemList.size() == 0) {
+			return null;
 		}
 
 		LR1Item[] itemArr = new LR1Item[itemList.size()];
 		for (int i = 0; i < itemList.size(); i++) {
 			itemArr[i] = itemList.get(i);
 		}
-		return new Closure(new LR1Item[] {});
+		Closure c = new Closure(new LR1Item[] {});
+		return c;
 	}
 
 	public boolean isLike(Closure c) {
