@@ -1,8 +1,12 @@
 package syntax;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,14 +16,15 @@ public class AnalysisTable {
 	private List<Map<String, String>> ACTION;
 	private List<Closure> closures;
 	private List<Production> productions;
-	private Set<String> terminals;
+	private Set<String> terminals = new HashSet<String>();
 	private Set<String> nonterminals;
 
 	public AnalysisTable(List<Closure> closures, List<Production> productions, Set<String> terminals,
 			Set<String> nonterminals) {
 		this.closures = closures;
 		this.productions = productions;
-		this.terminals = terminals;
+		this.terminals.addAll(terminals);
+		this.terminals.add("#");
 		this.nonterminals = nonterminals;
 
 		// 初始化分析表
@@ -29,13 +34,14 @@ public class AnalysisTable {
 			GOTO.add(new HashMap<String, Integer>());
 
 			HashMap<String, String> map = new HashMap<String, String>();
-			for (String s : terminals) {
+			for (String s : this.terminals) {
 				map.put(s, "err");
 			}
 			ACTION.add(map);
 		}
 		constructGoto();
 		constructAction();
+		writeTable();
 	}
 
 	public List<Map<String, Integer>> getGoto() {
@@ -80,6 +86,9 @@ public class AnalysisTable {
 					Closure dest = src.GO(nextSymbol);
 					for (int to = 0; to < closures.size(); to++) {
 						if (closures.get(to).isLike(dest)) {
+//							if (!ACTION.get(from).get(nextSymbol).equals("err")) {
+//								System.out.println(ACTION.get(from).get(nextSymbol)+"\t->\ts" + Integer.toString(to));
+//							}
 							ACTION.get(from).put(nextSymbol, "s" + Integer.toString(to));
 							break;
 						}
@@ -88,7 +97,7 @@ public class AnalysisTable {
 				// 规约
 				else if (!it.getLeft().equals("P'")) {
 					for (String expectedSymbol : it.getExpectedSymbol()) {
-						ACTION.get(from).put(expectedSymbol, getProductionIdx(it));
+						ACTION.get(from).put(expectedSymbol, "r" + Integer.toString(it.getID()));
 					}
 				}
 				// 接受
@@ -109,5 +118,50 @@ public class AnalysisTable {
 			}
 		}
 		return null;
+	}
+
+	private void writeTable() {
+		// write ACTION
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("./data/ACTION.txt"));
+			out.write("\t");
+			for (String s : terminals) {
+				out.write(s + "\t");
+			}
+			out.newLine();
+			for (int i = 0; i < closures.size(); i++) {
+				out.write(Integer.toString(i) + "\t");
+				for (String s : terminals) {
+					out.write(ACTION.get(i).get(s) + "\t");
+				}
+				out.newLine();
+			}
+			out.close();
+		} catch (IOException e) {
+			System.out.println("ERROR when write ACTION.");
+		}
+
+		// write GOTO
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("./data/GOTO.txt"));
+			out.write("\t");
+			for (String s : nonterminals) {
+				out.write(s + "\t");
+			}
+			out.newLine();
+			for (int i = 0; i < closures.size(); i++) {
+				out.write(Integer.toString(i) + "\t");
+				for (String s : nonterminals) {
+					if (GOTO.get(i).containsKey(s)) {
+						out.write(Integer.toString(GOTO.get(i).get(s)));
+					}
+					out.write("\t");
+				}
+				out.newLine();
+			}
+			out.close();
+		} catch (IOException e) {
+			System.out.println("ERROR when write GOTO.");
+		}
 	}
 }

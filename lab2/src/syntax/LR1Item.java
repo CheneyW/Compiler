@@ -12,8 +12,8 @@ public class LR1Item extends Production {
 
 	public boolean visited = false;
 
-	public LR1Item(String left, String[] right, List<String> expectedSymbol, int dot) {
-		super(left, right);
+	public LR1Item(int ID, String left, String[] right, List<String> expectedSymbol, int dot) {
+		super(ID, left, right);
 		for (String s : expectedSymbol) {
 			this.expectedSymbol.add(s);
 		}
@@ -21,7 +21,7 @@ public class LR1Item extends Production {
 	}
 
 	public LR1Item(Production p, List<String> expectedSymbol, int dot) {
-		super(p.getLeft(), p.getRight());
+		super(p.getID(), p.getLeft(), p.getRight());
 		for (String s : expectedSymbol) {
 			this.expectedSymbol.add(s);
 		}
@@ -83,9 +83,9 @@ public class LR1Item extends Production {
 		if (dot == right.length) {
 			str += ".";
 		}
-		str += " \t";
+		str += "  \t,  ";
 		for (String s : expectedSymbol) {
-			str += s + ",";
+			str += s + " ";
 		}
 		return str;
 	}

@@ -1,0 +1,35 @@
+I0
+P -> .A  	,  # 
+P' -> .P  	,  # 
+B -> .b  	,  a b # 
+B -> .a B  	,  a b # 
+A -> .  	,  # 
+A -> .B A  	,  # 
+
+I1
+P ->  A.  	,  # 
+
+I2
+B -> .b  	,  a b # 
+B -> .a B  	,  a b # 
+A -> .  	,  # 
+A -> .B A  	,  # 
+A ->  B.A  	,  # 
+
+I3
+P' ->  P.  	,  # 
+
+I4
+B -> .b  	,  a b # 
+B -> .a B  	,  a b # 
+B ->  a.B  	,  a b # 
+
+I5
+B ->  b.  	,  a b # 
+
+I6
+A ->  B A.  	,  # 
+
+I7
+B ->  a B.  	,  a b # 
+

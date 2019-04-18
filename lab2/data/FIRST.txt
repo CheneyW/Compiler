@@ -1,0 +1,6 @@
+P 	a b ε 
+A 	a b ε 
+B 	a b 
+P' 	a b ε 
+a 	a 
+b 	b 

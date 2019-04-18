@@ -36,7 +36,9 @@ public class Closure {
 		while (update) {
 			update = false;
 			Iterator<LR1Item> iterator = items.iterator();
+			Set<LR1Item> temp = new HashSet<LR1Item>();
 			while (iterator.hasNext()) {
+
 				LR1Item it = iterator.next();
 				if (it.visited) {
 					continue;
@@ -77,17 +79,20 @@ public class Closure {
 							update = true;
 						}
 					}
-				} else {// 加入项目集
+				} else if (productionsDict.containsKey(B)) {// 加入项目集
 					List<LR1Item> list = new ArrayList<LR1Item>();
 					for (Production p : productionsDict.get(B)) {
 						LR1Item i = new LR1Item(p, expectedSymbol, 0);
-						items.add(i);
+						temp.add(i);
 						list.add(i);
 						update = true;
 					}
 					left2Item.put(B, list);
 				}
-			} // end while
+			} // end iterator
+			for (LR1Item i : temp) {
+				items.add(i);
+			}
 		} // end while
 	}
 
@@ -103,7 +108,8 @@ public class Closure {
 		List<LR1Item> itemList = new ArrayList<LR1Item>();
 		for (LR1Item it : items) {
 			if (it.getNext() != null && it.getNext().equals(X)) {
-				LR1Item newIt = new LR1Item(it.getLeft(), it.getRight(), it.getExpectedSymbol(), it.getDot() + 1);
+				LR1Item newIt = new LR1Item(it.getID(), it.getLeft(), it.getRight(), it.getExpectedSymbol(),
+						it.getDot() + 1);
 				itemList.add(newIt);
 			}
 		}
@@ -115,7 +121,7 @@ public class Closure {
 		for (int i = 0; i < itemList.size(); i++) {
 			itemArr[i] = itemList.get(i);
 		}
-		Closure c = new Closure(new LR1Item[] {});
+		Closure c = new Closure(itemArr);
 		return c;
 	}
 

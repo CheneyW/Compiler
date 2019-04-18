@@ -101,7 +101,7 @@ public class MyFrame extends JFrame {
 				inputText.setText("");
 				String filePath = "";
 				JFileChooser fc = new JFileChooser();
-				fc.setCurrentDirectory(new File("./code"));
+				fc.setCurrentDirectory(new File("./testcase"));
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				if (fc.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
 					filePath = fc.getSelectedFile().getPath();
@@ -127,7 +127,7 @@ public class MyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				inputText.setText("");
 				try {
-					BufferedReader in = new BufferedReader(new FileReader("./code/testcase.txt"));
+					BufferedReader in = new BufferedReader(new FileReader("./testcase/testcase.txt"));
 					String line;
 					while ((line = in.readLine()) != null) {
 						inputText.append(line + "\n");

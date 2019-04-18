@@ -25,6 +25,8 @@ public class Analyzer {
 		this.tokens.add("#");
 		this.productions = productions;
 
+		symbolStack.push("#");
+		stateStack.push(0);
 		analyze();
 	}
 
@@ -46,6 +48,7 @@ public class Analyzer {
 			}
 			// 规约
 			else if (act.startsWith("r")) {
+				System.out.println(productions.get(Integer.parseInt(act.substring(1))));
 				Production p = productions.get(Integer.parseInt(act.substring(1)));
 				for (int i = 0; i < p.getRight().length; i++) {
 					symbolStack.pop();

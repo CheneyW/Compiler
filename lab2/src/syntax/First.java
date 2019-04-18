@@ -1,6 +1,9 @@
 package syntax;
 
 import java.util.HashSet;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Map;
@@ -62,7 +65,7 @@ public class First {
 				break;
 			}
 		}
-
+		first.remove(epsilon);
 	}
 
 	public Set<String> getFirst(String x) {
@@ -87,6 +90,31 @@ public class First {
 			firstAlpha.add(epsilon);
 		}
 		return firstAlpha;
+	}
+
+	public void writeFirst(Set<String> terminals, Set<String> nonterminals) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("./data/FIRST.txt"));
+			for (String symbol : nonterminals) {
+				Set<String> set = first.get(symbol);
+				out.write(symbol + " \t");
+				for (String s : set) {
+					out.write(s + " ");
+				}
+				out.newLine();
+			}
+			for (String symbol : terminals) {
+				Set<String> set = first.get(symbol);
+				out.write(symbol + " \t");
+				for (String s : set) {
+					out.write(s + " ");
+				}
+				out.newLine();
+			}
+			out.close();
+		} catch (IOException e) {
+			System.out.println("ERROR when write FIRST.");
+		}
 	}
 
 }

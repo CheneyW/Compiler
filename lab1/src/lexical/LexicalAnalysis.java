@@ -3,10 +3,8 @@ package lexical;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +19,7 @@ public class LexicalAnalysis {
 
 	private static final List<String> keyWords = Arrays.asList("int", "float", "double", "if", "else", "switch", "do",
 			"while", "for", "void", "return");
+	@SuppressWarnings("serial")
 	private Map<String, String> operatorCOF = new HashMap<String, String>() {
 		{
 			put("+", "0");
@@ -40,6 +39,7 @@ public class LexicalAnalysis {
 			put(">=", "14");
 		}
 	};
+	@SuppressWarnings("serial")
 	private Map<String, String> separatorCOF = new HashMap<String, String>() {
 		{
 			put("=", "0");
