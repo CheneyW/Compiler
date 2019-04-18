@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.HashMap;
@@ -29,15 +28,16 @@ public class SyntaxAnalysis {
 	private List<Map<String, String>> ACTION;
 
 	public static void main(String args[]) {
-		List<String> token = new ArrayList<String>();
-		token.add("a");
-		token.add("b");
-		token.add("a");
-		token.add("b");
-		SyntaxAnalysis sa = new SyntaxAnalysis(token);
+		List<String> tokens = new ArrayList<String>();
+		tokens.add("a");
+		tokens.add("b");
+		tokens.add("a");
+		tokens.add("b");
+		SyntaxAnalysis sa = new SyntaxAnalysis();
+		sa.analyze(tokens);
 	}
 
-	public SyntaxAnalysis(List<String> token) {
+	public SyntaxAnalysis() {
 		// 产生式 终结符 非终结符
 		getProduction();
 		getNonterminal();
@@ -48,6 +48,9 @@ public class SyntaxAnalysis {
 		First first = new First(productionsDict, terminals, nonterminals);
 		// 从非终结符集中去除epsilon
 		terminals.remove(epsilon);
+		writeProduction();
+		writeTerminal();
+		writeNonterminal();
 		// 去除产生式右部的epsilon
 		Iterator<Production> iterator = productions.iterator();
 		while (iterator.hasNext()) {
@@ -68,10 +71,13 @@ public class SyntaxAnalysis {
 		AnalysisTable table = new AnalysisTable(closures, productions, terminals, nonterminals);
 		GOTO = table.getGoto();
 		ACTION = table.getAction();
+	}
 
+	public List<String> analyze(List<String> tokens) {
 		// 分析器
-		Analyzer analyzer = new Analyzer(GOTO, ACTION, token, productions);
+		Analyzer analyzer = new Analyzer(GOTO, ACTION, tokens, productions);
 		List<String> actions = analyzer.getActions();
+		return actions;
 	}
 
 	// 构造LR(1)项集族
@@ -180,6 +186,7 @@ public class SyntaxAnalysis {
 		}
 	}
 
+	// 打印closure到文件
 	private void writeClosure() {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("./data/CLOSURE.txt"));
@@ -195,7 +202,44 @@ public class SyntaxAnalysis {
 			}
 			out.close();
 		} catch (IOException e) {
-			System.out.println("ERROR when write closure.");
+			System.out.println("ERROR when write CLOSURE.");
+		}
+	}
+
+	private void writeProduction() {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("./data/production.txt"));
+			for (int i = 0; i < productions.size(); i++) {
+				out.write(Integer.toString(i) + "\t" + productions.get(i));
+				out.newLine();
+			}
+			out.close();
+		} catch (IOException e) {
+			System.out.println("ERROR when write Production.");
+		}
+	}
+
+	private void writeTerminal() {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("./data/terminal.txt"));
+			for (String t : terminals) {
+				out.write(t + " ");
+			}
+			out.close();
+		} catch (IOException e) {
+			System.out.println("ERROR when write Terminal.");
+		}
+	}
+
+	private void writeNonterminal() {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("./data/nonterminal.txt"));
+			for (String n : nonterminals) {
+				out.write(n + " ");
+			}
+			out.close();
+		} catch (IOException e) {
+			System.out.println("ERROR when write Nonterminal.");
 		}
 	}
 

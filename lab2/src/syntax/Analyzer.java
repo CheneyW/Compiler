@@ -39,7 +39,6 @@ public class Analyzer {
 			String symbol = tokens.get(inputIdx);
 			int state = stateStack.peek();
 			String act = ACTION.get(state).get(symbol);
-			actions.add(act);
 			// 移进
 			if (act.startsWith("s")) {
 				stateStack.push(Integer.parseInt(act.substring(1)));
@@ -48,7 +47,7 @@ public class Analyzer {
 			}
 			// 规约
 			else if (act.startsWith("r")) {
-				System.out.println(productions.get(Integer.parseInt(act.substring(1))));
+				actions.add(productions.get(Integer.parseInt(act.substring(1))).toString());
 				Production p = productions.get(Integer.parseInt(act.substring(1)));
 				for (int i = 0; i < p.getRight().length; i++) {
 					symbolStack.pop();

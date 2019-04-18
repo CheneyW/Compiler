@@ -124,17 +124,15 @@ public class AnalysisTable {
 		// write ACTION
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("./data/ACTION.txt"));
-			out.write("\t");
 			for (String s : terminals) {
-				out.write(s + "\t");
+				out.write("\t" + s);
 			}
-			out.newLine();
 			for (int i = 0; i < closures.size(); i++) {
-				out.write(Integer.toString(i) + "\t");
-				for (String s : terminals) {
-					out.write(ACTION.get(i).get(s) + "\t");
-				}
 				out.newLine();
+				out.write(Integer.toString(i));
+				for (String s : terminals) {
+					out.write("\t" + ACTION.get(i).get(s));
+				}
 			}
 			out.close();
 		} catch (IOException e) {
@@ -144,20 +142,24 @@ public class AnalysisTable {
 		// write GOTO
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("./data/GOTO.txt"));
-			out.write("\t");
 			for (String s : nonterminals) {
-				out.write(s + "\t");
+				if (s.equals("P'")) {
+					continue;
+				}
+				out.write("\t" + s);
 			}
-			out.newLine();
 			for (int i = 0; i < closures.size(); i++) {
-				out.write(Integer.toString(i) + "\t");
+				out.newLine();
+				out.write(Integer.toString(i));
 				for (String s : nonterminals) {
+					if (s.equals("P'")) {
+						continue;
+					}
+					out.write("\t");
 					if (GOTO.get(i).containsKey(s)) {
 						out.write(Integer.toString(GOTO.get(i).get(s)));
 					}
-					out.write("\t");
 				}
-				out.newLine();
 			}
 			out.close();
 		} catch (IOException e) {

@@ -1,12 +1,8 @@
 package lexical;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
@@ -19,39 +15,11 @@ public class LexicalAnalysis {
 	private static final int SEPARATOR = 4;// 分界符
 	private static final int COMMENT = 5;// 注释
 
-	private static final List<String> keyWords = Arrays.asList("int", "float", "double", "if", "else", "switch", "do",
-			"while", "for", "void", "return");
-	private Map<String, String> operatorCOF = new HashMap<String, String>() {
-		{
-			put("+", "0");
-			put("-", "1");
-			put("*", "2");
-			put("/", "3");
-			put("&", "4");
-			put("|", "5");
-			put("!", "6");
-			put("&&", "7");
-			put("||", "8");
-			put("==", "9");
-			put("!=", "10");
-			put("<", "11");
-			put(">", "12");
-			put("<=", "13");
-			put(">=", "14");
-		}
-	};
-	private Map<String, String> separatorCOF = new HashMap<String, String>() {
-		{
-			put("=", "0");
-			put(";", "1");
-			put("(", "2");
-			put(")", "3");
-			put("[", "4");
-			put("]", "5");
-			put("{", "6");
-			put("}", "7");
-		}
-	};
+	private static final List<String> keyWords = Encoding.keyWords;
+	private static final Map<String, Integer> operatorAttrVal = Encoding.operatorAttrVal;
+	private static final Map<String, Integer> separatorAttrVal = Encoding.separatorAttrVal;
+
+	private List<Token> tokenList = new ArrayList<Token>();
 
 	private MyBuffer buffer;
 	private DefaultTableModel tokenTbMd, errorTbMd, symbolTbMd;
@@ -68,6 +36,7 @@ public class LexicalAnalysis {
 	public void run() {
 		while (scanToken()) {
 		}
+
 	}
 
 	private boolean scanToken() {
@@ -209,23 +178,23 @@ public class LexicalAnalysis {
 	private void acceptToken(int type, String token, int row) {
 		switch (type) {
 		case KEYWORD:
-			outputToken(row, token, Integer.toString(KEYWORD), Integer.toString(keyWords.indexOf(token)));
+			outputToken(row, token, KEYWORD, keyWords.indexOf(token));
 			break;
 		case IDENTIFIER:
 			if (!symbolTable.contains(token)) {
 				symbolTable.add(token);
 				outputSymbol(symbolTable.size() - 1, token);
 			}
-			outputToken(row, token, Integer.toString(IDENTIFIER), Integer.toString(symbolTable.indexOf(token)));
+			outputToken(row, token, IDENTIFIER, symbolTable.indexOf(token));
 			break;
 		case CONSTANT:
-			outputToken(row, token, Integer.toString(CONSTANT), token);
+			outputToken(row, token, CONSTANT, Integer.parseInt(token));
 			break;
 		case OPERATOR:
-			outputToken(row, token, Integer.toString(OPERATOR), operatorCOF.get(token));
+			outputToken(row, token, OPERATOR, operatorAttrVal.get(token));
 			break;
 		case SEPARATOR:
-			outputToken(row, token, Integer.toString(SEPARATOR), separatorCOF.get(token));
+			outputToken(row, token, SEPARATOR, separatorAttrVal.get(token));
 			break;
 		case COMMENT:
 //			if (token.length() > 10) {
@@ -236,8 +205,10 @@ public class LexicalAnalysis {
 		}
 	}
 
-	private void outputToken(int row, String token, String CodeOfKind, String attr) {
-		this.tokenTbMd.addRow(new String[] { Integer.toString(row), token, CodeOfKind, attr });
+	private void outputToken(int row, String token, int codeOfKind, int attr) {
+		tokenList.add(new Token(codeOfKind, attr));
+		this.tokenTbMd.addRow(
+				new String[] { Integer.toString(row), token, Integer.toString(codeOfKind), Integer.toString(attr) });
 	}
 
 	private void outputError(String description, int row) {

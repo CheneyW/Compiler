@@ -7,17 +7,13 @@ A -> .  	,  #
 A -> .B A  	,  # 
 
 I1
-P ->  A.  	,  # 
+P' ->  P.  	,  # 
 
 I2
-B -> .b  	,  a b # 
-B -> .a B  	,  a b # 
-A -> .  	,  # 
-A -> .B A  	,  # 
-A ->  B.A  	,  # 
+B ->  b.  	,  a b # 
 
 I3
-P' ->  P.  	,  # 
+P ->  A.  	,  # 
 
 I4
 B -> .b  	,  a b # 
@@ -25,7 +21,11 @@ B -> .a B  	,  a b #
 B ->  a.B  	,  a b # 
 
 I5
-B ->  b.  	,  a b # 
+B -> .b  	,  a b # 
+B -> .a B  	,  a b # 
+A -> .  	,  # 
+A -> .B A  	,  # 
+A ->  B.A  	,  # 
 
 I6
 A ->  B A.  	,  # 
