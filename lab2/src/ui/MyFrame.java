@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
+import lexical.Encoding;
 import lexical.LexicalAnalysis;
 import syntax.SyntaxAnalysis;
 
@@ -37,7 +38,7 @@ public class MyFrame extends JFrame {
 
 	public MyFrame() {
 		setTitle("Syntax Analyzer");
-		setSize(1200, 800);
+		setSize(1600, 800);
 		setPanel();
 		addButton();
 	}
@@ -189,14 +190,9 @@ public class MyFrame extends JFrame {
 				clearAll();
 				// 词法分析
 				LexicalAnalysis lex = new LexicalAnalysis(inputText, tokenTbMd, errorTbMd, symbolTbMd);
-				lex.run();
+				List<String> tokens = Encoding.TokenToSymbol(lex.run());
 
 				// 语法分析
-				List<String> tokens = new ArrayList<String>();
-				tokens.add("a");
-				tokens.add("b");
-				tokens.add("a");
-				tokens.add("b");
 				SyntaxAnalysis sa = new SyntaxAnalysis();
 				List<String> actions = sa.analyze(tokens);
 				for (String s : actions) {
@@ -230,7 +226,7 @@ public class MyFrame extends JFrame {
 				JTable actionTb = new JTable(actionTbMd);
 				actionTb.setEnabled(false);// 不可修改
 				JScrollPane newActionScrollPane = new JScrollPane(actionTb);
-				newActionScrollPane.setBounds(650, 50, 500, 320);
+				newActionScrollPane.setBounds(650, 50, 900, 320);
 				actionScrollPane = newActionScrollPane;
 				mainPanel.add(newActionScrollPane);
 
@@ -260,7 +256,7 @@ public class MyFrame extends JFrame {
 				JTable gotoTb = new JTable(gotoTbMd);
 				gotoTb.setEnabled(false);// 不可修改
 				JScrollPane newGotoScrollPane = new JScrollPane(gotoTb);
-				newGotoScrollPane.setBounds(650, 430, 500, 320);
+				newGotoScrollPane.setBounds(650, 430, 900, 320);
 				gotoScrollPane = newGotoScrollPane;
 				mainPanel.add(newGotoScrollPane);
 			}

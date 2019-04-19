@@ -2,24 +2,22 @@ package lexical;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 public class LexicalAnalysis {
-	private static final int KEYWORD = 0;// 关键字
-	private static final int IDENTIFIER = 1;// 标识符
-	private static final int CONSTANT = 2;// 常数
-	private static final int OPERATOR = 3;// 运算符
-	private static final int SEPARATOR = 4;// 分界符
-	private static final int COMMENT = 5;// 注释
+	public static final int CONSTANT = 0;// 常数
+	public static final int IDENTIFIER = 1;// 标识符
+	public static final int KEYWORD = 2;// 关键字
+	public static final int OPERATOR = 3;// 运算符
+	public static final int SEPARATOR = 4;// 分界符
+	public static final int COMMENT = 5;// 注释
 
 	private static final List<String> keyWords = Encoding.keyWords;
-	private static final Map<String, Integer> operatorAttrVal = Encoding.operatorAttrVal;
-	private static final Map<String, Integer> separatorAttrVal = Encoding.separatorAttrVal;
+	private static final List<String> codeOfKind = Encoding.codeOfKind;
 
-	private List<Token> tokenList = new ArrayList<Token>();
+	private List<Integer> tokenList = new ArrayList<Integer>();
 
 	private MyBuffer buffer;
 	private DefaultTableModel tokenTbMd, errorTbMd, symbolTbMd;
@@ -33,10 +31,10 @@ public class LexicalAnalysis {
 		this.symbolTbMd = symbolTbMd;
 	}
 
-	public void run() {
+	public List<Integer> run() {
 		while (scanToken()) {
 		}
-
+		return tokenList;
 	}
 
 	private boolean scanToken() {
@@ -158,6 +156,8 @@ public class LexicalAnalysis {
 			return true;
 
 		case ';':
+		case ':':
+		case ',':
 		case '(':
 		case ')':
 		case '[':
@@ -177,38 +177,26 @@ public class LexicalAnalysis {
 
 	private void acceptToken(int type, String token, int row) {
 		switch (type) {
-		case KEYWORD:
-			outputToken(row, token, KEYWORD, keyWords.indexOf(token));
-			break;
 		case IDENTIFIER:
 			if (!symbolTable.contains(token)) {
 				symbolTable.add(token);
 				outputSymbol(symbolTable.size() - 1, token);
 			}
-			outputToken(row, token, IDENTIFIER, symbolTable.indexOf(token));
+			outputToken(row, token, codeOfKind.indexOf("id"), Integer.toString(symbolTable.indexOf(token)));
 			break;
 		case CONSTANT:
-			outputToken(row, token, CONSTANT, Integer.parseInt(token));
+			outputToken(row, token, codeOfKind.indexOf("const"), token);
 			break;
+		case KEYWORD:
 		case OPERATOR:
-			outputToken(row, token, OPERATOR, operatorAttrVal.get(token));
-			break;
 		case SEPARATOR:
-			outputToken(row, token, SEPARATOR, separatorAttrVal.get(token));
-			break;
-		case COMMENT:
-//			if (token.length() > 10) {
-//				token = token.substring(0, 10) + "...";
-//			}
-//			outputToken(row, token, Integer.toString(COMMENT), token);
-			break;
+			outputToken(row, token, codeOfKind.indexOf(token), "");
 		}
 	}
 
-	private void outputToken(int row, String token, int codeOfKind, int attr) {
-		tokenList.add(new Token(codeOfKind, attr));
-		this.tokenTbMd.addRow(
-				new String[] { Integer.toString(row), token, Integer.toString(codeOfKind), Integer.toString(attr) });
+	private void outputToken(int row, String token, int codeOfKind, String attr) {
+		tokenList.add(codeOfKind);
+		this.tokenTbMd.addRow(new String[] { Integer.toString(row), token, Integer.toString(codeOfKind), attr });
 	}
 
 	private void outputError(String description, int row) {

@@ -1,35 +1,3422 @@
 I0
-P -> .A  	,  # 
+type -> .float  	,  id 
+type -> .record  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+type -> .void  	,  id 
+type -> .boolean  	,  id 
+func -> .type id ( args ) func_body  	,  boolean void double record char short unsigned float int long # 
+type -> .int  	,  id 
+P -> .func funcs  	,  # 
+type -> .double  	,  id 
 P' -> .P  	,  # 
-B -> .b  	,  a b # 
-B -> .a B  	,  a b # 
-A -> .  	,  # 
-A -> .B A  	,  # 
+type -> .char  	,  id 
+type -> .short  	,  id 
 
 I1
-P' ->  P.  	,  # 
+type -> .int  	,  id 
+type -> .double  	,  id 
+type -> .float  	,  id 
+type -> .record  	,  id 
+type ->  unsigned.type  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+type -> .void  	,  id 
+type -> .char  	,  id 
+type -> .short  	,  id 
+type -> .boolean  	,  id 
 
 I2
-B ->  b.  	,  a b # 
+type ->  void.  	,  id 
 
 I3
-P ->  A.  	,  # 
+type ->  long.  	,  id 
 
 I4
-B -> .b  	,  a b # 
-B -> .a B  	,  a b # 
-B ->  a.B  	,  a b # 
+type ->  boolean.  	,  id 
 
 I5
-B -> .b  	,  a b # 
-B -> .a B  	,  a b # 
-A -> .  	,  # 
-A -> .B A  	,  # 
-A ->  B.A  	,  # 
+type ->  short.  	,  id 
 
 I6
-A ->  B A.  	,  # 
+type ->  float.  	,  id 
 
 I7
-B ->  a B.  	,  a b # 
+type ->  record.  	,  id 
+
+I8
+type -> .float  	,  id 
+type -> .record  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+funcs -> .func funcs  	,  # 
+type -> .void  	,  id 
+type -> .boolean  	,  id 
+func -> .type id ( args ) func_body  	,  boolean void double record char short unsigned float int long # 
+type -> .int  	,  id 
+P ->  func.funcs  	,  # 
+type -> .double  	,  id 
+funcs -> .  	,  # 
+type -> .char  	,  id 
+type -> .short  	,  id 
+
+I9
+type ->  char.  	,  id 
+
+I10
+P' ->  P.  	,  # 
+
+I11
+func ->  type.id ( args ) func_body  	,  boolean void double record char short unsigned float int long # 
+
+I12
+type ->  int.  	,  id 
+
+I13
+type ->  double.  	,  id 
+
+I14
+type ->  unsigned type.  	,  id 
+
+I15
+func ->  type id.( args ) func_body  	,  boolean void double record char short unsigned float int long # 
+
+I16
+type -> .float  	,  id 
+type -> .record  	,  id 
+funcs ->  func.funcs  	,  # 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+funcs -> .func funcs  	,  # 
+type -> .void  	,  id 
+type -> .boolean  	,  id 
+func -> .type id ( args ) func_body  	,  boolean void double record char short unsigned float int long # 
+type -> .int  	,  id 
+type -> .double  	,  id 
+funcs -> .  	,  # 
+type -> .char  	,  id 
+type -> .short  	,  id 
+
+I17
+P ->  func funcs.  	,  # 
+
+I18
+type -> .float  	,  id 
+type -> .record  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+type -> .void  	,  id 
+type -> .boolean  	,  id 
+type -> .int  	,  id 
+args -> .type id arg  	,  ) 
+type -> .double  	,  id 
+func ->  type id (.args ) func_body  	,  boolean void double record char short unsigned float int long # 
+args -> .  	,  ) 
+type -> .char  	,  id 
+type -> .short  	,  id 
+
+I19
+funcs ->  func funcs.  	,  # 
+
+I20
+args ->  type.id arg  	,  ) 
+
+I21
+func ->  type id ( args.) func_body  	,  boolean void double record char short unsigned float int long # 
+
+I22
+arg -> .  	,  ) 
+args ->  type id.arg  	,  ) 
+arg -> ., type id arg  	,  ) 
+
+I23
+func_body -> .;  	,  boolean void double record char short unsigned float int long # 
+block -> .{ define_stmts stmts }  	,  boolean void double record char short unsigned float int long # 
+func ->  type id ( args ).func_body  	,  boolean void double record char short unsigned float int long # 
+func_body -> .block  	,  boolean void double record char short unsigned float int long # 
+
+I24
+define_stmts -> .  	,  const break continue for ( do id while if } return switch 
+block ->  {.define_stmts stmts }  	,  boolean void double record char short unsigned float int long # 
+type -> .float  	,  id 
+define_stmt -> .type id init vars ;  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+type -> .record  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+define_stmts -> .define_stmt define_stmts  	,  const break continue for ( do id while if } return switch 
+type -> .void  	,  id 
+type -> .boolean  	,  id 
+type -> .int  	,  id 
+type -> .double  	,  id 
+type -> .char  	,  id 
+type -> .short  	,  id 
+
+I25
+args ->  type id arg.  	,  ) 
+
+I26
+func_body ->  block.  	,  boolean void double record char short unsigned float int long # 
+
+I27
+func_body ->  ;.  	,  boolean void double record char short unsigned float int long # 
+
+I28
+type -> .int  	,  id 
+type -> .double  	,  id 
+type -> .float  	,  id 
+arg ->  ,.type id arg  	,  ) 
+type -> .record  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+type -> .void  	,  id 
+type -> .char  	,  id 
+type -> .short  	,  id 
+type -> .boolean  	,  id 
+
+I29
+func ->  type id ( args ) func_body.  	,  boolean void double record char short unsigned float int long # 
+
+I30
+arg ->  , type.id arg  	,  ) 
+
+I31
+define_stmt ->  type.id init vars ;  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+
+I32
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+block ->  { define_stmts.stmts }  	,  boolean void double record char short unsigned float int long # 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I33
+define_stmts -> .  	,  const break continue for ( do id while if } return switch 
+type -> .float  	,  id 
+define_stmt -> .type id init vars ;  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+type -> .record  	,  id 
+type -> .long  	,  id 
+type -> .unsigned type  	,  id 
+define_stmts -> .define_stmt define_stmts  	,  const break continue for ( do id while if } return switch 
+type -> .void  	,  id 
+define_stmts ->  define_stmt.define_stmts  	,  const break continue for ( do id while if } return switch 
+type -> .boolean  	,  id 
+type -> .int  	,  id 
+type -> .double  	,  id 
+type -> .char  	,  id 
+type -> .short  	,  id 
+
+I34
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+jump_stmt ->  return.isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I35
+stmt ->  jump_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I36
+branch_stmt ->  switch.( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+
+I37
+stmt ->  branch_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I38
+item' -> .% factor item'  	,  + - == <= < != = > >= ; 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; 
+item' -> .  	,  + - == <= < != = > >= ; 
+item ->  factor.item'  	,  + - == <= < != = > >= ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; 
+
+I39
+factor ->  const.  	,  % * / + - == <= < != = > >= ; 
+
+I40
+block_stmt -> .{ stmts }  	,  while 
+iteration_stmt ->  do.block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+
+I41
+define_stmts ->  define_stmt define_stmts.  	,  const break continue for ( do id while if } return switch 
+
+I42
+assign_stmt ->  expression.;  	,  const break continue for ( do id while if return switch } 
+
+I43
+compare_op -> .<=  	,  const ( id 
+expression ->  value.operation  	,  ; 
+compare_op -> .>  	,  const ( id 
+equal_op -> .=  	,  const ( id 
+operation -> .equal_op value  	,  ; 
+compare_op -> .>=  	,  const ( id 
+compare_op -> .<  	,  const ( id 
+compare_op -> .==  	,  const ( id 
+compare_op -> .!=  	,  const ( id 
+operation -> .compare_op value  	,  ; 
+operation -> .  	,  ; 
+
+I44
+arg -> .  	,  ) 
+arg -> ., type id arg  	,  ) 
+arg ->  , type id.arg  	,  ) 
+
+I45
+stmt ->  iteration_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I46
+iteration_stmt ->  for.( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+
+I47
+jump_stmt ->  break.;  	,  const break continue for ( do id while if return switch } 
+
+I48
+block ->  { define_stmts stmts.}  	,  boolean void double record char short unsigned float int long # 
+
+I49
+jump_stmt ->  continue.;  	,  const break continue for ( do id while if return switch } 
+
+I50
+call_func -> .  	,  % * / + - == <= < != = > >= ; 
+factor ->  id.call_func  	,  % * / + - == <= < != = > >= ; 
+call_func -> .( es )  	,  % * / + - == <= < != = > >= ; 
+
+I51
+value' -> .+ item value'  	,  == <= < != = > >= ; 
+value ->  item.value'  	,  == <= < != = > >= ; 
+value' -> .- item value'  	,  == <= < != = > >= ; 
+value' -> .  	,  == <= < != = > >= ; 
+
+I52
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - == <= < != = > >= ; 
+
+I53
+define_stmt ->  type id.init vars ;  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+init -> .  	,  ; , 
+init -> .[ const ]  	,  ; , 
+init -> .= expression  	,  ; , 
+
+I54
+stmts ->  stmt.stmts  	,  } 
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I55
+iteration_stmt ->  while.( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+
+I56
+stmt ->  assign_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I57
+branch_stmt ->  if.( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+
+I58
+jump_stmt ->  return isnull_expr.;  	,  const break continue for ( do id while if return switch } 
+
+I59
+factor ->  id call_func.  	,  % * / + - == <= < != = > >= ; 
+
+I60
+jump_stmt ->  continue ;.  	,  const break continue for ( do id while if return switch } 
+
+I61
+compare_op ->  <=.  	,  const ( id 
+
+I62
+compare_op ->  !=.  	,  const ( id 
+
+I63
+expression -> .value operation  	,  ; , 
+factor -> .const  	,  % * / + - == <= < != = > >= ; , 
+item -> .factor item'  	,  + - == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; , 
+value -> .item value'  	,  == <= < != = > >= ; , 
+init ->  =.expression  	,  ; , 
+
+I64
+vars -> .  	,  ; 
+vars -> ., id init vars  	,  ; 
+define_stmt ->  type id init.vars ;  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+
+I65
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+iteration_stmt ->  while (.logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I66
+compare_op ->  ==.  	,  const ( id 
+
+I67
+value' -> .  	,  ) 
+value' -> .+ item value'  	,  ) 
+value ->  item.value'  	,  ) 
+value' -> .- item value'  	,  ) 
+
+I68
+value ->  item value'.  	,  == <= < != = > >= ; 
+
+I69
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+item' ->  /.factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I70
+init ->  [.const ]  	,  ; , 
+
+I71
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+value' ->  +.item value'  	,  == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I72
+compare_op ->  <.  	,  const ( id 
+
+I73
+block ->  { define_stmts stmts }.  	,  boolean void double record char short unsigned float int long # 
+
+I74
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+block_stmt ->  {.stmts }  	,  while 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I75
+assign_stmt ->  expression ;.  	,  const break continue for ( do id while if return switch } 
+
+I76
+equal_op ->  =.  	,  const ( id 
+
+I77
+item ->  factor item'.  	,  + - == <= < != = > >= ; 
+
+I78
+compare_op ->  >=.  	,  const ( id 
+
+I79
+value -> .item value'  	,  ; 
+item -> .factor item'  	,  + - ; 
+factor -> .const  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+factor -> .( value )  	,  % * / + - ; 
+operation ->  compare_op.value  	,  ; 
+
+I80
+arg ->  , type id arg.  	,  ) 
+
+I81
+factor ->  const.  	,  % * / + - ) 
+
+I82
+compare_op ->  >.  	,  const ( id 
+
+I83
+isnull_expr -> .expression  	,  ; 
+iteration_stmt ->  for (.isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I84
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+value' ->  -.item value'  	,  == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I85
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - ) 
+
+I86
+iteration_stmt ->  do block_stmt.while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+
+I87
+factor ->  id.call_func  	,  % * / + - ) 
+call_func -> .  	,  % * / + - ) 
+call_func -> .( es )  	,  % * / + - ) 
+
+I88
+value -> .item value'  	,  ; 
+item -> .factor item'  	,  + - ; 
+factor -> .const  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+factor -> .( value )  	,  % * / + - ; 
+operation ->  equal_op.value  	,  ; 
+
+I89
+item' -> .* factor item'  	,  + - ) 
+item' -> .  	,  + - ) 
+item' -> .% factor item'  	,  + - ) 
+item' -> ./ factor item'  	,  + - ) 
+item ->  factor.item'  	,  + - ) 
+
+I90
+isnull_expr ->  expression.  	,  ; 
+
+I91
+factor ->  ( value.)  	,  % * / + - == <= < != = > >= ; 
+
+I92
+jump_stmt ->  break ;.  	,  const break continue for ( do id while if return switch } 
+
+I93
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+item' ->  %.factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I94
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - == <= < != = > >= ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I95
+branch_stmt ->  switch (.id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+
+I96
+expression ->  value operation.  	,  ; 
+
+I97
+branch_stmt ->  if (.logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I98
+stmts ->  stmt stmts.  	,  } 
+
+I99
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+item' ->  *.factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I100
+factor -> .const  	,  % * / + - ) 
+item' ->  /.factor item'  	,  + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I101
+value' -> .+ item value'  	,  == <= < != = > >= ; 
+value' -> .- item value'  	,  == <= < != = > >= ; 
+value' ->  + item.value'  	,  == <= < != = > >= ; 
+value' -> .  	,  == <= < != = > >= ; 
+
+I102
+define_stmt ->  type id init vars.;  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+
+I103
+item' -> .* factor item'  	,  + - ; 
+item' -> .  	,  + - ; 
+item' -> .% factor item'  	,  + - ; 
+item' -> ./ factor item'  	,  + - ; 
+item ->  factor.item'  	,  + - ; 
+
+I104
+factor ->  const.  	,  % * / + - == <= < != = > >= , ) 
+
+I105
+operation -> .  	,  ; , 
+expression ->  value.operation  	,  ; , 
+compare_op -> .<=  	,  const ( id 
+compare_op -> .>  	,  const ( id 
+equal_op -> .=  	,  const ( id 
+compare_op -> .>=  	,  const ( id 
+operation -> .compare_op value  	,  ; , 
+compare_op -> .<  	,  const ( id 
+compare_op -> .==  	,  const ( id 
+compare_op -> .!=  	,  const ( id 
+operation -> .equal_op value  	,  ; , 
+
+I106
+value' -> .+ item value'  	,  == <= < != = > >= ; , 
+value' -> .- item value'  	,  == <= < != = > >= ; , 
+value' -> .  	,  == <= < != = > >= ; , 
+value ->  item.value'  	,  == <= < != = > >= ; , 
+
+I107
+call_func -> .( es )  	,  % * / + - == <= < != = > >= ; , 
+factor ->  id.call_func  	,  % * / + - == <= < != = > >= ; , 
+call_func -> .  	,  % * / + - == <= < != = > >= ; , 
+
+I108
+factor ->  const.  	,  % * / + - ; 
+
+I109
+item' ->  %.factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I110
+branch_stmt ->  if ( logical_expression.) block_stmt result  	,  const break continue for ( do id while if return switch } 
+
+I111
+iteration_stmt ->  for ( isnull_expr.; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+
+I112
+vars ->  ,.id init vars  	,  ; 
+
+I113
+value' -> .  	,  == <= < != = > >= && || ) 
+value' -> .+ item value'  	,  == <= < != = > >= && || ) 
+value' -> .- item value'  	,  == <= < != = > >= && || ) 
+value ->  item.value'  	,  == <= < != = > >= && || ) 
+
+I114
+value' -> .  	,  ; 
+value' -> .+ item value'  	,  ; 
+value ->  item.value'  	,  ; 
+value' -> .- item value'  	,  ; 
+
+I115
+factor ->  id call_func.  	,  % * / + - ) 
+
+I116
+es ->  isnull_expr.isnull_es  	,  ) 
+isnull_es -> ., isnull_expr isnull_es  	,  ) 
+isnull_es -> .  	,  ) 
+
+I117
+factor ->  id.call_func  	,  % * / + - ; 
+call_func -> .  	,  % * / + - ; 
+call_func -> .( es )  	,  % * / + - ; 
+
+I118
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; , 
+item ->  factor.item'  	,  + - == <= < != = > >= ; , 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; , 
+item' -> .  	,  + - == <= < != = > >= ; , 
+item' -> .% factor item'  	,  + - == <= < != = > >= ; , 
+
+I119
+iteration_stmt ->  while ( logical_expression.) block_stmt  	,  const break continue for ( do id while if return switch } 
+
+I120
+factor ->  ( value.)  	,  % * / + - ) 
+
+I121
+call_func -> .  	,  % * / + - == <= < != = > >= && || ) 
+factor ->  id.call_func  	,  % * / + - == <= < != = > >= && || ) 
+call_func -> .( es )  	,  % * / + - == <= < != = > >= && || ) 
+
+I122
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression ->  !.expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I123
+item' -> .% factor item'  	,  + - == <= < != = > >= ; 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; 
+item' -> .  	,  + - == <= < != = > >= ; 
+item' ->  * factor.item'  	,  + - == <= < != = > >= ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; 
+
+I124
+factor ->  ( value ).  	,  % * / + - == <= < != = > >= ; 
+
+I125
+init ->  [ const.]  	,  ; , 
+
+I126
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+value' ->  -.item value'  	,  ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I127
+value' -> .+ item value'  	,  == <= < != = > >= ; 
+value' -> .- item value'  	,  == <= < != = > >= ; 
+value' ->  - item.value'  	,  == <= < != = > >= ; 
+value' -> .  	,  == <= < != = > >= ; 
+
+I128
+operation ->  compare_op value.  	,  ; 
+
+I129
+call_func -> .( es )  	,  % * / + - == <= < != = > >= , ) 
+factor ->  id.call_func  	,  % * / + - == <= < != = > >= , ) 
+call_func -> .  	,  % * / + - == <= < != = > >= , ) 
+
+I130
+value ->  item value'.  	,  ) 
+
+I131
+item ->  factor.item'  	,  + - == <= < != = > >= && || ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .  	,  + - == <= < != = > >= && || ) 
+
+I132
+compare_op -> .<=  	,  const ( id 
+expression ->  value.operation  	,  && || ) 
+compare_op -> .>  	,  const ( id 
+equal_op -> .=  	,  const ( id 
+compare_op -> .>=  	,  const ( id 
+compare_op -> .<  	,  const ( id 
+compare_op -> .==  	,  const ( id 
+operation -> .equal_op value  	,  && || ) 
+operation -> .  	,  && || ) 
+compare_op -> .!=  	,  const ( id 
+operation -> .compare_op value  	,  && || ) 
+
+I133
+factor ->  const.  	,  % * / + - == <= < != = > >= ; , 
+
+I134
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - ) 
+
+I135
+isnull_expr ->  expression.  	,  , ) 
+
+I136
+lop -> .&&  	,  const ( id 
+bool_expression -> .  	,  ) 
+logical_expression ->  expression.bool_expression  	,  ) 
+bool_expression -> .lop expression bool_expression  	,  ) 
+lop -> .||  	,  const ( id 
+
+I137
+call_func ->  ( es.)  	,  % * / + - == <= < != = > >= ; 
+
+I138
+init ->  = expression.  	,  ; , 
+
+I139
+item' -> .% factor item'  	,  + - == <= < != = > >= ; 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; 
+item' -> .  	,  + - == <= < != = > >= ; 
+item' ->  / factor.item'  	,  + - == <= < != = > >= ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; 
+
+I140
+factor ->  const.  	,  % * / + - == <= < != = > >= && || ) 
+
+I141
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - ; 
+
+I142
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - == <= < != = > >= , ) 
+
+I143
+branch_stmt ->  switch ( id.) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+
+I144
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I145
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I146
+value' -> .+ item value'  	,  == <= < != = > >= , ) 
+value ->  item.value'  	,  == <= < != = > >= , ) 
+value' -> .  	,  == <= < != = > >= , ) 
+value' -> .- item value'  	,  == <= < != = > >= , ) 
+
+I147
+operation ->  equal_op value.  	,  ; 
+
+I148
+block_stmt ->  { stmts.}  	,  while 
+
+I149
+item' ->  *.factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I150
+iteration_stmt ->  do block_stmt while.( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+
+I151
+item' -> .* factor item'  	,  + - == <= < != = > >= , ) 
+item ->  factor.item'  	,  + - == <= < != = > >= , ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ) 
+item' -> .  	,  + - == <= < != = > >= , ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ) 
+
+I152
+item' -> .% factor item'  	,  + - == <= < != = > >= ; 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; 
+item' -> .  	,  + - == <= < != = > >= ; 
+item' ->  % factor.item'  	,  + - == <= < != = > >= ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; 
+
+I153
+value' ->  +.item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I154
+compare_op -> .<=  	,  const ( id 
+compare_op -> .>  	,  const ( id 
+operation -> .  	,  , ) 
+equal_op -> .=  	,  const ( id 
+operation -> .compare_op value  	,  , ) 
+compare_op -> .>=  	,  const ( id 
+compare_op -> .<  	,  const ( id 
+compare_op -> .==  	,  const ( id 
+compare_op -> .!=  	,  const ( id 
+operation -> .equal_op value  	,  , ) 
+expression ->  value.operation  	,  , ) 
+
+I155
+jump_stmt ->  return isnull_expr ;.  	,  const break continue for ( do id while if return switch } 
+
+I156
+item ->  factor item'.  	,  + - ) 
+
+I157
+expression ->  value operation.  	,  , ) 
+
+I158
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+isnull_es ->  ,.isnull_expr isnull_es  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I159
+item' -> .* factor item'  	,  + - ) 
+item' -> .  	,  + - ) 
+item' -> .% factor item'  	,  + - ) 
+item' -> ./ factor item'  	,  + - ) 
+item' ->  / factor.item'  	,  + - ) 
+
+I160
+value' ->  + item value'.  	,  == <= < != = > >= ; 
+
+I161
+expression ->  value operation.  	,  ; , 
+
+I162
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+value' ->  +.item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I163
+factor -> .const  	,  % * / + - , ) 
+operation ->  equal_op.value  	,  , ) 
+item -> .factor item'  	,  + - , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+value -> .item value'  	,  , ) 
+
+I164
+factor -> .const  	,  % * / + - ; , 
+factor -> .( value )  	,  % * / + - ; , 
+operation ->  compare_op.value  	,  ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+value -> .item value'  	,  ; , 
+item -> .factor item'  	,  + - ; , 
+
+I165
+item -> .factor item'  	,  + - ; 
+factor -> .const  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+value' ->  -.item value'  	,  ; 
+factor -> .( value )  	,  % * / + - ; 
+
+I166
+value ->  item value'.  	,  ; 
+
+I167
+item' ->  %.factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I168
+lop ->  ||.  	,  const ( id 
+
+I169
+item ->  factor item'.  	,  + - ; 
+
+I170
+factor -> .const  	,  % * / + - == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; , 
+item' ->  /.factor item'  	,  + - == <= < != = > >= ; , 
+
+I171
+block_stmt ->  { stmts }.  	,  while 
+
+I172
+iteration_stmt ->  while ( logical_expression ).block_stmt  	,  const break continue for ( do id while if return switch } 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch } 
+
+I173
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+item' ->  /.factor item'  	,  + - == <= < != = > >= , ) 
+
+I174
+block_stmt -> .{ stmts }  	,  else const break continue for ( do id while if return switch } 
+branch_stmt ->  if ( logical_expression ).block_stmt result  	,  const break continue for ( do id while if return switch } 
+
+I175
+lop -> .&&  	,  const ( id 
+bool_expression -> .  	,  ) 
+logical_expression ->  ! expression.bool_expression  	,  ) 
+bool_expression -> .lop expression bool_expression  	,  ) 
+lop -> .||  	,  const ( id 
+
+I176
+factor ->  ( value ).  	,  % * / + - ) 
+
+I177
+expression ->  value operation.  	,  && || ) 
+
+I178
+item' -> .* factor item'  	,  + - ) 
+item' -> .  	,  + - ) 
+item' ->  * factor.item'  	,  + - ) 
+item' -> .% factor item'  	,  + - ) 
+item' -> ./ factor item'  	,  + - ) 
+
+I179
+item' ->  %.factor item'  	,  + - ; 
+factor -> .const  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+factor -> .( value )  	,  % * / + - ; 
+
+I180
+value ->  item value'.  	,  == <= < != = > >= && || ) 
+
+I181
+es ->  isnull_expr isnull_es.  	,  ) 
+
+I182
+item' ->  /.factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I183
+call_func ->  ( es ).  	,  % * / + - == <= < != = > >= ; 
+
+I184
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I185
+item ->  factor item'.  	,  + - == <= < != = > >= ; , 
+
+I186
+define_stmt ->  type id init vars ;.  	,  boolean void double record char short unsigned float int long const break continue for ( do id while if } return switch 
+
+I187
+factor ->  id call_func.  	,  % * / + - == <= < != = > >= , ) 
+
+I188
+value -> .item value'  	,  && || ) 
+item -> .factor item'  	,  + - && || ) 
+factor -> .id call_func  	,  % * / + - && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+operation ->  compare_op.value  	,  && || ) 
+
+I189
+value -> .item value'  	,  && || ) 
+item -> .factor item'  	,  + - && || ) 
+factor -> .id call_func  	,  % * / + - && || ) 
+operation ->  equal_op.value  	,  && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+
+I190
+value' -> .  	,  ) 
+value' -> .+ item value'  	,  ) 
+value' ->  + item.value'  	,  ) 
+value' -> .- item value'  	,  ) 
+
+I191
+item' ->  % factor item'.  	,  + - == <= < != = > >= ; 
+
+I192
+value' ->  - item value'.  	,  == <= < != = > >= ; 
+
+I193
+factor ->  id call_func.  	,  % * / + - ; 
+
+I194
+item' ->  *.factor item'  	,  + - == <= < != = > >= ; , 
+factor -> .const  	,  % * / + - == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; , 
+
+I195
+item' ->  *.factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+
+I196
+value ->  item value'.  	,  == <= < != = > >= , ) 
+
+I197
+item' ->  % factor.item'  	,  + - ) 
+item' -> .* factor item'  	,  + - ) 
+item' -> .  	,  + - ) 
+item' -> .% factor item'  	,  + - ) 
+item' -> ./ factor item'  	,  + - ) 
+
+I198
+lop ->  &&.  	,  const ( id 
+
+I199
+item' ->  / factor item'.  	,  + - == <= < != = > >= ; 
+
+I200
+factor -> .const  	,  % * / + - ; , 
+factor -> .( value )  	,  % * / + - ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+value -> .item value'  	,  ; , 
+item -> .factor item'  	,  + - ; , 
+operation ->  equal_op.value  	,  ; , 
+
+I201
+branch_stmt ->  switch ( id ).{ case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+
+I202
+value' -> .  	,  ) 
+value' -> .+ item value'  	,  ) 
+value' -> .- item value'  	,  ) 
+value' ->  - item.value'  	,  ) 
+
+I203
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+iteration_stmt ->  for ( isnull_expr ;.isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I204
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+value' ->  +.item value'  	,  == <= < != = > >= , ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+
+I205
+factor -> .const  	,  % * / + - == <= < != = > >= ; , 
+item -> .factor item'  	,  + - == <= < != = > >= ; , 
+value' ->  +.item value'  	,  == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; , 
+
+I206
+factor -> .const  	,  % * / + - == <= < != = > >= ; , 
+item -> .factor item'  	,  + - == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; , 
+value' ->  -.item value'  	,  == <= < != = > >= ; , 
+
+I207
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value' ->  -.item value'  	,  == <= < != = > >= , ) 
+
+I208
+factor ->  id call_func.  	,  % * / + - == <= < != = > >= ; , 
+
+I209
+logical_expression ->  expression bool_expression.  	,  ) 
+
+I210
+factor ->  id call_func.  	,  % * / + - == <= < != = > >= && || ) 
+
+I211
+factor ->  ( value.)  	,  % * / + - ; 
+
+I212
+call_func ->  ( es.)  	,  % * / + - ) 
+
+I213
+init ->  [ const ].  	,  ; , 
+
+I214
+factor -> .const  	,  % * / + - , ) 
+item -> .factor item'  	,  + - , ) 
+operation ->  compare_op.value  	,  , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+value -> .item value'  	,  , ) 
+
+I215
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I216
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+item' ->  *.factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I217
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - == <= < != = > >= , ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I218
+factor -> .const  	,  % * / + - == <= < != = > >= ; , 
+item' ->  %.factor item'  	,  + - == <= < != = > >= ; , 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; , 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; , 
+
+I219
+factor ->  ( value.)  	,  % * / + - == <= < != = > >= , ) 
+
+I220
+item ->  factor item'.  	,  + - == <= < != = > >= , ) 
+
+I221
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+call_func ->  (.es )  	,  % * / + - == <= < != = > >= && || ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I222
+factor ->  ( value.)  	,  % * / + - == <= < != = > >= ; , 
+
+I223
+item' ->  *.factor item'  	,  + - ; 
+factor -> .const  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+factor -> .( value )  	,  % * / + - ; 
+
+I224
+factor -> .const  	,  % * / + - ; 
+item' ->  /.factor item'  	,  + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+factor -> .( value )  	,  % * / + - ; 
+
+I225
+vars ->  , id.init vars  	,  ; 
+init -> .  	,  , ; 
+init -> .[ const ]  	,  , ; 
+init -> .= expression  	,  , ; 
+
+I226
+item' ->  * factor item'.  	,  + - == <= < != = > >= ; 
+
+I227
+factor ->  ( value.)  	,  % * / + - == <= < != = > >= && || ) 
+
+I228
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+item' ->  %.factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+
+I229
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+value' ->  -.item value'  	,  == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I230
+value' ->  +.item value'  	,  ; 
+item -> .factor item'  	,  + - ; 
+factor -> .const  	,  % * / + - ; 
+factor -> .id call_func  	,  % * / + - ; 
+factor -> .( value )  	,  % * / + - ; 
+
+I231
+item ->  factor item'.  	,  + - == <= < != = > >= && || ) 
+
+I232
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+bool_expression ->  lop.expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I233
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+iteration_stmt ->  do block_stmt while (.logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I234
+value ->  item value'.  	,  == <= < != = > >= ; , 
+
+I235
+factor ->  ( value ).  	,  % * / + - == <= < != = > >= , ) 
+
+I236
+value' -> .+ item value'  	,  == <= < != = > >= ; , 
+value' ->  + item.value'  	,  == <= < != = > >= ; , 
+value' -> .- item value'  	,  == <= < != = > >= ; , 
+value' -> .  	,  == <= < != = > >= ; , 
+
+I237
+item' ->  % factor item'.  	,  + - ) 
+
+I238
+init ->  [.const ]  	,  , ; 
+
+I239
+operation ->  compare_op value.  	,  , ) 
+
+I240
+value' ->  + item.value'  	,  == <= < != = > >= && || ) 
+value' -> .  	,  == <= < != = > >= && || ) 
+value' -> .+ item value'  	,  == <= < != = > >= && || ) 
+value' -> .- item value'  	,  == <= < != = > >= && || ) 
+
+I241
+value' -> .+ item value'  	,  == <= < != = > >= , ) 
+value' ->  + item.value'  	,  == <= < != = > >= , ) 
+value' -> .  	,  == <= < != = > >= , ) 
+value' -> .- item value'  	,  == <= < != = > >= , ) 
+
+I242
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; , 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; , 
+item' ->  % factor.item'  	,  + - == <= < != = > >= ; , 
+item' -> .  	,  + - == <= < != = > >= ; , 
+item' -> .% factor item'  	,  + - == <= < != = > >= ; , 
+
+I243
+value' -> .+ item value'  	,  == <= < != = > >= ; , 
+value' -> .- item value'  	,  == <= < != = > >= ; , 
+value' -> .  	,  == <= < != = > >= ; , 
+value' ->  - item.value'  	,  == <= < != = > >= ; , 
+
+I244
+call_func ->  ( es.)  	,  % * / + - ; 
+
+I245
+item' ->  * factor.item'  	,  + - == <= < != = > >= && || ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .  	,  + - == <= < != = > >= && || ) 
+
+I246
+factor ->  const.  	,  % * / + - , ) 
+
+I247
+factor ->  id.call_func  	,  % * / + - && || ) 
+call_func -> .  	,  % * / + - && || ) 
+call_func -> .( es )  	,  % * / + - && || ) 
+
+I248
+item' -> .* factor item'  	,  + - && || ) 
+item' -> ./ factor item'  	,  + - && || ) 
+item' -> .  	,  + - && || ) 
+item' -> .% factor item'  	,  + - && || ) 
+item ->  factor.item'  	,  + - && || ) 
+
+I249
+call_func ->  ( es ).  	,  % * / + - ) 
+
+I250
+operation ->  compare_op value.  	,  ; , 
+
+I251
+item' -> .* factor item'  	,  + - ; 
+item' -> .  	,  + - ; 
+item' ->  * factor.item'  	,  + - ; 
+item' -> .% factor item'  	,  + - ; 
+item' -> ./ factor item'  	,  + - ; 
+
+I252
+item' ->  % factor.item'  	,  + - ; 
+item' -> .* factor item'  	,  + - ; 
+item' -> .  	,  + - ; 
+item' -> .% factor item'  	,  + - ; 
+item' -> ./ factor item'  	,  + - ; 
+
+I253
+operation ->  equal_op value.  	,  && || ) 
+
+I254
+call_func ->  ( es.)  	,  % * / + - == <= < != = > >= , ) 
+
+I255
+operation ->  compare_op value.  	,  && || ) 
+
+I256
+vars -> .  	,  ; 
+vars ->  , id init.vars  	,  ; 
+vars -> ., id init vars  	,  ; 
+
+I257
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; , 
+item' ->  * factor.item'  	,  + - == <= < != = > >= ; , 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; , 
+item' -> .  	,  + - == <= < != = > >= ; , 
+item' -> .% factor item'  	,  + - == <= < != = > >= ; , 
+
+I258
+operation ->  equal_op value.  	,  ; , 
+
+I259
+expression -> .value operation  	,  , ; 
+item -> .factor item'  	,  + - == <= < != = > >= , ; 
+factor -> .const  	,  % * / + - == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ; 
+init ->  =.expression  	,  , ; 
+value -> .item value'  	,  == <= < != = > >= , ; 
+
+I260
+call_func -> .  	,  % * / + - ; , 
+call_func -> .( es )  	,  % * / + - ; , 
+factor ->  id.call_func  	,  % * / + - ; , 
+
+I261
+result -> .else block_stmt  	,  const break continue for ( do id while if return switch } 
+result -> .  	,  const break continue for ( do id while if return switch } 
+branch_stmt ->  if ( logical_expression ) block_stmt.result  	,  const break continue for ( do id while if return switch } 
+
+I262
+item' ->  / factor item'.  	,  + - ) 
+
+I263
+factor ->  const.  	,  % * / + - ; , 
+
+I264
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+block_stmt ->  {.stmts }  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I265
+value' -> .+ item value'  	,  == <= < != = > >= , ) 
+value' ->  - item.value'  	,  == <= < != = > >= , ) 
+value' -> .  	,  == <= < != = > >= , ) 
+value' -> .- item value'  	,  == <= < != = > >= , ) 
+
+I266
+value' -> .  	,  && || ) 
+value' -> .+ item value'  	,  && || ) 
+value ->  item.value'  	,  && || ) 
+value' -> .- item value'  	,  && || ) 
+
+I267
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - && || ) 
+
+I268
+factor ->  ( value ).  	,  % * / + - ; 
+
+I269
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+block_stmt ->  {.stmts }  	,  else const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I270
+factor ->  ( value ).  	,  % * / + - == <= < != = > >= ; , 
+
+I271
+item' -> .* factor item'  	,  + - ; 
+item' -> .  	,  + - ; 
+item' -> .% factor item'  	,  + - ; 
+item' -> ./ factor item'  	,  + - ; 
+item' ->  / factor.item'  	,  + - ; 
+
+I272
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - ; , 
+factor -> .( value )  	,  % * / + - ) 
+
+I273
+iteration_stmt ->  while ( logical_expression ) block_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I274
+item' ->  * factor item'.  	,  + - ) 
+
+I275
+item' -> .* factor item'  	,  + - == <= < != = > >= , ) 
+item' ->  % factor.item'  	,  + - == <= < != = > >= , ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ) 
+item' -> .  	,  + - == <= < != = > >= , ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ) 
+
+I276
+item' -> ./ factor item'  	,  + - == <= < != = > >= && || ) 
+item' ->  / factor.item'  	,  + - == <= < != = > >= && || ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .  	,  + - == <= < != = > >= && || ) 
+
+I277
+value' ->  + item value'.  	,  ) 
+
+I278
+iteration_stmt ->  do block_stmt while ( logical_expression.) ;  	,  const break continue for ( do id while if return switch } 
+
+I279
+isnull_es -> ., isnull_expr isnull_es  	,  ) 
+isnull_es ->  , isnull_expr.isnull_es  	,  ) 
+isnull_es -> .  	,  ) 
+
+I280
+item' -> ./ factor item'  	,  + - == <= < != = > >= && || ) 
+item' ->  % factor.item'  	,  + - == <= < != = > >= && || ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= && || ) 
+item' -> .  	,  + - == <= < != = > >= && || ) 
+
+I281
+call_func ->  ( es.)  	,  % * / + - == <= < != = > >= && || ) 
+
+I282
+value' -> .  	,  ; 
+value' -> .+ item value'  	,  ; 
+value' ->  + item.value'  	,  ; 
+value' -> .- item value'  	,  ; 
+
+I283
+value' -> .  	,  == <= < != = > >= && || ) 
+value' -> .+ item value'  	,  == <= < != = > >= && || ) 
+value' -> .- item value'  	,  == <= < != = > >= && || ) 
+value' ->  - item.value'  	,  == <= < != = > >= && || ) 
+
+I284
+factor ->  ( value ).  	,  % * / + - == <= < != = > >= && || ) 
+
+I285
+operation ->  equal_op value.  	,  , ) 
+
+I286
+item ->  factor.item'  	,  + - ; , 
+item' -> .* factor item'  	,  + - ; , 
+item' -> ./ factor item'  	,  + - ; , 
+item' -> .% factor item'  	,  + - ; , 
+item' -> .  	,  + - ; , 
+
+I287
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - ) 
+
+I288
+value' -> .  	,  ; 
+value' -> .+ item value'  	,  ; 
+value' -> .- item value'  	,  ; 
+value' ->  - item.value'  	,  ; 
+
+I289
+item' -> .* factor item'  	,  + - == <= < != = > >= , ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ) 
+item' -> .  	,  + - == <= < != = > >= , ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ) 
+item' ->  * factor.item'  	,  + - == <= < != = > >= , ) 
+
+I290
+call_func ->  ( es.)  	,  % * / + - == <= < != = > >= ; , 
+
+I291
+logical_expression ->  ! expression bool_expression.  	,  ) 
+
+I292
+factor ->  const.  	,  % * / + - && || ) 
+
+I293
+iteration_stmt ->  for ( isnull_expr ; isnull_expr.; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+
+I294
+item' -> .* factor item'  	,  + - == <= < != = > >= , ) 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ) 
+item' -> .  	,  + - == <= < != = > >= , ) 
+item' ->  / factor.item'  	,  + - == <= < != = > >= , ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ) 
+
+I295
+item' -> ./ factor item'  	,  + - == <= < != = > >= ; , 
+item' -> .* factor item'  	,  + - == <= < != = > >= ; , 
+item' -> .  	,  + - == <= < != = > >= ; , 
+item' -> .% factor item'  	,  + - == <= < != = > >= ; , 
+item' ->  / factor.item'  	,  + - == <= < != = > >= ; , 
+
+I296
+value' ->  - item value'.  	,  ) 
+
+I297
+value' -> .+ item value'  	,  ; , 
+value' -> .- item value'  	,  ; , 
+value' -> .  	,  ; , 
+value ->  item.value'  	,  ; , 
+
+I298
+lop -> .&&  	,  const ( id 
+bool_expression -> .  	,  ) 
+bool_expression ->  lop expression.bool_expression  	,  ) 
+bool_expression -> .lop expression bool_expression  	,  ) 
+lop -> .||  	,  const ( id 
+
+I299
+call_func -> .  	,  % * / + - , ) 
+factor ->  id.call_func  	,  % * / + - , ) 
+call_func -> .( es )  	,  % * / + - , ) 
+
+I300
+value' -> .+ item value'  	,  , ) 
+value ->  item.value'  	,  , ) 
+value' -> .  	,  , ) 
+value' -> .- item value'  	,  , ) 
+
+I301
+branch_stmt ->  switch ( id ) {.case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+case_stmt -> .case const : stmts  	,  default } case 
+
+I302
+item' -> ./ factor item'  	,  + - , ) 
+item ->  factor.item'  	,  + - , ) 
+item' -> .* factor item'  	,  + - , ) 
+item' -> .% factor item'  	,  + - , ) 
+item' -> .  	,  + - , ) 
+
+I303
+vars ->  , id init vars.  	,  ; 
+
+I304
+item' ->  * factor item'.  	,  + - == <= < != = > >= ; , 
+
+I305
+factor ->  id call_func.  	,  % * / + - ; , 
+
+I306
+factor -> .const  	,  % * / + - , ) 
+item' ->  %.factor item'  	,  + - , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+
+I307
+factor ->  id call_func.  	,  % * / + - , ) 
+
+I308
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+call_func ->  (.es )  	,  % * / + - && || ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I309
+factor -> .const  	,  % * / + - ; , 
+factor -> .( value )  	,  % * / + - ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+item -> .factor item'  	,  + - ; , 
+value' ->  -.item value'  	,  ; , 
+
+I310
+call_func ->  ( es ).  	,  % * / + - == <= < != = > >= ; , 
+
+I311
+factor ->  id call_func.  	,  % * / + - && || ) 
+
+I312
+item' ->  % factor item'.  	,  + - == <= < != = > >= ; , 
+
+I313
+item' ->  % factor item'.  	,  + - == <= < != = > >= , ) 
+
+I314
+value' ->  - item value'.  	,  ; 
+
+I315
+factor ->  ( value.)  	,  % * / + - ; , 
+
+I316
+factor -> .const  	,  % * / + - ; , 
+item' ->  *.factor item'  	,  + - ; , 
+factor -> .( value )  	,  % * / + - ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+
+I317
+value ->  item value'.  	,  ; , 
+
+I318
+value ->  item value'.  	,  , ) 
+
+I319
+case_stmts -> .case_stmt case_stmts  	,  default } 
+case_stmts -> .  	,  default } 
+branch_stmt ->  switch ( id ) { case_stmt.case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+case_stmt -> .case const : stmts  	,  case default } 
+
+I320
+factor -> .id call_func  	,  % * / + - && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+item' ->  %.factor item'  	,  + - && || ) 
+
+I321
+item' ->  / factor item'.  	,  + - ; 
+
+I322
+item' ->  / factor item'.  	,  + - == <= < != = > >= && || ) 
+
+I323
+call_func ->  ( es ).  	,  % * / + - ; 
+
+I324
+branch_stmt ->  if ( logical_expression ) block_stmt result.  	,  const break continue for ( do id while if return switch } 
+
+I325
+factor ->  ( value.)  	,  % * / + - , ) 
+
+I326
+value' ->  - item value'.  	,  == <= < != = > >= , ) 
+
+I327
+item' ->  / factor item'.  	,  + - == <= < != = > >= ; , 
+
+I328
+isnull_expr -> .expression  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+isnull_expr -> .  	,  ) 
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ;.isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+value -> .item value'  	,  == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I329
+value' ->  + item value'.  	,  == <= < != = > >= && || ) 
+
+I330
+item' -> .* factor item'  	,  + - == <= < != = > >= , ; 
+item ->  factor.item'  	,  + - == <= < != = > >= , ; 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ; 
+item' -> .  	,  + - == <= < != = > >= , ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ; 
+
+I331
+factor ->  ( value.)  	,  % * / + - && || ) 
+
+I332
+call_func ->  ( es ).  	,  % * / + - == <= < != = > >= , ) 
+
+I333
+item' ->  / factor item'.  	,  + - == <= < != = > >= , ) 
+
+I334
+value' ->  - item value'.  	,  == <= < != = > >= ; , 
+
+I335
+item' ->  *.factor item'  	,  + - && || ) 
+factor -> .id call_func  	,  % * / + - && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+
+I336
+factor -> .id call_func  	,  % * / + - && || ) 
+item' ->  /.factor item'  	,  + - && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+
+I337
+item' ->  /.factor item'  	,  + - ; , 
+factor -> .const  	,  % * / + - ; , 
+factor -> .( value )  	,  % * / + - ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+
+I338
+value' ->  + item value'.  	,  ; 
+
+I339
+call_func -> .( es )  	,  % * / + - == <= < != = > >= , ; 
+factor ->  id.call_func  	,  % * / + - == <= < != = > >= , ; 
+call_func -> .  	,  % * / + - == <= < != = > >= , ; 
+
+I340
+item ->  factor item'.  	,  + - ; , 
+
+I341
+item ->  factor item'.  	,  + - && || ) 
+
+I342
+value' ->  + item value'.  	,  == <= < != = > >= ; , 
+
+I343
+value' -> .+ item value'  	,  == <= < != = > >= , ; 
+value ->  item.value'  	,  == <= < != = > >= , ; 
+value' -> .  	,  == <= < != = > >= , ; 
+value' -> .- item value'  	,  == <= < != = > >= , ; 
+
+I344
+item -> .factor item'  	,  + - && || ) 
+factor -> .id call_func  	,  % * / + - && || ) 
+value' ->  -.item value'  	,  && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+
+I345
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+call_func ->  (.es )  	,  % * / + - ; , 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I346
+item ->  factor item'.  	,  + - , ) 
+
+I347
+factor -> .const  	,  % * / + - , ) 
+item -> .factor item'  	,  + - , ) 
+value' ->  +.item value'  	,  , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+
+I348
+case_stmt ->  case.const : stmts  	,  default } case 
+
+I349
+item' ->  % factor item'.  	,  + - ; 
+
+I350
+init ->  = expression.  	,  , ; 
+
+I351
+item' ->  * factor item'.  	,  + - == <= < != = > >= && || ) 
+
+I352
+factor -> .const  	,  % * / + - ; , 
+value' ->  +.item value'  	,  ; , 
+factor -> .( value )  	,  % * / + - ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+item -> .factor item'  	,  + - ; , 
+
+I353
+item' ->  /.factor item'  	,  + - , ) 
+factor -> .const  	,  % * / + - , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+
+I354
+item' ->  % factor item'.  	,  + - == <= < != = > >= && || ) 
+
+I355
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+call_func ->  (.es )  	,  % * / + - , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I356
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - == <= < != = > >= , ; 
+
+I357
+iteration_stmt ->  do block_stmt while ( logical_expression ).;  	,  const break continue for ( do id while if return switch } 
+
+I358
+call_func ->  ( es ).  	,  % * / + - == <= < != = > >= && || ) 
+
+I359
+value ->  item value'.  	,  && || ) 
+
+I360
+result ->  else.block_stmt  	,  const break continue for ( do id while if return switch } 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch } 
+
+I361
+factor -> .const  	,  % * / + - , ) 
+item -> .factor item'  	,  + - , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+value' ->  -.item value'  	,  , ) 
+
+I362
+isnull_es ->  , isnull_expr isnull_es.  	,  ) 
+
+I363
+bool_expression ->  lop expression bool_expression.  	,  ) 
+
+I364
+item' ->  * factor item'.  	,  + - == <= < != = > >= , ) 
+
+I365
+block_stmt ->  { stmts.}  	,  const break continue for ( do id while if return switch } 
+
+I366
+item -> .factor item'  	,  + - && || ) 
+factor -> .id call_func  	,  % * / + - && || ) 
+value' ->  +.item value'  	,  && || ) 
+factor -> .( value )  	,  % * / + - && || ) 
+factor -> .const  	,  % * / + - && || ) 
+
+I367
+value' ->  + item value'.  	,  == <= < != = > >= , ) 
+
+I368
+value' ->  - item value'.  	,  == <= < != = > >= && || ) 
+
+I369
+factor ->  const.  	,  % * / + - == <= < != = > >= , ; 
+
+I370
+init ->  [ const.]  	,  , ; 
+
+I371
+block_stmt ->  { stmts.}  	,  else const break continue for ( do id while if return switch } 
+
+I372
+item' ->  * factor item'.  	,  + - ; 
+
+I373
+factor -> .const  	,  % * / + - ; , 
+factor -> .( value )  	,  % * / + - ; , 
+item' ->  %.factor item'  	,  + - ; , 
+factor -> .id call_func  	,  % * / + - ; , 
+
+I374
+compare_op -> .<=  	,  const ( id 
+compare_op -> .>  	,  const ( id 
+operation -> .  	,  , ; 
+equal_op -> .=  	,  const ( id 
+operation -> .compare_op value  	,  , ; 
+compare_op -> .>=  	,  const ( id 
+compare_op -> .<  	,  const ( id 
+compare_op -> .==  	,  const ( id 
+compare_op -> .!=  	,  const ( id 
+operation -> .equal_op value  	,  , ; 
+expression ->  value.operation  	,  , ; 
+
+I375
+factor -> .const  	,  % * / + - , ) 
+item' ->  *.factor item'  	,  + - , ) 
+factor -> .id call_func  	,  % * / + - , ) 
+factor -> .( value )  	,  % * / + - , ) 
+
+I376
+case_stmt ->  case const.: stmts  	,  default } case 
+
+I377
+factor ->  ( value ).  	,  % * / + - && || ) 
+
+I378
+factor -> .const  	,  % * / + - == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ; 
+item' ->  /.factor item'  	,  + - == <= < != = > >= , ; 
+
+I379
+value' -> .+ item value'  	,  ; , 
+value' ->  + item.value'  	,  ; , 
+value' -> .- item value'  	,  ; , 
+value' -> .  	,  ; , 
+
+I380
+isnull_expr ->  expression.  	,  ) 
+
+I381
+factor ->  ( value.)  	,  % * / + - == <= < != = > >= , ; 
+
+I382
+call_func -> .  	,  % * / + - == <= < != = > >= ) 
+factor ->  id.call_func  	,  % * / + - == <= < != = > >= ) 
+call_func -> .( es )  	,  % * / + - == <= < != = > >= ) 
+
+I383
+factor ->  ( value ).  	,  % * / + - , ) 
+
+I384
+value' -> .  	,  && || ) 
+value' -> .+ item value'  	,  && || ) 
+value' -> .- item value'  	,  && || ) 
+value' ->  - item.value'  	,  && || ) 
+
+I385
+case_stmt ->  case.const : stmts  	,  case default } 
+
+I386
+init ->  [ const ].  	,  , ; 
+
+I387
+value' -> .  	,  && || ) 
+value' -> .+ item value'  	,  && || ) 
+value' ->  + item.value'  	,  && || ) 
+value' -> .- item value'  	,  && || ) 
+
+I388
+item' -> ./ factor item'  	,  + - , ) 
+item' ->  % factor.item'  	,  + - , ) 
+item' -> .* factor item'  	,  + - , ) 
+item' -> .% factor item'  	,  + - , ) 
+item' -> .  	,  + - , ) 
+
+I389
+value ->  item value'.  	,  == <= < != = > >= , ; 
+
+I390
+result ->  else block_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I391
+value' -> .+ item value'  	,  ; , 
+value' -> .- item value'  	,  ; , 
+value' -> .  	,  ; , 
+value' ->  - item.value'  	,  ; , 
+
+I392
+item -> .factor item'  	,  + - == <= < != = > >= , ; 
+factor -> .const  	,  % * / + - == <= < != = > >= , ; 
+value' ->  +.item value'  	,  == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ; 
+
+I393
+call_func ->  ( es.)  	,  % * / + - ; , 
+
+I394
+factor -> .const  	,  % * / + - , ; 
+operation ->  equal_op.value  	,  , ; 
+item -> .factor item'  	,  + - , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+value -> .item value'  	,  , ; 
+
+I395
+item' ->  * factor.item'  	,  + - ; , 
+item' -> .* factor item'  	,  + - ; , 
+item' -> ./ factor item'  	,  + - ; , 
+item' -> .% factor item'  	,  + - ; , 
+item' -> .  	,  + - ; , 
+
+I396
+item' -> .% factor item'  	,  + - == <= < != = > >= ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= ) 
+item' -> .  	,  + - == <= < != = > >= ) 
+item ->  factor.item'  	,  + - == <= < != = > >= ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ) 
+
+I397
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr.) block_stmt  	,  const break continue for ( do id while if return switch } 
+
+I398
+value' -> .+ item value'  	,  , ) 
+value' ->  - item.value'  	,  , ) 
+value' -> .  	,  , ) 
+value' -> .- item value'  	,  , ) 
+
+I399
+expression ->  value operation.  	,  , ; 
+
+I400
+block_stmt ->  { stmts }.  	,  const break continue for ( do id while if return switch } 
+
+I401
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I402
+block_stmt ->  { stmts }.  	,  else const break continue for ( do id while if return switch } 
+
+I403
+value' -> .+ item value'  	,  == <= < != = > >= ) 
+value ->  item.value'  	,  == <= < != = > >= ) 
+value' -> .  	,  == <= < != = > >= ) 
+value' -> .- item value'  	,  == <= < != = > >= ) 
+
+I404
+item' ->  *.factor item'  	,  + - == <= < != = > >= , ; 
+factor -> .const  	,  % * / + - == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ; 
+
+I405
+item' -> .* factor item'  	,  + - && || ) 
+item' -> ./ factor item'  	,  + - && || ) 
+item' -> .  	,  + - && || ) 
+item' ->  / factor.item'  	,  + - && || ) 
+item' -> .% factor item'  	,  + - && || ) 
+
+I406
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - == <= < != = > >= ) 
+
+I407
+factor ->  id call_func.  	,  % * / + - == <= < != = > >= , ; 
+
+I408
+item' -> ./ factor item'  	,  + - , ) 
+item' ->  / factor.item'  	,  + - , ) 
+item' -> .* factor item'  	,  + - , ) 
+item' -> .% factor item'  	,  + - , ) 
+item' -> .  	,  + - , ) 
+
+I409
+item' ->  / factor.item'  	,  + - ; , 
+item' -> .* factor item'  	,  + - ; , 
+item' -> ./ factor item'  	,  + - ; , 
+item' -> .% factor item'  	,  + - ; , 
+item' -> .  	,  + - ; , 
+
+I410
+branch_stmt ->  switch ( id ) { case_stmt case_stmts.default_stmt }  	,  const break continue for ( do id while if return switch } 
+default_stmt -> .default : stmts  	,  } 
+default_stmt -> .  	,  } 
+
+I411
+factor ->  const.  	,  % * / + - == <= < != = > >= ) 
+
+I412
+case_stmts ->  case_stmt.case_stmts  	,  default } 
+case_stmts -> .case_stmt case_stmts  	,  default } 
+case_stmts -> .  	,  default } 
+case_stmt -> .case const : stmts  	,  case default } 
+
+I413
+compare_op -> .<=  	,  const ( id 
+expression ->  value.operation  	,  ) 
+compare_op -> .>  	,  const ( id 
+equal_op -> .=  	,  const ( id 
+operation -> .equal_op value  	,  ) 
+compare_op -> .>=  	,  const ( id 
+compare_op -> .<  	,  const ( id 
+compare_op -> .==  	,  const ( id 
+compare_op -> .!=  	,  const ( id 
+operation -> .compare_op value  	,  ) 
+operation -> .  	,  ) 
+
+I414
+factor -> .const  	,  % * / + - == <= < != = > >= , ; 
+item' ->  %.factor item'  	,  + - == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ; 
+
+I415
+item' -> .* factor item'  	,  + - ; , 
+item' -> ./ factor item'  	,  + - ; , 
+item' -> .% factor item'  	,  + - ; , 
+item' ->  % factor.item'  	,  + - ; , 
+item' -> .  	,  + - ; , 
+
+I416
+item' -> .* factor item'  	,  + - && || ) 
+item' -> ./ factor item'  	,  + - && || ) 
+item' ->  * factor.item'  	,  + - && || ) 
+item' -> .  	,  + - && || ) 
+item' -> .% factor item'  	,  + - && || ) 
+
+I417
+factor ->  ( value ).  	,  % * / + - ; , 
+
+I418
+item' -> .* factor item'  	,  + - && || ) 
+item' -> ./ factor item'  	,  + - && || ) 
+item' -> .  	,  + - && || ) 
+item' -> .% factor item'  	,  + - && || ) 
+item' ->  % factor.item'  	,  + - && || ) 
+
+I419
+item ->  factor item'.  	,  + - == <= < != = > >= , ; 
+
+I420
+item -> .factor item'  	,  + - == <= < != = > >= , ; 
+factor -> .const  	,  % * / + - == <= < != = > >= , ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ; 
+value' ->  -.item value'  	,  == <= < != = > >= , ; 
+
+I421
+call_func ->  ( es.)  	,  % * / + - , ) 
+
+I422
+factor -> .const  	,  % * / + - , ; 
+item -> .factor item'  	,  + - , ; 
+operation ->  compare_op.value  	,  , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+value -> .item value'  	,  , ; 
+
+I423
+call_func ->  ( es.)  	,  % * / + - && || ) 
+
+I424
+item' -> ./ factor item'  	,  + - , ) 
+item' ->  * factor.item'  	,  + - , ) 
+item' -> .* factor item'  	,  + - , ) 
+item' -> .% factor item'  	,  + - , ) 
+item' -> .  	,  + - , ) 
+
+I425
+value' -> .+ item value'  	,  , ) 
+value' ->  + item.value'  	,  , ) 
+value' -> .  	,  , ) 
+value' -> .- item value'  	,  , ) 
+
+I426
+iteration_stmt ->  do block_stmt while ( logical_expression ) ;.  	,  const break continue for ( do id while if return switch } 
+
+I427
+value' ->  - item value'.  	,  ; , 
+
+I428
+value ->  item value'.  	,  == <= < != = > >= ) 
+
+I429
+value' -> .+ item value'  	,  == <= < != = > >= , ; 
+value' ->  - item.value'  	,  == <= < != = > >= , ; 
+value' -> .  	,  == <= < != = > >= , ; 
+value' -> .- item value'  	,  == <= < != = > >= , ; 
+
+I430
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+item' ->  *.factor item'  	,  + - == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I431
+item' ->  * factor item'.  	,  + - && || ) 
+
+I432
+item' -> .* factor item'  	,  + - == <= < != = > >= , ; 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ; 
+item' -> .  	,  + - == <= < != = > >= , ; 
+item' ->  / factor.item'  	,  + - == <= < != = > >= , ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ; 
+
+I433
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+item -> .factor item'  	,  + - == <= < != = > >= ) 
+value' ->  +.item value'  	,  == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I434
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+item -> .factor item'  	,  + - == <= < != = > >= ) 
+value' ->  -.item value'  	,  == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I435
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+item' ->  %.factor item'  	,  + - == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I436
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor ->  (.value )  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - ) 
+
+I437
+expression ->  value operation.  	,  ) 
+
+I438
+factor ->  ( value.)  	,  % * / + - == <= < != = > >= ) 
+
+I439
+branch_stmt ->  switch ( id ) { case_stmt case_stmts default_stmt.}  	,  const break continue for ( do id while if return switch } 
+
+I440
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr ).block_stmt  	,  const break continue for ( do id while if return switch } 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch } 
+
+I441
+factor ->  const.  	,  % * / + - , ; 
+
+I442
+value' ->  + item value'.  	,  ; , 
+
+I443
+call_func -> .  	,  % * / + - , ; 
+factor ->  id.call_func  	,  % * / + - , ; 
+call_func -> .( es )  	,  % * / + - , ; 
+
+I444
+item' ->  / factor item'.  	,  + - ; , 
+
+I445
+item' ->  % factor item'.  	,  + - && || ) 
+
+I446
+value' ->  + item value'.  	,  && || ) 
+
+I447
+value' ->  - item value'.  	,  && || ) 
+
+I448
+value' ->  - item value'.  	,  , ) 
+
+I449
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+operation ->  compare_op.value  	,  ) 
+
+I450
+case_stmts ->  case_stmt case_stmts.  	,  default } 
+
+I451
+item ->  factor.item'  	,  + - , ; 
+item' -> ./ factor item'  	,  + - , ; 
+item' -> .* factor item'  	,  + - , ; 
+item' -> .% factor item'  	,  + - , ; 
+item' -> .  	,  + - , ; 
+
+I452
+call_func ->  ( es ).  	,  % * / + - ; , 
+
+I453
+factor ->  id call_func.  	,  % * / + - == <= < != = > >= ) 
+
+I454
+call_func ->  ( es ).  	,  % * / + - , ) 
+
+I455
+operation ->  compare_op value.  	,  , ; 
+
+I456
+item' ->  % factor item'.  	,  + - ; , 
+
+I457
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+item' ->  /.factor item'  	,  + - == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I458
+item' -> .* factor item'  	,  + - == <= < != = > >= , ; 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ; 
+item' -> .  	,  + - == <= < != = > >= , ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ; 
+item' ->  * factor.item'  	,  + - == <= < != = > >= , ; 
+
+I459
+item' ->  * factor item'.  	,  + - ; , 
+
+I460
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch default } case 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch default } case 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch default } case 
+expression -> .value operation  	,  ; 
+stmts -> .  	,  default } case 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch default } case 
+stmts -> .stmt stmts  	,  default } case 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch default } case 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch default } case 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch default } case 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+case_stmt ->  case const :.stmts  	,  default } case 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch default } case 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch default } case 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch default } case 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I461
+value' -> .+ item value'  	,  == <= < != = > >= , ; 
+value' ->  + item.value'  	,  == <= < != = > >= , ; 
+value' -> .  	,  == <= < != = > >= , ; 
+value' -> .- item value'  	,  == <= < != = > >= , ; 
+
+I462
+call_func ->  ( es.)  	,  % * / + - == <= < != = > >= , ; 
+
+I463
+item' -> .* factor item'  	,  + - == <= < != = > >= , ; 
+item' ->  % factor.item'  	,  + - == <= < != = > >= , ; 
+item' -> .% factor item'  	,  + - == <= < != = > >= , ; 
+item' -> .  	,  + - == <= < != = > >= , ; 
+item' -> ./ factor item'  	,  + - == <= < != = > >= , ; 
+
+I464
+default_stmt ->  default.: stmts  	,  } 
+
+I465
+call_func ->  ( es ).  	,  % * / + - && || ) 
+
+I466
+value -> .item value'  	,  ) 
+item -> .factor item'  	,  + - ) 
+factor -> .const  	,  % * / + - ) 
+factor -> .id call_func  	,  % * / + - ) 
+factor -> .( value )  	,  % * / + - ) 
+operation ->  equal_op.value  	,  ) 
+
+I467
+operation ->  equal_op value.  	,  , ; 
+
+I468
+item' ->  * factor item'.  	,  + - , ) 
+
+I469
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+call_func ->  (.es )  	,  % * / + - == <= < != = > >= ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I470
+item' ->  / factor item'.  	,  + - , ) 
+
+I471
+value' -> .+ item value'  	,  , ; 
+value ->  item.value'  	,  , ; 
+value' -> .  	,  , ; 
+value' -> .- item value'  	,  , ; 
+
+I472
+case_stmt ->  case const.: stmts  	,  case default } 
+
+I473
+value' ->  + item value'.  	,  , ) 
+
+I474
+item' ->  / factor item'.  	,  + - && || ) 
+
+I475
+item ->  factor item'.  	,  + - == <= < != = > >= ) 
+
+I476
+factor ->  ( value ).  	,  % * / + - == <= < != = > >= , ; 
+
+I477
+item' ->  % factor item'.  	,  + - , ) 
+
+I478
+item' -> .% factor item'  	,  + - == <= < != = > >= ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= ) 
+item' -> .  	,  + - == <= < != = > >= ) 
+item' ->  / factor.item'  	,  + - == <= < != = > >= ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ) 
+
+I479
+jump_stmt ->  continue.;  	,  const break continue for ( do id while if return switch default } case 
+
+I480
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt.  	,  const break continue for ( do id while if return switch } 
+
+I481
+branch_stmt ->  if.( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch default } case 
+
+I482
+stmt ->  iteration_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I483
+item' -> .% factor item'  	,  + - == <= < != = > >= ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= ) 
+item' -> .  	,  + - == <= < != = > >= ) 
+item' ->  % factor.item'  	,  + - == <= < != = > >= ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ) 
+
+I484
+item' ->  * factor item'.  	,  + - == <= < != = > >= , ; 
+
+I485
+case_stmt ->  case const : stmts.  	,  default } case 
+
+I486
+item' ->  % factor item'.  	,  + - == <= < != = > >= , ; 
+
+I487
+item' ->  / factor item'.  	,  + - == <= < != = > >= , ; 
+
+I488
+factor ->  ( value.)  	,  % * / + - , ; 
+
+I489
+factor -> .const  	,  % * / + - , ; 
+item' ->  %.factor item'  	,  + - , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+
+I490
+stmt ->  assign_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I491
+operation ->  equal_op value.  	,  ) 
+
+I492
+call_func ->  ( es.)  	,  % * / + - == <= < != = > >= ) 
+
+I493
+value' ->  - item value'.  	,  == <= < != = > >= , ; 
+
+I494
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch default } case 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch default } case 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch default } case 
+expression -> .value operation  	,  ; 
+stmts -> .  	,  default } case 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch default } case 
+stmts -> .stmt stmts  	,  default } case 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmts ->  stmt.stmts  	,  default } case 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch default } case 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch default } case 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch default } case 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch default } case 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch default } case 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch default } case 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I495
+factor -> .const  	,  % * / + - , ; 
+item -> .factor item'  	,  + - , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+value' ->  -.item value'  	,  , ; 
+
+I496
+item' -> .% factor item'  	,  + - == <= < != = > >= ) 
+item' -> .* factor item'  	,  + - == <= < != = > >= ) 
+item' -> .  	,  + - == <= < != = > >= ) 
+item' ->  * factor.item'  	,  + - == <= < != = > >= ) 
+item' -> ./ factor item'  	,  + - == <= < != = > >= ) 
+
+I497
+item' ->  /.factor item'  	,  + - , ; 
+factor -> .const  	,  % * / + - , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+
+I498
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+default_stmt ->  default :.stmts  	,  } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I499
+iteration_stmt ->  while.( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+
+I500
+value' ->  + item value'.  	,  == <= < != = > >= , ; 
+
+I501
+factor ->  ( value ).  	,  % * / + - == <= < != = > >= ) 
+
+I502
+branch_stmt ->  switch.( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+
+I503
+block_stmt -> .{ stmts }  	,  while 
+iteration_stmt ->  do.block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch default } case 
+
+I504
+stmt ->  jump_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I505
+item ->  factor item'.  	,  + - , ; 
+
+I506
+jump_stmt ->  break.;  	,  const break continue for ( do id while if return switch default } case 
+
+I507
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch case default } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch case default } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch case default } 
+stmts -> .stmt stmts  	,  case default } 
+stmts -> .  	,  case default } 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch case default } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch case default } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch case default } 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch case default } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch case default } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch case default } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+case_stmt ->  case const :.stmts  	,  case default } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch case default } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I508
+value' -> .+ item value'  	,  == <= < != = > >= ) 
+value' ->  + item.value'  	,  == <= < != = > >= ) 
+value' -> .  	,  == <= < != = > >= ) 
+value' -> .- item value'  	,  == <= < != = > >= ) 
+
+I509
+assign_stmt ->  expression.;  	,  const break continue for ( do id while if return switch default } case 
+
+I510
+factor -> .const  	,  % * / + - , ; 
+item' ->  *.factor item'  	,  + - , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+
+I511
+expression -> .value operation  	,  , ) 
+item -> .factor item'  	,  + - == <= < != = > >= , ) 
+factor -> .const  	,  % * / + - == <= < != = > >= , ) 
+es -> .isnull_expr isnull_es  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= , ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= , ) 
+call_func ->  (.es )  	,  % * / + - , ; 
+value -> .item value'  	,  == <= < != = > >= , ) 
+isnull_expr -> .  	,  , ) 
+isnull_expr -> .expression  	,  , ) 
+
+I512
+value' -> .+ item value'  	,  == <= < != = > >= ) 
+value' ->  - item.value'  	,  == <= < != = > >= ) 
+value' -> .  	,  == <= < != = > >= ) 
+value' -> .- item value'  	,  == <= < != = > >= ) 
+
+I513
+branch_stmt ->  switch ( id ) { case_stmt case_stmts default_stmt }.  	,  const break continue for ( do id while if return switch } 
+
+I514
+factor ->  id call_func.  	,  % * / + - , ; 
+
+I515
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+jump_stmt ->  return.isnull_expr ;  	,  const break continue for ( do id while if return switch default } case 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I516
+factor -> .const  	,  % * / + - , ; 
+item -> .factor item'  	,  + - , ; 
+value' ->  +.item value'  	,  , ; 
+factor -> .id call_func  	,  % * / + - , ; 
+factor -> .( value )  	,  % * / + - , ; 
+
+I517
+operation ->  compare_op value.  	,  ) 
+
+I518
+iteration_stmt ->  for.( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+
+I519
+stmt ->  branch_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I520
+call_func ->  ( es ).  	,  % * / + - == <= < != = > >= , ; 
+
+I521
+value ->  item value'.  	,  , ; 
+
+I522
+case_stmt ->  case const : stmts.  	,  case default } 
+
+I523
+item' ->  / factor item'.  	,  + - == <= < != = > >= ) 
+
+I524
+item' ->  * factor item'.  	,  + - == <= < != = > >= ) 
+
+I525
+branch_stmt ->  switch (.id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+
+I526
+jump_stmt ->  break ;.  	,  const break continue for ( do id while if return switch default } case 
+
+I527
+isnull_expr -> .expression  	,  ; 
+iteration_stmt ->  for (.isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I528
+stmt ->  branch_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I529
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch case default } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch case default } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch case default } 
+stmts -> .stmt stmts  	,  case default } 
+stmts -> .  	,  case default } 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+stmts ->  stmt.stmts  	,  case default } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch case default } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch case default } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch case default } 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch case default } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch case default } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch case default } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch case default } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I530
+jump_stmt ->  return isnull_expr.;  	,  const break continue for ( do id while if return switch default } case 
+
+I531
+item' ->  / factor.item'  	,  + - , ; 
+item' -> ./ factor item'  	,  + - , ; 
+item' -> .* factor item'  	,  + - , ; 
+item' -> .% factor item'  	,  + - , ; 
+item' -> .  	,  + - , ; 
+
+I532
+value' -> .+ item value'  	,  , ; 
+value' ->  - item.value'  	,  , ; 
+value' -> .  	,  , ; 
+value' -> .- item value'  	,  , ; 
+
+I533
+jump_stmt ->  break.;  	,  const break continue for ( do id while if return switch case default } 
+
+I534
+item' ->  % factor item'.  	,  + - == <= < != = > >= ) 
+
+I535
+value' ->  + item value'.  	,  == <= < != = > >= ) 
+
+I536
+branch_stmt ->  switch.( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+
+I537
+branch_stmt ->  if (.logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch default } case 
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I538
+jump_stmt ->  continue.;  	,  const break continue for ( do id while if return switch case default } 
+
+I539
+stmt ->  iteration_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I540
+block_stmt -> .{ stmts }  	,  while 
+iteration_stmt ->  do.block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch case default } 
+
+I541
+iteration_stmt ->  while.( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+
+I542
+assign_stmt ->  expression ;.  	,  const break continue for ( do id while if return switch default } case 
+
+I543
+item' ->  * factor.item'  	,  + - , ; 
+item' -> ./ factor item'  	,  + - , ; 
+item' -> .* factor item'  	,  + - , ; 
+item' -> .% factor item'  	,  + - , ; 
+item' -> .  	,  + - , ; 
+
+I544
+iteration_stmt ->  for.( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+
+I545
+stmt ->  jump_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I546
+factor ->  ( value ).  	,  % * / + - , ; 
+
+I547
+item' -> ./ factor item'  	,  + - , ; 
+item' ->  % factor.item'  	,  + - , ; 
+item' -> .* factor item'  	,  + - , ; 
+item' -> .% factor item'  	,  + - , ; 
+item' -> .  	,  + - , ; 
+
+I548
+stmt ->  assign_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I549
+iteration_stmt ->  do block_stmt.while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch default } case 
+
+I550
+assign_stmt ->  expression.;  	,  const break continue for ( do id while if return switch case default } 
+
+I551
+stmts ->  stmt stmts.  	,  default } case 
+
+I552
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+iteration_stmt ->  while (.logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I553
+jump_stmt ->  continue ;.  	,  const break continue for ( do id while if return switch default } case 
+
+I554
+branch_stmt ->  if.( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch case default } 
+
+I555
+call_func ->  ( es.)  	,  % * / + - , ; 
+
+I556
+value' -> .+ item value'  	,  , ; 
+value' ->  + item.value'  	,  , ; 
+value' -> .  	,  , ; 
+value' -> .- item value'  	,  , ; 
+
+I557
+call_func ->  ( es ).  	,  % * / + - == <= < != = > >= ) 
+
+I558
+default_stmt ->  default : stmts.  	,  } 
+
+I559
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+jump_stmt ->  return.isnull_expr ;  	,  const break continue for ( do id while if return switch case default } 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I560
+value' ->  - item value'.  	,  == <= < != = > >= ) 
+
+I561
+branch_stmt ->  switch ( id.) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+
+I562
+item' ->  % factor item'.  	,  + - , ; 
+
+I563
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+branch_stmt ->  if (.logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch case default } 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I564
+item' ->  * factor item'.  	,  + - , ; 
+
+I565
+value' ->  + item value'.  	,  , ; 
+
+I566
+stmts ->  stmt stmts.  	,  case default } 
+
+I567
+iteration_stmt ->  for ( isnull_expr.; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+
+I568
+jump_stmt ->  return isnull_expr ;.  	,  const break continue for ( do id while if return switch default } case 
+
+I569
+item' ->  / factor item'.  	,  + - , ; 
+
+I570
+iteration_stmt ->  while ( logical_expression.) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+
+I571
+branch_stmt ->  if ( logical_expression.) block_stmt result  	,  const break continue for ( do id while if return switch default } case 
+
+I572
+logical_expression -> .expression bool_expression  	,  ) 
+iteration_stmt ->  while (.logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I573
+iteration_stmt ->  do block_stmt while.( logical_expression ) ;  	,  const break continue for ( do id while if return switch default } case 
+
+I574
+call_func ->  ( es ).  	,  % * / + - , ; 
+
+I575
+assign_stmt ->  expression ;.  	,  const break continue for ( do id while if return switch case default } 
+
+I576
+iteration_stmt ->  do block_stmt.while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch case default } 
+
+I577
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+iteration_stmt ->  for (.isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I578
+value' ->  - item value'.  	,  , ; 
+
+I579
+jump_stmt ->  break ;.  	,  const break continue for ( do id while if return switch case default } 
+
+I580
+jump_stmt ->  return isnull_expr.;  	,  const break continue for ( do id while if return switch case default } 
+
+I581
+branch_stmt ->  switch (.id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+
+I582
+jump_stmt ->  continue ;.  	,  const break continue for ( do id while if return switch case default } 
+
+I583
+block_stmt -> .{ stmts }  	,  else const break continue for ( do id while if return switch default } case 
+branch_stmt ->  if ( logical_expression ).block_stmt result  	,  const break continue for ( do id while if return switch default } case 
+
+I584
+jump_stmt ->  return isnull_expr ;.  	,  const break continue for ( do id while if return switch case default } 
+
+I585
+branch_stmt ->  switch ( id.) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+
+I586
+branch_stmt ->  if ( logical_expression.) block_stmt result  	,  const break continue for ( do id while if return switch case default } 
+
+I587
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+iteration_stmt ->  do block_stmt while (.logical_expression ) ;  	,  const break continue for ( do id while if return switch default } case 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I588
+iteration_stmt ->  for ( isnull_expr.; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+
+I589
+branch_stmt ->  switch ( id ).{ case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+
+I590
+iteration_stmt ->  for ( isnull_expr ;.isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I591
+iteration_stmt ->  while ( logical_expression.) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+
+I592
+iteration_stmt ->  while ( logical_expression ).block_stmt  	,  const break continue for ( do id while if return switch default } case 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch default } case 
+
+I593
+iteration_stmt ->  do block_stmt while.( logical_expression ) ;  	,  const break continue for ( do id while if return switch case default } 
+
+I594
+branch_stmt ->  switch ( id ).{ case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+
+I595
+block_stmt ->  {.stmts }  	,  else const break continue for ( do id while if return switch default } case 
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I596
+iteration_stmt ->  do block_stmt while ( logical_expression.) ;  	,  const break continue for ( do id while if return switch default } case 
+
+I597
+isnull_expr -> .expression  	,  ; 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+iteration_stmt ->  for ( isnull_expr ;.isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+isnull_expr -> .  	,  ; 
+expression -> .value operation  	,  ; 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I598
+iteration_stmt ->  while ( logical_expression ).block_stmt  	,  const break continue for ( do id while if return switch case default } 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch case default } 
+
+I599
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+block_stmt ->  {.stmts }  	,  const break continue for ( do id while if return switch default } case 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I600
+result -> .else block_stmt  	,  const break continue for ( do id while if return switch default } case 
+branch_stmt ->  if ( logical_expression ) block_stmt.result  	,  const break continue for ( do id while if return switch default } case 
+result -> .  	,  const break continue for ( do id while if return switch default } case 
+
+I601
+block_stmt -> .{ stmts }  	,  else const break continue for ( do id while if return switch case default } 
+branch_stmt ->  if ( logical_expression ).block_stmt result  	,  const break continue for ( do id while if return switch case default } 
+
+I602
+branch_stmt ->  switch ( id ) {.case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+case_stmt -> .case const : stmts  	,  default } case 
+
+I603
+iteration_stmt ->  for ( isnull_expr ; isnull_expr.; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+
+I604
+logical_expression -> .expression bool_expression  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= && || ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= && || ) 
+logical_expression -> .! expression bool_expression  	,  ) 
+iteration_stmt ->  do block_stmt while (.logical_expression ) ;  	,  const break continue for ( do id while if return switch case default } 
+expression -> .value operation  	,  && || ) 
+value -> .item value'  	,  == <= < != = > >= && || ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= && || ) 
+factor -> .const  	,  % * / + - == <= < != = > >= && || ) 
+
+I605
+iteration_stmt ->  while ( logical_expression ) block_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I606
+iteration_stmt ->  for ( isnull_expr ; isnull_expr.; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+
+I607
+result -> .else block_stmt  	,  const break continue for ( do id while if return switch case default } 
+branch_stmt ->  if ( logical_expression ) block_stmt.result  	,  const break continue for ( do id while if return switch case default } 
+result -> .  	,  const break continue for ( do id while if return switch case default } 
+
+I608
+iteration_stmt ->  while ( logical_expression ) block_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I609
+block_stmt ->  { stmts.}  	,  const break continue for ( do id while if return switch default } case 
+
+I610
+block_stmt ->  { stmts.}  	,  else const break continue for ( do id while if return switch default } case 
+
+I611
+branch_stmt ->  switch ( id ) {.case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+case_stmt -> .case const : stmts  	,  default } case 
+
+I612
+branch_stmt ->  if ( logical_expression ) block_stmt result.  	,  const break continue for ( do id while if return switch default } case 
+
+I613
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+block_stmt ->  {.stmts }  	,  else const break continue for ( do id while if return switch case default } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I614
+stmts -> .  	,  } 
+stmt -> .jump_stmt  	,  const break continue for ( do id while if return switch } 
+branch_stmt -> .if ( logical_expression ) block_stmt result  	,  const break continue for ( do id while if return switch } 
+expression -> .value operation  	,  ; 
+iteration_stmt -> .while ( logical_expression ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmts -> .stmt stmts  	,  } 
+jump_stmt -> .return isnull_expr ;  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .do block_stmt while ( logical_expression ) ;  	,  const break continue for ( do id while if return switch } 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ; 
+stmt -> .iteration_stmt  	,  const break continue for ( do id while if return switch } 
+iteration_stmt -> .for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .branch_stmt  	,  const break continue for ( do id while if return switch } 
+stmt -> .assign_stmt  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .break ;  	,  const break continue for ( do id while if return switch } 
+item -> .factor item'  	,  + - == <= < != = > >= ; 
+block_stmt ->  {.stmts }  	,  const break continue for ( do id while if return switch case default } 
+assign_stmt -> .expression ;  	,  const break continue for ( do id while if return switch } 
+jump_stmt -> .continue ;  	,  const break continue for ( do id while if return switch } 
+factor -> .const  	,  % * / + - == <= < != = > >= ; 
+branch_stmt -> .switch ( id ) { case_stmt case_stmts default_stmt }  	,  const break continue for ( do id while if return switch } 
+value -> .item value'  	,  == <= < != = > >= ; 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ; 
+
+I615
+iteration_stmt ->  do block_stmt while ( logical_expression ).;  	,  const break continue for ( do id while if return switch default } case 
+
+I616
+iteration_stmt ->  do block_stmt while ( logical_expression.) ;  	,  const break continue for ( do id while if return switch case default } 
+
+I617
+isnull_expr -> .expression  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+isnull_expr -> .  	,  ) 
+expression -> .value operation  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= ) 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ;.isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+value -> .item value'  	,  == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I618
+case_stmts -> .case_stmt case_stmts  	,  default } 
+case_stmts -> .  	,  default } 
+branch_stmt ->  switch ( id ) { case_stmt.case_stmts default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+case_stmt -> .case const : stmts  	,  case default } 
+
+I619
+result ->  else.block_stmt  	,  const break continue for ( do id while if return switch default } case 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch default } case 
+
+I620
+iteration_stmt ->  do block_stmt while ( logical_expression ).;  	,  const break continue for ( do id while if return switch case default } 
+
+I621
+branch_stmt ->  switch ( id ) { case_stmt case_stmts.default_stmt }  	,  const break continue for ( do id while if return switch default } case 
+default_stmt -> .default : stmts  	,  } 
+default_stmt -> .  	,  } 
+
+I622
+result ->  else.block_stmt  	,  const break continue for ( do id while if return switch case default } 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch case default } 
+
+I623
+block_stmt ->  { stmts }.  	,  const break continue for ( do id while if return switch default } case 
+
+I624
+block_stmt ->  { stmts }.  	,  else const break continue for ( do id while if return switch default } case 
+
+I625
+block_stmt ->  { stmts.}  	,  const break continue for ( do id while if return switch case default } 
+
+I626
+branch_stmt ->  if ( logical_expression ) block_stmt result.  	,  const break continue for ( do id while if return switch case default } 
+
+I627
+branch_stmt ->  switch ( id ) { case_stmt.case_stmts default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+case_stmts -> .case_stmt case_stmts  	,  default } 
+case_stmts -> .  	,  default } 
+case_stmt -> .case const : stmts  	,  case default } 
+
+I628
+result ->  else block_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I629
+block_stmt ->  { stmts.}  	,  else const break continue for ( do id while if return switch case default } 
+
+I630
+isnull_expr -> .expression  	,  ) 
+factor -> .id call_func  	,  % * / + - == <= < != = > >= ) 
+isnull_expr -> .  	,  ) 
+expression -> .value operation  	,  ) 
+item -> .factor item'  	,  + - == <= < != = > >= ) 
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ;.isnull_expr ) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+factor -> .const  	,  % * / + - == <= < != = > >= ) 
+value -> .item value'  	,  == <= < != = > >= ) 
+factor -> .( value )  	,  % * / + - == <= < != = > >= ) 
+
+I631
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr.) block_stmt  	,  const break continue for ( do id while if return switch default } case 
+
+I632
+iteration_stmt ->  do block_stmt while ( logical_expression ) ;.  	,  const break continue for ( do id while if return switch default } case 
+
+I633
+branch_stmt ->  switch ( id ) { case_stmt case_stmts default_stmt.}  	,  const break continue for ( do id while if return switch default } case 
+
+I634
+result ->  else block_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I635
+branch_stmt ->  switch ( id ) { case_stmt case_stmts.default_stmt }  	,  const break continue for ( do id while if return switch case default } 
+default_stmt -> .default : stmts  	,  } 
+default_stmt -> .  	,  } 
+
+I636
+block_stmt ->  { stmts }.  	,  const break continue for ( do id while if return switch case default } 
+
+I637
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr ).block_stmt  	,  const break continue for ( do id while if return switch default } case 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch default } case 
+
+I638
+block_stmt ->  { stmts }.  	,  else const break continue for ( do id while if return switch case default } 
+
+I639
+iteration_stmt ->  do block_stmt while ( logical_expression ) ;.  	,  const break continue for ( do id while if return switch case default } 
+
+I640
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr.) block_stmt  	,  const break continue for ( do id while if return switch case default } 
+
+I641
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr ).block_stmt  	,  const break continue for ( do id while if return switch case default } 
+block_stmt -> .{ stmts }  	,  const break continue for ( do id while if return switch case default } 
+
+I642
+branch_stmt ->  switch ( id ) { case_stmt case_stmts default_stmt.}  	,  const break continue for ( do id while if return switch case default } 
+
+I643
+branch_stmt ->  switch ( id ) { case_stmt case_stmts default_stmt }.  	,  const break continue for ( do id while if return switch default } case 
+
+I644
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt.  	,  const break continue for ( do id while if return switch default } case 
+
+I645
+iteration_stmt ->  for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt.  	,  const break continue for ( do id while if return switch case default } 
+
+I646
+branch_stmt ->  switch ( id ) { case_stmt case_stmts default_stmt }.  	,  const break continue for ( do id while if return switch case default } 
 

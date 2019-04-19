@@ -1,6 +1,89 @@
 0	P' -> P 
-1	P -> A 
-2	A -> B A 
-3	A -> ε 
-4	B -> a B 
-5	B -> b 
+1	P -> func funcs 
+2	funcs -> func funcs 
+3	funcs -> ε 
+4	func -> type id ( args ) func_body 
+5	type -> int 
+6	type -> short 
+7	type -> long 
+8	type -> char 
+9	type -> float 
+10	type -> double 
+11	type -> boolean 
+12	type -> record 
+13	type -> void 
+14	type -> unsigned type 
+15	args -> type id arg 
+16	args -> ε 
+17	arg -> , type id arg 
+18	arg -> ε 
+19	func_body -> ; 
+20	func_body -> block 
+21	block -> { define_stmts stmts } 
+22	define_stmts -> define_stmt define_stmts 
+23	define_stmts -> ε 
+24	define_stmt -> type id init vars ; 
+25	init -> = expression 
+26	init -> [ const ] 
+27	init -> ε 
+28	vars -> , id init vars 
+29	vars -> ε 
+30	stmts -> stmt stmts 
+31	stmts -> ε 
+32	stmt -> assign_stmt 
+33	stmt -> jump_stmt 
+34	stmt -> iteration_stmt 
+35	stmt -> branch_stmt 
+36	assign_stmt -> expression ; 
+37	jump_stmt -> continue ; 
+38	jump_stmt -> break ; 
+39	jump_stmt -> return isnull_expr ; 
+40	iteration_stmt -> while ( logical_expression ) block_stmt 
+41	iteration_stmt -> for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt 
+42	iteration_stmt -> do block_stmt while ( logical_expression ) ; 
+43	branch_stmt -> if ( logical_expression ) block_stmt result 
+44	result -> else block_stmt 
+45	result -> ε 
+46	logical_expression -> ! expression bool_expression 
+47	logical_expression -> expression bool_expression 
+48	bool_expression -> lop expression bool_expression 
+49	bool_expression -> ε 
+50	lop -> && 
+51	lop -> || 
+52	branch_stmt -> switch ( id ) { case_stmt case_stmts default_stmt } 
+53	case_stmts -> case_stmt case_stmts 
+54	case_stmts -> ε 
+55	case_stmt -> case const : stmts 
+56	default_stmt -> default : stmts 
+57	default_stmt -> ε 
+58	block_stmt -> { stmts } 
+59	isnull_expr -> expression 
+60	isnull_expr -> ε 
+61	expression -> value operation 
+62	operation -> compare_op value 
+63	operation -> equal_op value 
+64	operation -> ε 
+65	compare_op -> > 
+66	compare_op -> >= 
+67	compare_op -> < 
+68	compare_op -> <= 
+69	compare_op -> == 
+70	compare_op -> != 
+71	equal_op -> = 
+72	value -> item value' 
+73	value' -> + item value' 
+74	value' -> - item value' 
+75	value' -> ε 
+76	item -> factor item' 
+77	item' -> * factor item' 
+78	item' -> / factor item' 
+79	item' -> % factor item' 
+80	item' -> ε 
+81	factor -> ( value ) 
+82	factor -> id call_func 
+83	factor -> const 
+84	call_func -> ( es ) 
+85	call_func -> ε 
+86	es -> isnull_expr isnull_es 
+87	isnull_es -> , isnull_expr isnull_es 
+88	isnull_es -> ε 

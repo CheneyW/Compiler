@@ -1,16 +1,28 @@
-int a = 10;
-int b = 5;
-
-/*分支*/
-if(a==0){
-	b = b+1;
-}else{
-	b = b-1;
+int mult(int x, int y){
+    return x*y;
 }
 
-/*注释未封闭
-
-/*循环*/
-do{
-	a = a*2;
-}while(a<100)；
+int mian(){
+    int a=0, b=1;
+    
+    if(a>=b){
+        a = a+1;
+    }else{
+        a = a+2;
+    }
+    
+    switch(a){
+    case 1:
+        a = 10;
+        break;
+    case 2:
+        a = 20;
+        break;
+    }
+    
+    do{
+        b = mult(b,2);
+    }while(b<100);
+    
+    return 0;
+}

@@ -61,10 +61,12 @@ public class Analyzer {
 			}
 			// 接受
 			else if (act.equals("acc")) {
+				System.out.println(act);
 				break;
 			}
 			// 报错
 			else if (act.equals("err")) {
+				System.out.println(act);
 				break;
 			}
 		}

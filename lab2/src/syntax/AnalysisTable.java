@@ -63,7 +63,7 @@ public class AnalysisTable {
 				}
 				Closure dest = src.GO(nextSymbol);
 				for (int to = 0; to < closures.size(); to++) {
-					if (closures.get(to).isLike(dest)) {
+					if (closures.get(to).contains(dest)) {
 						GOTO.get(from).put(nextSymbol, to);
 						break;
 					}
@@ -85,10 +85,12 @@ public class AnalysisTable {
 					}
 					Closure dest = src.GO(nextSymbol);
 					for (int to = 0; to < closures.size(); to++) {
-						if (closures.get(to).isLike(dest)) {
-//							if (!ACTION.get(from).get(nextSymbol).equals("err")) {
-//								System.out.println(ACTION.get(from).get(nextSymbol)+"\t->\ts" + Integer.toString(to));
-//							}
+						if (closures.get(to).contains(dest)) {
+							if (!ACTION.get(from).get(nextSymbol).equals("err")
+									&& !ACTION.get(from).get(nextSymbol).equals("s" + Integer.toString(to))) {
+								System.out.println("[" + from + "," + nextSymbol + "]\t"
+										+ ACTION.get(from).get(nextSymbol) + "\t->\ts" + Integer.toString(to));
+							}
 							ACTION.get(from).put(nextSymbol, "s" + Integer.toString(to));
 							break;
 						}
@@ -97,6 +99,11 @@ public class AnalysisTable {
 				// 规约
 				else if (!it.getLeft().equals("P'")) {
 					for (String expectedSymbol : it.getExpectedSymbol()) {
+						if (!ACTION.get(from).get(expectedSymbol).equals("err")
+								&& !ACTION.get(from).get(expectedSymbol).equals("r" + Integer.toString(it.getID()))) {
+							System.out.println("[" + from + "," + expectedSymbol + "]\t"
+									+ ACTION.get(from).get(expectedSymbol) + "\t->\tr" + Integer.toString(it.getID()));
+						}
 						ACTION.get(from).put(expectedSymbol, "r" + Integer.toString(it.getID()));
 					}
 				}

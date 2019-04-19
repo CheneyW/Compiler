@@ -34,7 +34,7 @@ public class SyntaxAnalysis {
 		tokens.add("a");
 		tokens.add("b");
 		SyntaxAnalysis sa = new SyntaxAnalysis();
-		sa.analyze(tokens);
+//		sa.analyze(tokens);
 	}
 
 	public SyntaxAnalysis() {
@@ -112,12 +112,12 @@ public class SyntaxAnalysis {
 					}
 					boolean contains = false;
 					for (Closure c : closures) {
-						if (c.isLike(newClosure)) {
+						if (c.contains(newClosure)) {
 							contains = true;
 						}
 					}
 					for (Closure c : temp) {
-						if (c.isLike(newClosure)) {
+						if (c.contains(newClosure)) {
 							contains = true;
 						}
 					}
@@ -223,7 +223,7 @@ public class SyntaxAnalysis {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("./data/terminal.txt"));
 			for (String t : terminals) {
-				out.write(t + " ");
+				out.write(t + "\n");
 			}
 			out.close();
 		} catch (IOException e) {
@@ -235,7 +235,7 @@ public class SyntaxAnalysis {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("./data/nonterminal.txt"));
 			for (String n : nonterminals) {
-				out.write(n + " ");
+				out.write(n + "\n");
 			}
 			out.close();
 		} catch (IOException e) {

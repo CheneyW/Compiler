@@ -46,13 +46,13 @@ public class Closure {
 				it.visited = true;
 
 				String B = it.getNext();
-				String beta = it.getNextNext();
 				if (B == null) {
 					continue;
 				}
+				List<String> beta = it.getBeta();
 				// 计算FIRST(βa)
 				List<String> expectedSymbol = new ArrayList<String>();
-				if (beta == null) {
+				if (beta.size() == 0) {
 					for (String s : it.getExpectedSymbol()) {
 						expectedSymbol.add(s);
 					}
@@ -125,10 +125,8 @@ public class Closure {
 		return c;
 	}
 
-	public boolean isLike(Closure c) {
-		if (c.getInitialItem().size() != initialItem.size()) {
-			return false;
-		}
+	public boolean contains(Closure c) {
+
 		for (LR1Item it : c.getInitialItem()) {
 			if (!initialItem.contains(it)) {
 				return false;

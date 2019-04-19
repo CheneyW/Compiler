@@ -1,6 +1,87 @@
-P 	a b ε 
-A 	a b ε 
-B 	a b 
-P' 	a b ε 
-a 	a 
-b 	b 
+iteration_stmt 	for do while 
+case_stmt 	case 
+bool_expression 	&& || ε 
+item' 	ε % * / 
+type 	boolean void double record char short unsigned float int long 
+lop 	&& || 
+isnull_es 	ε , 
+func_body 	; { 
+P 	boolean void double record char short unsigned float int long 
+result 	ε else 
+compare_op 	== <= < != > >= 
+block_stmt 	{ 
+define_stmts 	boolean void ε double record char short unsigned float int long 
+P' 	boolean void double record char short unsigned float int long 
+arg 	ε , 
+logical_expression 	! const ( id 
+block 	{ 
+vars 	ε , 
+factor 	const ( id 
+value 	const ( id 
+assign_stmt 	const ( id 
+init 	ε [ = 
+stmts 	const ε break continue for ( do id while if return switch 
+item 	const ( id 
+expression 	const ( id 
+branch_stmt 	if switch 
+case_stmts 	ε case 
+call_func 	ε ( 
+define_stmt 	boolean void double record char short unsigned float int long 
+equal_op 	= 
+es 	const ε ( id , 
+jump_stmt 	break continue return 
+args 	boolean void ε double record char short unsigned float int long 
+isnull_expr 	const ε ( id 
+value' 	ε + - 
+func 	boolean void double record char short unsigned float int long 
+funcs 	boolean void ε double record char short unsigned float int long 
+default_stmt 	default ε 
+operation 	== <= ε < != = > >= 
+stmt 	const break continue for ( do id while if return switch 
+&& 	&& 
+|| 	|| 
+<= 	<= 
+const 	const 
+for 	for 
+do 	do 
+float 	float 
+while 	while 
+long 	long 
+switch 	switch 
+default 	default 
+continue 	continue 
+else 	else 
+record 	record 
+id 	id 
+[ 	[ 
+] 	] 
+if 	if 
+case 	case 
+== 	== 
+! 	! 
+void 	void 
+break 	break 
+% 	% 
+double 	double 
+( 	( 
+) 	) 
+* 	* 
++ 	+ 
+, 	, 
+- 	- 
+int 	int 
+/ 	/ 
+boolean 	boolean 
+char 	char 
+short 	short 
+unsigned 	unsigned 
+: 	: 
+; 	; 
+{ 	{ 
+< 	< 
+!= 	!= 
+} 	} 
+= 	= 
+return 	return 
+> 	> 
+>= 	>= 

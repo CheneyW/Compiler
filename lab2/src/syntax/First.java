@@ -1,6 +1,7 @@
 package syntax;
 
 import java.util.HashSet;
+import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -72,11 +73,11 @@ public class First {
 		return first.get(x);
 	}
 
-	public Set<String> getFirst(String[] alpha) {
+	public Set<String> getFirst(List<String> alpha) {
 		Set<String> firstAlpha = new HashSet<String>();
 		int idx = 0;
-		for (; idx < alpha.length; idx++) {
-			Set<String> firstY = first.get(alpha[idx]);
+		for (; idx < alpha.size(); idx++) {
+			Set<String> firstY = first.get(alpha.get(idx));
 			for (String a : firstY) {
 				if (!firstAlpha.contains(a) && !a.equals(epsilon)) {
 					firstAlpha.add(a);
@@ -86,7 +87,7 @@ public class First {
 				break;
 			}
 		}
-		if (idx == alpha.length) {
+		if (idx == alpha.size()) {
 			firstAlpha.add(epsilon);
 		}
 		return firstAlpha;

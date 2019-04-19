@@ -1,9 +1,7 @@
 package syntax;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LR1Item extends Production {
 
@@ -52,11 +50,12 @@ public class LR1Item extends Production {
 		return null;
 	}
 
-	public String getNextNext() {
-		if (dot + 1 < right.length) {
-			return right[dot + 1];
+	public List<String> getBeta() {// A -> a . X Beta
+		List<String> beta = new ArrayList<String>();
+		for (int i = dot + 1; i < right.length; i++) {
+			beta.add(right[i]);
 		}
-		return null;
+		return beta;
 	}
 
 	public boolean addExpectedSymbol(List<String> newSymbol) {
@@ -131,24 +130,4 @@ public class LR1Item extends Production {
 		}
 		return true;
 	}
-
-//	// test
-//	public static void main(String[] args) {
-//		List<String> symbols1 = new ArrayList<String>();
-//		symbols1.add("a");
-//		List<String> symbols2 = new ArrayList<String>();
-//		symbols2.add("b");
-//
-//		LR1Item it1 = new LR1Item("A", new String[] { "1", "3" }, symbols1, 0);
-//		LR1Item it2 = new LR1Item("A", new String[] { "1", "3" }, symbols2, 0);
-//
-//		Set<LR1Item> testSet = new HashSet<LR1Item>();
-//		testSet.add(it1);
-//		testSet.add(it2);
-//
-//		System.out.println(testSet.size());
-//		System.out.println(it1.equals(it2));
-//		System.out.println(it1.hashCode());
-//		System.out.println(it2.hashCode());
-//	}
 }
