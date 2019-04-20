@@ -19,8 +19,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
-import lexical.Encoding;
 import lexical.LexicalAnalysis;
+import lexical.Token;
 import syntax.SyntaxAnalysis;
 
 public class MyFrame extends JFrame {
@@ -85,15 +85,15 @@ public class MyFrame extends JFrame {
 		productionTb = new JTable(productionTbMd);
 		productionTb.setEnabled(false);// 不可修改
 		JScrollPane productionScrollPane = new JScrollPane(productionTb);
-		productionScrollPane.setBounds(490, 50, 150, 700);
+		productionScrollPane.setBounds(480, 50, 180, 700);
 
 		// ACTION
 		JLabel actionLabel = new JLabel("ACTION");
-		actionLabel.setBounds(650, 10, 100, 40);
+		actionLabel.setBounds(670, 10, 100, 40);
 
 		// GOTO
 		JLabel gotoLabel = new JLabel("GOTO");
-		gotoLabel.setBounds(650, 390, 100, 40);
+		gotoLabel.setBounds(670, 390, 100, 40);
 
 		mainPanel.add(textScrollPane);
 		mainPanel.add(tokenScrollPane);
@@ -190,11 +190,11 @@ public class MyFrame extends JFrame {
 				clearAll();
 				// 词法分析
 				LexicalAnalysis lex = new LexicalAnalysis(inputText, tokenTbMd, errorTbMd, symbolTbMd);
-				List<String> tokens = Encoding.TokenToSymbol(lex.run());
+				List<Token> tokens = lex.run();
 
 				// 语法分析
 				SyntaxAnalysis sa = new SyntaxAnalysis();
-				List<String> actions = sa.analyze(tokens);
+				List<String> actions = sa.analyze(tokens,errorTbMd);
 				for (String s : actions) {
 					productionTbMd.addRow(new String[] { s });
 				}
@@ -226,7 +226,7 @@ public class MyFrame extends JFrame {
 				JTable actionTb = new JTable(actionTbMd);
 				actionTb.setEnabled(false);// 不可修改
 				JScrollPane newActionScrollPane = new JScrollPane(actionTb);
-				newActionScrollPane.setBounds(650, 50, 900, 320);
+				newActionScrollPane.setBounds(670, 50, 900, 320);
 				actionScrollPane = newActionScrollPane;
 				mainPanel.add(newActionScrollPane);
 
@@ -256,7 +256,7 @@ public class MyFrame extends JFrame {
 				JTable gotoTb = new JTable(gotoTbMd);
 				gotoTb.setEnabled(false);// 不可修改
 				JScrollPane newGotoScrollPane = new JScrollPane(gotoTb);
-				newGotoScrollPane.setBounds(650, 430, 900, 320);
+				newGotoScrollPane.setBounds(670, 430, 900, 320);
 				gotoScrollPane = newGotoScrollPane;
 				mainPanel.add(newGotoScrollPane);
 			}

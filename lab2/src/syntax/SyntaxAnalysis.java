@@ -11,6 +11,11 @@ import java.util.Iterator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+
+import javax.swing.table.DefaultTableModel;
+
+import lexical.Token;
+
 import java.util.Map;
 
 public class SyntaxAnalysis {
@@ -26,16 +31,6 @@ public class SyntaxAnalysis {
 	private List<Closure> closures = new ArrayList<Closure>();
 	private List<Map<String, Integer>> GOTO;
 	private List<Map<String, String>> ACTION;
-
-	public static void main(String args[]) {
-		List<String> tokens = new ArrayList<String>();
-		tokens.add("a");
-		tokens.add("b");
-		tokens.add("a");
-		tokens.add("b");
-		SyntaxAnalysis sa = new SyntaxAnalysis();
-//		sa.analyze(tokens);
-	}
 
 	public SyntaxAnalysis() {
 		// 产生式 终结符 非终结符
@@ -73,9 +68,9 @@ public class SyntaxAnalysis {
 		ACTION = table.getAction();
 	}
 
-	public List<String> analyze(List<String> tokens) {
+	public List<String> analyze(List<Token> tokens, DefaultTableModel errorTbMd) {
 		// 分析器
-		Analyzer analyzer = new Analyzer(GOTO, ACTION, tokens, productions);
+		Analyzer analyzer = new Analyzer(GOTO, ACTION, tokens, productions, errorTbMd);
 		List<String> actions = analyzer.getActions();
 		return actions;
 	}

@@ -4,7 +4,6 @@ bool_expression 	&& || ε
 item' 	ε % * / 
 type 	boolean void double record char short unsigned float int long 
 lop 	&& || 
-isnull_es 	ε , 
 func_body 	; { 
 P 	boolean void double record char short unsigned float int long 
 result 	ε else 
@@ -25,10 +24,11 @@ item 	const ( id
 expression 	const ( id 
 branch_stmt 	if switch 
 case_stmts 	ε case 
-call_func 	ε ( 
+call_func 	( 
+eps 	ε , 
 define_stmt 	boolean void double record char short unsigned float int long 
 equal_op 	= 
-es 	const ε ( id , 
+es 	const ( id 
 jump_stmt 	break continue return 
 args 	boolean void ε double record char short unsigned float int long 
 isnull_expr 	const ε ( id 

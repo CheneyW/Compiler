@@ -14,10 +14,10 @@ public class LexicalAnalysis {
 	public static final int SEPARATOR = 4;// 分界符
 	public static final int COMMENT = 5;// 注释
 
-	private static final List<String> keyWords = Encoding.keyWords;
-	private static final List<String> codeOfKind = Encoding.codeOfKind;
+	private static final List<String> keyWords = Token.keyWords;
+	private static final List<String> codeOfKind = Token.codeOfKind;
 
-	private List<Integer> tokenList = new ArrayList<Integer>();
+	private List<Token> tokenList = new ArrayList<Token>();
 
 	private MyBuffer buffer;
 	private DefaultTableModel tokenTbMd, errorTbMd, symbolTbMd;
@@ -31,7 +31,7 @@ public class LexicalAnalysis {
 		this.symbolTbMd = symbolTbMd;
 	}
 
-	public List<Integer> run() {
+	public List<Token> run() {
 		while (scanToken()) {
 		}
 		return tokenList;
@@ -85,7 +85,7 @@ public class LexicalAnalysis {
 						buffer.push(ch);
 						ch = buffer.getChar();
 						if (ch == '\n') {
-							outputError("ERROR: Comment is not closed", buffer.getRowNum());
+							outputError(String.format("Error at Line %3d: Comment is not closed.", buffer.getRowNum()));
 							buffer.clear();
 							return true;
 						}
@@ -94,7 +94,7 @@ public class LexicalAnalysis {
 					buffer.push(ch);
 					ch = buffer.getChar();
 					if (ch == '\n') {
-						outputError("ERROR: Comment is not closed", buffer.getRowNum());
+						outputError(String.format("Error at Line %3d: Comment is not closed.", buffer.getRowNum()));
 						buffer.clear();
 						return true;
 					}
@@ -170,7 +170,8 @@ public class LexicalAnalysis {
 		case '\0':
 			return false;
 		default:
-			outputError("ERROR: Unrecognized character '" + "" + ch + "'", buffer.getRowNum());
+			outputError(
+					String.format("Error at Line %3d: Unrecognized character '" + "" + ch + "'.", buffer.getRowNum()));
 			return true;
 		}
 	}
@@ -195,13 +196,12 @@ public class LexicalAnalysis {
 	}
 
 	private void outputToken(int row, String token, int codeOfKind, String attr) {
-		tokenList.add(codeOfKind);
+		tokenList.add(new Token(codeOfKind, row));
 		this.tokenTbMd.addRow(new String[] { Integer.toString(row), token, Integer.toString(codeOfKind), attr });
 	}
 
-	private void outputError(String description, int row) {
-		String str = description + " , line " + Integer.toString(row) + ".";
-		this.errorTbMd.addRow(new String[] { str });
+	private void outputError(String description) {
+		this.errorTbMd.addRow(new String[] { description });
 	}
 
 	private void outputSymbol(int idx, String name) {
