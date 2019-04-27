@@ -1,0 +1,49 @@
+P' -> P
+P -> L
+L -> L M S	{backpatch(L1.nextlist,M.quad); L.nextlist=S.nextlist}
+L -> S	{L.nextlist=S.nextlist}
+S -> D
+
+// 声明
+D -> T id ;	{enter(id.name, T.type, offset); offset=offset+T.width}
+T -> int	{T.type=int;T.width=4}
+T -> char	{T.type=char;T.width=1}
+
+// 赋值
+S -> id = E ;	{p=lookup(id.name); if(p!=nil) then gencode(p,"=",E.addr) else error}
+E -> E + item	{E.addr=newtemp; gencode(E.addr,"=",E1.addr,"+",item.addr)}
+E -> E - item	{E.addr=newtemp; gencode(E.addr,"=",E1.addr,"-",item.addr)}
+E -> item	{E.addr=item.addr}
+item -> item * factor	{item.addr=newtemp; gencode(item.addr,"=",item1.addr,"*",factor.addr)}
+item -> item / factor	{item.addr=newtemp; gencode(item.addr,"=",item1.addr,"/",factor.addr)}
+item -> factor	{item.addr=factor.addr}
+factor -> ( E )	{factor.addr = E.addr}
+factor -> id	{p=lookup(id.name); if(p!=nil) then factor.addr=p else error}
+factor -> const	{factor.addr=const}
+
+//布尔
+B -> B || M Ba	{backpatch(B1.falselist,M.quad); B.truelist=merge(B1.truelist,Ba.truelist); B.falselist=Ba.falselist}
+B -> Ba	{B.truelist=Ba.truelist; B.falselist=Ba.falselist}
+Ba -> Ba && M Bb	{backpatch(Ba1.truelist,M.quad); Ba.truelist=Bb.truelist; Ba.falselist=merge(Ba1.falselist,Bb.falselist)}
+Ba -> Bb	{Ba.truelist=Bb.truelist; Ba.falselist=Bb.falselist}
+Bb -> ! Bb	{Bb.truelist=Bb1.falselist; Bb.falselist=Bb1.truelist}
+Bb -> Bc	{Bb.truelist=Bc.truelist; Bb.falselist=Bc.falselist}
+Bc -> E relop E	{Bc.truelist=makelist(nextquad); Bc.falselist=makelist(nextquad+1); gencode("if" E1.addr relop.op E2.addr "goto "); gencode("goto ")}
+Bc -> ( B )	{Bc.truelist=B.truelist; Bc.falselist=B.falselist}
+Bc -> true	{Bc.truelist=makelist(nextquad); gencode("goto ")}
+Bc -> false	{Bc.falselist=makelist(nextquad); gencode("goto ")}
+relop -> ==	{relop.op = ==}
+relop -> !=	{relop.op = !=}
+relop -> >	{relop.op = >}
+relop -> >=	{relop.op = >=}
+relop -> <	{relop.op = <}
+relop -> <=	{relop.op = <=}
+M -> ε	{M.quad=nextquad}
+N -> ε	{N.nextlist=makelist(nextquad); gencode("goto ")}
+
+//分支	
+S -> if ( B ) { M L }	{backpatch(B.truelist,M.quad); S.nextlist=merge(B.falselist,L.nextlist)}
+S -> if ( B ) { M L } N else { M L }	{backpatch(B.truelist,M1.quad); backpatch(B.falselist,M2.quad); S.nextlist=merge(L1.nextlist,merge(N.nextlist,L2.nextlist))}
+
+//循环
+S -> while ( M B ) { M L }	{backpatch(L.nextlist,M1.quad); backpatch(B.truelist,M2.quad); S.nextlist=B.falselist; gencode("goto" M1.quad)}

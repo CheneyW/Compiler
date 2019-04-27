@@ -1,0 +1,49 @@
+P' -> P
+P -> L
+L -> L M S
+L -> S
+S -> D
+
+
+D -> T id ;
+T -> int
+T -> char
+
+
+D -> id = E	;
+E -> E + item
+E -> E - item
+E -> item
+item -> item * factor
+item -> item / factor
+item -> factor
+factor -> ( E )
+factor -> id
+factor -> const
+
+
+B -> B || M Ba
+B -> Ba
+Ba -> Ba && M Bb
+Ba -> Bb
+Bb -> ! Bb
+Bb -> Bc
+Bc -> E relop E
+Bc -> ( B )
+Bc -> true
+Bc -> false
+relop -> ==
+relop -> !=
+relop -> >
+relop -> >=
+relop -> <
+relop -> <=
+M -> ε
+N -> ε
+
+
+S -> if ( B ) { M L }
+S -> if ( B ) { M L } N else { M L }
+
+
+S -> while ( M B ) { M L }

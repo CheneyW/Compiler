@@ -1,0 +1,39 @@
+0	P' -> P 
+1	P -> L 
+2	L -> L M S 
+3	L -> S 
+4	S -> D 
+5	D -> T id ; 
+6	T -> int 
+7	T -> char 
+8	D -> id = E ; 
+9	E -> E + item 
+10	E -> E - item 
+11	E -> item 
+12	item -> item * factor 
+13	item -> item / factor 
+14	item -> factor 
+15	factor -> ( E ) 
+16	factor -> id 
+17	factor -> const 
+18	B -> B || M Ba 
+19	B -> Ba 
+20	Ba -> Ba && M Bb 
+21	Ba -> Bb 
+22	Bb -> ! Bb 
+23	Bb -> Bc 
+24	Bc -> E relop E 
+25	Bc -> ( B ) 
+26	Bc -> true 
+27	Bc -> false 
+28	relop -> == 
+29	relop -> != 
+30	relop -> > 
+31	relop -> >= 
+32	relop -> < 
+33	relop -> <= 
+34	M -> ε 
+35	N -> ε 
+36	S -> if ( B ) { M L } 
+37	S -> if ( B ) { M L } N else { M L } 
+38	S -> while ( M B ) { M L } 

@@ -1,0 +1,44 @@
+Bb 	! const true ( false id 
+Bc 	const true ( false id 
+item 	const ( id 
+B 	! const true ( false id 
+D 	char id int 
+E 	const ( id 
+L 	char id while if int 
+relop 	== <= != < > >= 
+M 	ε 
+N 	ε 
+P 	char id while if int 
+S 	char id while if int 
+T 	char int 
+P' 	char id while if int 
+factor 	const ( id 
+Ba 	! const true ( false id 
+|| 	|| 
+&& 	&& 
+<= 	<= 
+const 	const 
+while 	while 
+else 	else 
+id 	id 
+if 	if 
+== 	== 
+! 	! 
+( 	( 
+false 	false 
+) 	) 
+* 	* 
++ 	+ 
+- 	- 
+int 	int 
+/ 	/ 
+char 	char 
+true 	true 
+; 	; 
+{ 	{ 
+!= 	!= 
+< 	< 
+= 	= 
+} 	} 
+> 	> 
+>= 	>= 
