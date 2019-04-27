@@ -167,6 +167,18 @@ public class LexicalAnalysis {
 			acceptToken(SEPARATOR, "" + ch, buffer.getRowNum());
 			return true;
 
+		case '"':
+			while (true) {
+				do {
+					buffer.push(ch);
+					ch = buffer.getChar();
+				} while (ch != '"');
+				buffer.push(ch);
+				break;
+			}
+			acceptToken(CONSTANT, buffer.getToken(), buffer.getRowNum());
+			buffer.clear();
+			return true;
 		case '\0':
 			return false;
 		default:
@@ -174,6 +186,7 @@ public class LexicalAnalysis {
 					String.format("Error at Line %3d: Unrecognized character '" + "" + ch + "'.", buffer.getRowNum()));
 			return true;
 		}
+
 	}
 
 	private void acceptToken(int type, String token, int row) {
@@ -183,20 +196,28 @@ public class LexicalAnalysis {
 				symbolTable.add(token);
 				outputSymbol(symbolTable.size() - 1, token);
 			}
+			tokenList.add(new Symbol("id", token, row));
 			outputToken(row, token, codeOfKind.indexOf("id"), Integer.toString(symbolTable.indexOf(token)));
 			break;
 		case CONSTANT:
+			Symbol symbol;
+			if (token.charAt(0) == '"') {// 判断类型
+				symbol = new Symbol("str", token, row);
+			} else {
+				symbol = new Symbol("const", token, row);
+			}
+			tokenList.add(symbol);
 			outputToken(row, token, codeOfKind.indexOf("const"), token);
 			break;
 		case KEYWORD:
 		case OPERATOR:
 		case SEPARATOR:
+			tokenList.add(new Symbol(token, token, row));
 			outputToken(row, token, codeOfKind.indexOf(token), "");
 		}
 	}
 
 	private void outputToken(int row, String token, int codeOfKind, String attr) {
-		tokenList.add(new Symbol(codeOfKind, token, row));
 		this.tokenTbMd.addRow(new String[] { Integer.toString(row), token, Integer.toString(codeOfKind), attr });
 	}
 

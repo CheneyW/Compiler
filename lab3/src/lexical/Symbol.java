@@ -8,12 +8,12 @@ import java.util.Set;
 public class Symbol {
 	public static final List<String> keyWords = Arrays.asList("if", "else", "for", "do", "while", "switch", "case",
 			"default", "break", "continue", "return", "void", "int", "boolean", "char", "short", "long", "unsigned",
-			"float", "double", "record");
+			"true", "false", "String");
 
-	public static final List<String> codeOfKind = Arrays.asList("id", "const", "if", "else", "for", "do", "while",
-			"switch", "case", "default", "break", "continue", "return", "void", "int", "boolean", "char", "short",
-			"long", "unsigned", "true", "false", "record", "%", "+", "-", "*", "/", ":", ";", ",", "{", "}", "(", ")",
-			"[", "]", "=", "&&", "||", "!", ">", ">=", "<", "<=", "!=", "==");
+	public static final List<String> codeOfKind = Arrays.asList("id", "const", "if", "else", "for", "do", "while", "switch", "case",
+			"default", "break", "continue", "return", "void", "int", "boolean", "char", "short", "long", "unsigned",
+			"true", "false", "String", "str", "%", "+", "-", "*", "/", ":", ";", ",", "{", "}", "(", ")", "[",
+			"]", "=", "&&", "||", "!", ">", ">=", "<", "<=", "!=", "==");
 
 	public String symbol; // 符号
 	public String val = ""; // 非终结符的token值
@@ -40,9 +40,9 @@ public class Symbol {
 		this.row = row;
 	}
 
-	public Symbol(int cof, String val, int row) {
+	public Symbol(String symbol, String val, int row) {
 		super();
-		this.symbol = codeOfKind.get(cof);
+		this.symbol = symbol;
 		this.val = val;
 		this.row = row;
 	}

@@ -5,12 +5,13 @@ L -> S	{L.nextlist=S.nextlist}
 S -> D
 
 // 声明
-D -> T id ;	{enter(id.name, T.type, offset); offset=offset+T.width}
+D -> T id ;	{enter(id.name, T.type, T.width, offset); offset=offset+T.width}
 T -> int	{T.type=int;T.width=4}
-T -> char	{T.type=char;T.width=1}
+T -> String [ const ]	{T.type=String;T.width=const}
 
 // 赋值
-S -> id = E ;	{p=lookup(id.name); if(p!=nil) then gencode(p,"=",E.addr) else error}
+S -> id = str ;	{p=lookup(id.name); if(p!=nil) then gencode(p,"=",str) else error; if(p.type!=String){error} }
+S -> id = E ;	{p=lookup(id.name); if(p!=nil) then gencode(p,"=",E.addr) else error; if(p.type!=int){error} }
 E -> E + item	{E.addr=newtemp; gencode(E.addr,"=",E1.addr,"+",item.addr)}
 E -> E - item	{E.addr=newtemp; gencode(E.addr,"=",E1.addr,"-",item.addr)}
 E -> item	{E.addr=item.addr}

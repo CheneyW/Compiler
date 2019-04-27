@@ -5,8 +5,8 @@
 4	S -> D 
 5	D -> T id ; 
 6	T -> int 
-7	T -> char 
-8	D -> id = E ; 
+7	T -> String [ const ] 
+8	S -> id = E ; 
 9	E -> E + item 
 10	E -> E - item 
 11	E -> item 
@@ -37,3 +37,4 @@
 36	S -> if ( B ) { M L } 
 37	S -> if ( B ) { M L } N else { M L } 
 38	S -> while ( M B ) { M L } 
+39	S -> id = str ; 

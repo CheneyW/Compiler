@@ -85,7 +85,7 @@ public class MyFrame extends JFrame {
 		productionTb = new JTable(productionTbMd);
 		productionTb.setEnabled(false);// 不可修改
 		JScrollPane productionScrollPane = new JScrollPane(productionTb);
-		productionScrollPane.setBounds(480, 50, 180, 700);
+		productionScrollPane.setBounds(480, 20, 180, 730);
 
 		// ACTION
 		JLabel actionLabel = new JLabel("ACTION");
@@ -101,7 +101,7 @@ public class MyFrame extends JFrame {
 		threeAddrTb = new JTable(threeAddrTbMd);
 		threeAddrTb.setEnabled(false);// 不可修改
 		JScrollPane threeAddrScrollPane = new JScrollPane(threeAddrTb);
-		threeAddrScrollPane.setBounds(1300, 50, 200, 700);
+		threeAddrScrollPane.setBounds(1280, 20, 200, 730);
 
 		mainPanel.add(textScrollPane);
 		mainPanel.add(tokenScrollPane);
@@ -117,19 +117,19 @@ public class MyFrame extends JFrame {
 
 	private void addButton() {
 		JButton fileOpen = new JButton("打开文件");
-		fileOpen.setBounds(360, 50, 100, 30);
+		fileOpen.setBounds(360, 20, 100, 30);
 
 		JButton TestCase = new JButton("测试用例");
-		TestCase.setBounds(360, 100, 100, 30);
+		TestCase.setBounds(360, 70, 100, 30);
 
 		JButton LexicalAnalysis = new JButton("词法分析");
-		LexicalAnalysis.setBounds(360, 150, 100, 30);
+		LexicalAnalysis.setBounds(360, 120, 100, 30);
 
 		JButton SyntaxAnalysis = new JButton("语法分析");
-		SyntaxAnalysis.setBounds(360, 200, 100, 30);
+		SyntaxAnalysis.setBounds(360, 170, 100, 30);
 
 		JButton SemanticAnalysis = new JButton("语义分析");
-		SyntaxAnalysis.setBounds(360, 250, 100, 30);
+		SemanticAnalysis.setBounds(360, 220, 100, 30);
 
 		mainPanel.add(fileOpen);
 		mainPanel.add(TestCase);

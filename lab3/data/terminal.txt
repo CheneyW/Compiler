@@ -2,9 +2,12 @@
 &&
 <=
 const
+String
 while
 else
 id
+[
+]
 if
 ==
 !
@@ -16,7 +19,7 @@ false
 -
 int
 /
-char
+str
 true
 ;
 {

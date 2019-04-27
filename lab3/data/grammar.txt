@@ -7,10 +7,10 @@ S -> D
 
 D -> T id ;
 T -> int
-T -> char
+T -> String [ const ]
 
 
-D -> id = E	;
+S -> id = E ;
 E -> E + item
 E -> E - item
 E -> item
@@ -47,3 +47,5 @@ S -> if ( B ) { M L } N else { M L }
 
 
 S -> while ( M B ) { M L }
+
+S -> id = str ;

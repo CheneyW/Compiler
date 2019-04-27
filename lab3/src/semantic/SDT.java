@@ -25,7 +25,7 @@ public class SDT {
 
 	public void getOutput(DefaultTableModel threeAddrTbMd) {
 		for (int i = 0; i < output.size(); i++) {
-			String s = Integer.toString(i + 100) + " : \t" + output.get(i);
+			String s = Integer.toString(i + 100) + " :  \t" + output.get(i);
 			threeAddrTbMd.addRow(new String[] { s });
 		}
 	}
@@ -149,6 +149,9 @@ public class SDT {
 		case 38:
 			rule38();
 			break;
+		case 39:
+			rule39();
+			break;
 		}
 	}
 
@@ -170,7 +173,7 @@ public class SDT {
 		P.nextlist = L.nextlist;
 		stack.push(P);
 		backpatch(P.nextlist, nextquad());
-		gencode("end");
+		gencode(" ");
 //		stack.pop();
 //		stack.push(new Symbol("P"));
 	}
@@ -204,12 +207,12 @@ public class SDT {
 
 	/**************************** 声明语句 ****************************/
 	// D -> T id ;
-	// {enter(id.name, T.type, offset); offset=offset+T.width}
+	// {enter(id.name, T.type,T.width, offset); offset=offset+T.width}
 	public void rule5() {
 		stack.pop();
 		Symbol id = stack.pop();
 		Symbol T = stack.pop();
-		symbolTable.enter(id.val, T.type, offset);
+		symbolTable.enter(id.val, T.type, T.width, offset);
 		offset += T.width;
 		stack.push(new Symbol("D"));
 	}
@@ -224,17 +227,49 @@ public class SDT {
 		stack.push(T);
 	}
 
-	// T -> char
-	// {T.type=char;T.width=1}
+	// T -> String [ const ]
+	// {T.type=String;T.width=const}
 	public void rule7() {
 		stack.pop();
+		Symbol _const = stack.pop();
+		stack.pop();
+		stack.pop();
 		Symbol T = new Symbol("T");
-		T.type = "char";
-		T.width = 1;
+		T.type = "String";
+		T.width = Integer.parseInt(_const.val);
 		stack.push(T);
 	}
 
 	/**************************** 赋值语句 ****************************/
+	// 39 S -> id = str ;
+	// {p=lookup(id.name); if(p!=nil) then gencode(p,"=",str) else error;
+	// if(p.type!=String){error} }
+	public void rule39() {
+		stack.pop();
+		Symbol str = stack.pop();
+		stack.pop();
+		Symbol id = stack.pop();
+		String idName = symbolTable.lookup(id.val);
+		if (idName != null) {
+			// 类型检查
+			if (!symbolTable.getType(id.val).equals("String")) {
+				errorTbMd.addRow(new String[] { String.format("Error at Line %3d:  Type mismatch.", id.getRow()) });
+				return;
+			}
+			// 字符串长度越界
+			if (str.val.length() - 2 > symbolTable.getLen(id.val)) {
+				str.val = str.val.substring(0, symbolTable.getLen(id.val));
+				errorTbMd.addRow(
+						new String[] { String.format("Error at Line %3d: String length out of bounds.", id.getRow()) });
+			}
+			gencode(idName + " = " + str.val);
+			stack.push(new Symbol("S"));
+		} else {// 未定义的标识符
+			errorTbMd.addRow(new String[] {
+					String.format("Error at Line %3d: Undefined identifier \"%s\".", id.getRow(), id.val) });
+		}
+	}
+
 	// S -> id = E ;
 	// {p=lookup(id.name); if(p!=nil) then gencode(p,"=",E.addr) else error}
 	public void rule8() {
@@ -244,11 +279,16 @@ public class SDT {
 		Symbol id = stack.pop();
 		String idName = symbolTable.lookup(id.val);
 		if (idName != null) {
+			// 类型检查
+			if (!symbolTable.getType(id.val).equals("int")) {
+				errorTbMd.addRow(new String[] { String.format("Error at Line %3d:  Type mismatch.", id.getRow()) });
+				return;
+			}
 			gencode(idName + " = " + E.addr);
 			stack.push(new Symbol("S"));
 		} else {// 未定义的标识符
 			errorTbMd.addRow(new String[] {
-					String.format("Error at Line %3d: Undefined identifier \"%s\".", id.getRow(), idName) });
+					String.format("Error at Line %3d: Undefined identifier \"%s\".", id.getRow(), id.val) });
 		}
 	}
 
@@ -339,7 +379,7 @@ public class SDT {
 			factor.addr = idName;
 		} else {
 			errorTbMd.addRow(new String[] {
-					String.format("Error at Line %3d: Undefined identifier \"%s\".", id.getRow(), idName) });
+					String.format("Error at Line %3d: Undefined identifier \"%s\".", id.getRow(), id.val) });
 			factor.addr = "0";
 		}
 		stack.push(factor);
@@ -355,7 +395,6 @@ public class SDT {
 	}
 
 	/**************************** 布尔表达式 ****************************/
-
 	// 18 B -> B || M Ba
 	// {backpatch(B1.falselist,M.quad); B.truelist=merge(B1.truelist,Ba.truelist);
 	// B.falselist=Ba.falselist}
