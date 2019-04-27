@@ -3,9 +3,10 @@ int mult(int x, int y){
 }
 
 int mian(){
-    int a=0, b=1;
+    int a=0;
+    int b[5];
     
-    if(a>=b){
+    if(a>=1){
         a = a+1;
     }else{
         a = a+2;
@@ -13,16 +14,16 @@ int mian(){
     
     switch(a){
     case 1:
-        a = 10;
+        b[0] = 10;
         break;
     case 2:
-        a = 20;
+        b[0] = 20;
         break;
     }
     
     do{
-        b = mult(b,2);
-    }while(b<100);
+        a = mult(a,2);
+    }while(a<100);
     
     return 0;
 }

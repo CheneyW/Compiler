@@ -80,10 +80,11 @@ item' -> / factor item'
 item' -> % factor item'
 item' -> ε
 factor -> ( value )
+factor -> id
+factor -> id [ const ]
 factor -> id call_func
 factor -> const
 call_func -> ( es )
-call_func -> ε
-es -> isnull_expr isnull_es
-isnull_es -> , isnull_expr isnull_es
-isnull_es -> ε
+es -> expression eps
+eps -> , expression eps
+eps -> ε

@@ -80,10 +80,11 @@
 79	item' -> % factor item' 
 80	item' -> ε 
 81	factor -> ( value ) 
-82	factor -> id call_func 
-83	factor -> const 
-84	call_func -> ( es ) 
-85	call_func -> ε 
-86	es -> isnull_expr isnull_es 
-87	isnull_es -> , isnull_expr isnull_es 
-88	isnull_es -> ε 
+82	factor -> id 
+83	factor -> id [ const ] 
+84	factor -> id call_func 
+85	factor -> const 
+86	call_func -> ( es ) 
+87	es -> expression eps 
+88	eps -> , expression eps 
+89	eps -> ε 

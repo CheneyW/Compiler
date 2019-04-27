@@ -1,7 +1,6 @@
 package syntax;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +30,6 @@ public class Closure {
 	}
 
 	public void generate() {
-		Map<String, List<LR1Item>> left2Item = new HashMap<String, List<LR1Item>>();
 		boolean update = true;
 		while (update) {
 			update = false;
@@ -73,21 +71,14 @@ public class Closure {
 				}
 
 				// 加入
-				if (left2Item.containsKey(B)) {
-					for (LR1Item i : left2Item.get(B)) {// 更新展望符
-						if (i.addExpectedSymbol(expectedSymbol)) {
+				if (productionsDict.containsKey(B)) {
+					for (Production p : productionsDict.get(B)) {
+						LR1Item i = new LR1Item(p, expectedSymbol, 0);
+						if (!temp.contains(i) && !items.contains(i)) {
+							temp.add(i);
 							update = true;
 						}
 					}
-				} else if (productionsDict.containsKey(B)) {// 加入项目集
-					List<LR1Item> list = new ArrayList<LR1Item>();
-					for (Production p : productionsDict.get(B)) {
-						LR1Item i = new LR1Item(p, expectedSymbol, 0);
-						temp.add(i);
-						list.add(i);
-						update = true;
-					}
-					left2Item.put(B, list);
 				}
 			} // end iterator
 			for (LR1Item i : temp) {
