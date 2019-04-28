@@ -20,15 +20,13 @@ public class LexicalAnalysis {
 	private List<Symbol> tokenList = new ArrayList<Symbol>();
 
 	private MyBuffer buffer;
-	private DefaultTableModel tokenTbMd, errorTbMd, symbolTbMd;
+	private DefaultTableModel tokenTbMd, errorTbMd;
 	private List<String> symbolTable = new ArrayList<String>();
 
-	public LexicalAnalysis(JTextArea inputText, DefaultTableModel tokenTbMd, DefaultTableModel errorTbMd,
-			DefaultTableModel symbolTbMd) {
+	public LexicalAnalysis(JTextArea inputText, DefaultTableModel tokenTbMd, DefaultTableModel errorTbMd) {
 		buffer = new MyBuffer(inputText.getText());
 		this.tokenTbMd = tokenTbMd;
 		this.errorTbMd = errorTbMd;
-		this.symbolTbMd = symbolTbMd;
 	}
 
 	public List<Symbol> run() {
@@ -194,7 +192,7 @@ public class LexicalAnalysis {
 		case IDENTIFIER:
 			if (!symbolTable.contains(token)) {
 				symbolTable.add(token);
-				outputSymbol(symbolTable.size() - 1, token);
+//				outputSymbol(symbolTable.size() - 1, token);
 			}
 			tokenList.add(new Symbol("id", token, row));
 			outputToken(row, token, codeOfKind.indexOf("id"), Integer.toString(symbolTable.indexOf(token)));
@@ -225,9 +223,9 @@ public class LexicalAnalysis {
 		this.errorTbMd.addRow(new String[] { description });
 	}
 
-	private void outputSymbol(int idx, String name) {
-		this.symbolTbMd.addRow(new String[] { Integer.toString(idx), name });
-	}
+//	private void outputSymbol(int idx, String name) {
+//		this.symbolTbMd.addRow(new String[] { Integer.toString(idx), name });
+//	}
 
 	private boolean isDigit(char c) {
 		if (c >= '0' && c <= '9') {

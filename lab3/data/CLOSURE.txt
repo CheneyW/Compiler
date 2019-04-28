@@ -1,104 +1,50 @@
 I0
-L -> .S  	,  id String while if int 
-S -> .D  	,  # 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  # 
 L -> .L M S  	,  # 
-D -> .T id ;  	,  # 
 P -> .L  	,  # 
-S -> .id = E ;  	,  # 
 L -> .S  	,  # 
-L -> .L M S  	,  id String while if int 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  # 
 S -> .id = str ;  	,  # 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
+S -> .D ;  	,  # 
+L -> .L M S  	,  call void id String while if return int 
 S -> .if ( B ) { M L }  	,  # 
+L -> .S  	,  call void id String while if return int 
 T -> .int  	,  id 
-S -> .while ( M B ) { M L }  	,  # 
+S -> .T id ( M' para ) { L }  	,  # 
 P' -> .P  	,  # 
-S -> .id = E ;  	,  id String while if int 
+S -> .D ;  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  # 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S -> .while ( M B ) { M L }  	,  # 
 T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
 S -> .if ( B ) { M L } N else { M L }  	,  # 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
 I1
-D ->  T.id ;  	,  id String while if int 
-D ->  T.id ;  	,  # 
+S ->  call.id ( Elist ) ;  	,  call void id String while if return int 
+S ->  call.id ( Elist ) ;  	,  # 
 
 I2
-T ->  int.  	,  id 
-
-I3
-S ->  id.= str ;  	,  id String while if int 
-S ->  id.= E ;  	,  # 
-S ->  id.= E ;  	,  id String while if int 
-S ->  id.= str ;  	,  # 
-
-I4
-S ->  D.  	,  # 
-S ->  D.  	,  id String while if int 
-
-I5
-S ->  if.( B ) { M L }  	,  # 
-S ->  if.( B ) { M L }  	,  id String while if int 
-S ->  if.( B ) { M L } N else { M L }  	,  # 
-S ->  if.( B ) { M L } N else { M L }  	,  id String while if int 
-
-I6
-T ->  String.[ const ]  	,  id 
-
-I7
-L ->  S.  	,  id String while if int 
+L ->  S.  	,  call void id String while if return int 
 L ->  S.  	,  # 
 
-I8
-S ->  while.( M B ) { M L }  	,  # 
-S ->  while.( M B ) { M L }  	,  id String while if int 
-
-I9
-L ->  L.M S  	,  # 
-L ->  L.M S  	,  id String while if int 
-M -> .  	,  id String while if int 
-P ->  L.  	,  # 
-
-I10
-P' ->  P.  	,  # 
-
-I11
-L ->  L M.S  	,  # 
-L ->  L M.S  	,  id String while if int 
-S -> .D  	,  # 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
-D -> .T id ;  	,  # 
-S -> .id = E ;  	,  # 
-S -> .id = str ;  	,  # 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  # 
-T -> .int  	,  id 
-S -> .while ( M B ) { M L }  	,  # 
-S -> .id = E ;  	,  id String while if int 
-D -> .T id ;  	,  id String while if int 
-T -> .String [ const ]  	,  id 
-S -> .D  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  # 
-
-I12
-M -> .  	,  ! const true ( false id 
-S ->  while (.M B ) { M L }  	,  # 
-S ->  while (.M B ) { M L }  	,  id String while if int 
-
-I13
+I3
 factor -> .( E )  	,  * 
-S ->  id =.str ;  	,  # 
+S ->  return.E ;  	,  # 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ; 
 item -> .factor  	,  - 
 item -> .factor  	,  + 
 item -> .factor  	,  / 
-S ->  id =.E ;  	,  id String while if int 
+S ->  return.E ;  	,  call void id String while if return int 
 factor -> .id  	,  ; 
 factor -> .id  	,  - 
 factor -> .id  	,  + 
@@ -106,6 +52,7 @@ factor -> .id  	,  /
 E -> .E - item  	,  ; 
 E -> .E - item  	,  - 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  ; 
 item -> .item * factor  	,  - 
 item -> .item * factor  	,  + 
@@ -115,7 +62,6 @@ factor -> .( E )  	,  ;
 factor -> .( E )  	,  - 
 factor -> .( E )  	,  + 
 factor -> .( E )  	,  / 
-S ->  id =.str ;  	,  id String while if int 
 E -> .item  	,  ; 
 E -> .item  	,  - 
 E -> .item  	,  + 
@@ -124,32 +70,139 @@ item -> .item / factor  	,  -
 item -> .item / factor  	,  + 
 item -> .item / factor  	,  / 
 item -> .factor  	,  * 
-S ->  id =.E ;  	,  # 
 factor -> .id  	,  * 
 E -> .E + item  	,  ; 
 E -> .E + item  	,  - 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
 factor -> .const  	,  ; 
 item -> .item * factor  	,  * 
 factor -> .const  	,  - 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
 
+I4
+D ->  T.id  	,  ; 
+S ->  T.id ( M' para ) { L }  	,  call void id String while if return int 
+S ->  T.id ( M' para ) { L }  	,  # 
+
+I5
+T ->  void.  	,  id 
+
+I6
+P' ->  P.  	,  # 
+
+I7
+S ->  D.;  	,  # 
+S ->  D.;  	,  call void id String while if return int 
+
+I8
+S ->  if.( B ) { M L }  	,  # 
+S ->  if.( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S ->  if.( B ) { M L } N else { M L }  	,  # 
+S ->  if.( B ) { M L }  	,  call void id String while if return int 
+
+I9
+S ->  while.( M B ) { M L }  	,  call void id String while if return int 
+S ->  while.( M B ) { M L }  	,  # 
+
+I10
+S ->  id.= str ;  	,  call void id String while if return int 
+S ->  id.= E ;  	,  # 
+S ->  id.= str ;  	,  # 
+S ->  id.= E ;  	,  call void id String while if return int 
+
+I11
+T ->  int.  	,  id 
+
+I12
+L ->  L.M S  	,  call void id String while if return int 
+L ->  L.M S  	,  # 
+P ->  L.  	,  # 
+M -> .  	,  call void id String while if return int 
+
+I13
+T ->  String.[ const ]  	,  id 
+
 I14
-T ->  String [.const ]  	,  id 
+S ->  return E.;  	,  # 
+E ->  E.- item  	,  ; 
+E ->  E.- item  	,  - 
+E ->  E.- item  	,  + 
+S ->  return E.;  	,  call void id String while if return int 
+E ->  E.+ item  	,  ; 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
 
 I15
+T ->  String [.const ]  	,  id 
+
+I16
+S ->  T id.( M' para ) { L }  	,  call void id String while if return int 
+S ->  T id.( M' para ) { L }  	,  # 
+D ->  T id.  	,  ; 
+
+I17
+S ->  D ;.  	,  # 
+S ->  D ;.  	,  call void id String while if return int 
+
+I18
+factor ->  id.  	,  ; 
+factor ->  id.  	,  - 
+factor ->  id.  	,  + 
+factor ->  id.  	,  / 
+factor ->  id.  	,  * 
+
+I19
+S ->  call id.( Elist ) ;  	,  call void id String while if return int 
+S ->  call id.( Elist ) ;  	,  # 
+
+I20
+factor ->  const.  	,  * 
+factor ->  const.  	,  ; 
+factor ->  const.  	,  - 
+factor ->  const.  	,  + 
+factor ->  const.  	,  / 
+
+I21
+E ->  item.  	,  ; 
+E ->  item.  	,  - 
+E ->  item.  	,  + 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  ; 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  / 
+item ->  item.* factor  	,  ; 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  * 
+
+I22
+item ->  factor.  	,  ; 
+item ->  factor.  	,  - 
+item ->  factor.  	,  + 
+item ->  factor.  	,  / 
+item ->  factor.  	,  * 
+
+I23
 factor -> .( E )  	,  * 
-S ->  if (.B ) { M L } N else { M L }  	,  id String while if int 
 Ba -> .Ba && M Bb  	,  && 
 Ba -> .Ba && M Bb  	,  || 
 Ba -> .Bb  	,  ) 
 item -> .factor  	,  / 
 item -> .factor  	,  + 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+S ->  if (.B ) { M L }  	,  call void id String while if return int 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -167,13 +220,14 @@ item -> .factor  	,  *
 factor -> .( E )  	,  == <= != < > >= 
 E -> .E + item  	,  == <= != < > >= 
 Bb -> .! Bb  	,  && 
-S ->  if (.B ) { M L }  	,  id String while if int 
 Bb -> .! Bb  	,  || 
 item -> .item * factor  	,  == <= != < > >= 
 E -> .E - item  	,  == <= != < > >= 
 B -> .Ba  	,  ) 
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  - 
 Bc -> .E relop E  	,  ) 
 Bc -> .false  	,  ) 
@@ -201,147 +255,245 @@ Ba -> .Bb  	,  ||
 Ba -> .Ba && M Bb  	,  ) 
 E -> .item  	,  == <= != < > >= 
 B -> .B || M Ba  	,  || 
+S ->  if (.B ) { M L } N else { M L }  	,  call void id String while if return int 
 item -> .factor  	,  == <= != < > >= 
 Bc -> .( B )  	,  || 
 factor -> .id  	,  * 
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I16
-D ->  T id.;  	,  id String while if int 
-D ->  T id.;  	,  # 
+I24
+factor ->  call.id ( Elist )  	,  * 
+factor ->  call.id ( Elist )  	,  ; 
+factor ->  call.id ( Elist )  	,  - 
+factor ->  call.id ( Elist )  	,  + 
+factor ->  call.id ( Elist )  	,  / 
 
-I17
-factor ->  const.  	,  * 
-factor ->  const.  	,  ; 
-factor ->  const.  	,  - 
-factor ->  const.  	,  + 
-factor ->  const.  	,  / 
+I25
+L ->  L M.S  	,  # 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+D -> .T id  	,  ; 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+S -> .return E ;  	,  # 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  # 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  # 
+S -> .id = str ;  	,  # 
+S -> .D ;  	,  # 
+L ->  L M.S  	,  call void id String while if return int 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  # 
+T -> .int  	,  id 
+S -> .while ( M B ) { M L }  	,  # 
+S -> .T id ( M' para ) { L }  	,  # 
+S -> .D ;  	,  call void id String while if return int 
+T -> .String [ const ]  	,  id 
+S -> .if ( B ) { M L } N else { M L }  	,  # 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I18
+I26
 factor -> .( E )  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor ->  (.E )  	,  - 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
 factor ->  (.E )  	,  * 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ) 
 item -> .factor  	,  - 
-item -> .factor  	,  + 
-item -> .factor  	,  / 
 factor -> .id  	,  ) 
 factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
 E -> .E - item  	,  ) 
 E -> .E - item  	,  - 
-E -> .E - item  	,  + 
 item -> .item * factor  	,  ) 
 item -> .item * factor  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
 factor -> .( E )  	,  ) 
 factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
 factor ->  (.E )  	,  ; 
-factor ->  (.E )  	,  - 
 factor ->  (.E )  	,  + 
 factor ->  (.E )  	,  / 
 E -> .item  	,  ) 
 E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I27
+M -> .  	,  call ! const true ( false id 
+S ->  while (.M B ) { M L }  	,  # 
+S ->  while (.M B ) { M L }  	,  call void id String while if return int 
+
+I28
+factor -> .( E )  	,  * 
+S ->  id =.str ;  	,  # 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ; 
+item -> .factor  	,  - 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  ; 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  ; 
+E -> .E - item  	,  - 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  ; 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ; 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  ; 
+E -> .item  	,  - 
 E -> .item  	,  + 
-item -> .item / factor  	,  ) 
+item -> .item / factor  	,  ; 
 item -> .item / factor  	,  - 
 item -> .item / factor  	,  + 
 item -> .item / factor  	,  / 
 item -> .factor  	,  * 
+S ->  id =.E ;  	,  # 
+S ->  id =.str ;  	,  call void id String while if return int 
 factor -> .id  	,  * 
-E -> .E + item  	,  ) 
+S ->  id =.E ;  	,  call void id String while if return int 
+E -> .E + item  	,  ; 
 E -> .E + item  	,  - 
 E -> .E + item  	,  + 
-factor -> .const  	,  ) 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ; 
 item -> .item * factor  	,  * 
 factor -> .const  	,  - 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
 
-I19
-Bc ->  E.relop E  	,  || 
-Bc ->  E.relop E  	,  && 
-Bc ->  E.relop E  	,  ) 
-relop -> .<=  	,  const ( id 
-relop -> .>=  	,  const ( id 
-E ->  E.+ item  	,  == <= != < > >= 
-relop -> .<  	,  const ( id 
-relop -> .>  	,  const ( id 
-E ->  E.- item  	,  == <= != < > >= 
-relop -> .==  	,  const ( id 
-E ->  E.- item  	,  + 
+I29
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ; 
+item -> .factor  	,  - 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  ; 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  ; 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ; 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  ; 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  * 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+E ->  E +.item  	,  ; 
+E ->  E +.item  	,  - 
+E ->  E +.item  	,  + 
+factor -> .const  	,  ; 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+
+I30
+factor -> .( E )  	,  * 
+item ->  item /.factor  	,  * 
+factor -> .id  	,  ; 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ; 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item ->  item /.factor  	,  ; 
+item ->  item /.factor  	,  - 
+item ->  item /.factor  	,  + 
+item ->  item /.factor  	,  / 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ; 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I31
+S ->  id = E.;  	,  # 
+E ->  E.- item  	,  ; 
 E ->  E.- item  	,  - 
-relop -> .!=  	,  const ( id 
+E ->  E.- item  	,  + 
+S ->  id = E.;  	,  call void id String while if return int 
+E ->  E.+ item  	,  ; 
 E ->  E.+ item  	,  - 
 E ->  E.+ item  	,  + 
 
-I20
-Bb ->  Bc.  	,  && 
-Bb ->  Bc.  	,  ) 
-Bb ->  Bc.  	,  || 
-
-I21
-D ->  T id ;.  	,  id String while if int 
-D ->  T id ;.  	,  # 
-
-I22
-Bc ->  true.  	,  || 
-Bc ->  true.  	,  && 
-Bc ->  true.  	,  ) 
-
-I23
-item ->  factor.  	,  / 
-item ->  factor.  	,  + 
-item ->  factor.  	,  * 
-item ->  factor.  	,  - 
-item ->  factor.  	,  == <= != < > >= 
-
-I24
-E ->  item.  	,  ; 
-E ->  item.  	,  - 
-E ->  item.  	,  + 
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  ; 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  + 
-item ->  item./ factor  	,  / 
-item ->  item.* factor  	,  ; 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  * 
-
-I25
-factor ->  const.  	,  * 
-factor ->  const.  	,  - 
-factor ->  const.  	,  / 
-factor ->  const.  	,  + 
-factor ->  const.  	,  == <= != < > >= 
-
-I26
-Bc ->  false.  	,  && 
-Bc ->  false.  	,  ) 
-Bc ->  false.  	,  || 
-
-I27
+I32
 factor -> .( E )  	,  * 
 item -> .factor  	,  / 
 item -> .factor  	,  + 
 Bb ->  !.Bb  	,  ) 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -364,6 +516,8 @@ item -> .item * factor  	,  == <= != < > >=
 E -> .E - item  	,  == <= != < > >= 
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  - 
 Bc -> .E relop E  	,  ) 
 Bc -> .false  	,  ) 
@@ -391,22 +545,106 @@ factor -> .id  	,  *
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I28
+I33
+Bb ->  Bc.  	,  && 
+Bb ->  Bc.  	,  ) 
+Bb ->  Bc.  	,  || 
+
+I34
+S ->  return E ;.  	,  # 
+S ->  return E ;.  	,  call void id String while if return int 
+
+I35
+factor ->  call.id ( Elist )  	,  * 
+factor ->  call.id ( Elist )  	,  + 
+factor ->  call.id ( Elist )  	,  / 
+factor ->  call.id ( Elist )  	,  ) 
+factor ->  call.id ( Elist )  	,  - 
+
+I36
+factor ->  const.  	,  * 
+factor ->  const.  	,  - 
+factor ->  const.  	,  / 
+factor ->  const.  	,  + 
+factor ->  const.  	,  == <= != < > >= 
+
+I37
+B ->  Ba.  	,  || 
+Ba ->  Ba.&& M Bb  	,  || 
+Ba ->  Ba.&& M Bb  	,  && 
+B ->  Ba.  	,  ) 
+Ba ->  Ba.&& M Bb  	,  ) 
+
+I38
+factor -> .( E )  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor ->  (.E )  	,  ) 
+factor ->  (.E )  	,  - 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  (.E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor ->  (.E )  	,  + 
+factor ->  (.E )  	,  / 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I39
 factor -> .( E )  	,  * 
 Ba -> .Ba && M Bb  	,  && 
 Ba -> .Ba && M Bb  	,  || 
 Ba -> .Bb  	,  ) 
 item -> .factor  	,  + 
 item -> .factor  	,  / 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 Bc ->  (.B )  	,  ) 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  + 
 item -> .item * factor  	,  / 
 factor -> .const  	,  * 
@@ -435,6 +673,8 @@ B -> .Ba  	,  )
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  ) 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
 factor -> .const  	,  ) 
 factor -> .const  	,  - 
 factor ->  (.E )  	,  * 
@@ -477,90 +717,39 @@ Bc -> .( B )  	,  ||
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
 
-I29
-T ->  String [ const.]  	,  id 
-
-I30
-B ->  Ba.  	,  || 
-Ba ->  Ba.&& M Bb  	,  || 
-Ba ->  Ba.&& M Bb  	,  && 
-B ->  Ba.  	,  ) 
-Ba ->  Ba.&& M Bb  	,  ) 
-
-I31
-S ->  id = E.;  	,  id String while if int 
-S ->  id = E.;  	,  # 
-E ->  E.- item  	,  ; 
-E ->  E.- item  	,  - 
-E ->  E.- item  	,  + 
-E ->  E.+ item  	,  ; 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  + 
-
-I32
-factor ->  id.  	,  ; 
-factor ->  id.  	,  - 
-factor ->  id.  	,  + 
-factor ->  id.  	,  / 
-factor ->  id.  	,  * 
-
-I33
-E ->  item.  	,  + 
-E ->  item.  	,  - 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  / 
-item ->  item./ factor  	,  + 
-E ->  item.  	,  == <= != < > >= 
-item ->  item./ factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  * 
-
-I34
-item ->  factor.  	,  ; 
-item ->  factor.  	,  - 
-item ->  factor.  	,  + 
-item ->  factor.  	,  / 
-item ->  factor.  	,  * 
-
-I35
-S ->  id = str.;  	,  # 
-S ->  id = str.;  	,  id String while if int 
-
-I36
+I40
 factor ->  id.  	,  == <= != < > >= 
 factor ->  id.  	,  / 
 factor ->  id.  	,  + 
 factor ->  id.  	,  - 
 factor ->  id.  	,  * 
 
-I37
-Ba ->  Bb.  	,  ) 
-Ba ->  Bb.  	,  && 
-Ba ->  Bb.  	,  || 
+I41
+factor ->  const.  	,  * 
+factor ->  const.  	,  ) 
+factor ->  const.  	,  - 
+factor ->  const.  	,  + 
+factor ->  const.  	,  / 
 
-I38
-L ->  L M S.  	,  id String while if int 
-L ->  L M S.  	,  # 
-
-I39
+I42
 factor -> .( E )  	,  * 
 Ba -> .Ba && M Bb  	,  && 
 Ba -> .Ba && M Bb  	,  || 
 Ba -> .Bb  	,  ) 
 item -> .factor  	,  / 
 item -> .factor  	,  + 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -576,6 +765,7 @@ Bc -> .false  	,  &&
 item -> .item / factor  	,  - 
 item -> .factor  	,  * 
 factor -> .( E )  	,  == <= != < > >= 
+S ->  while ( M.B ) { M L }  	,  call void id String while if return int 
 E -> .E + item  	,  == <= != < > >= 
 Bb -> .! Bb  	,  && 
 Bb -> .! Bb  	,  || 
@@ -585,6 +775,8 @@ S ->  while ( M.B ) { M L }  	,  #
 B -> .Ba  	,  ) 
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  - 
 Bc -> .E relop E  	,  ) 
 Bc -> .false  	,  ) 
@@ -607,7 +799,6 @@ Ba -> .Bb  	,  &&
 item -> .item / factor  	,  / 
 item -> .item / factor  	,  + 
 Ba -> .Bb  	,  || 
-S ->  while ( M.B ) { M L }  	,  id String while if int 
 Ba -> .Ba && M Bb  	,  ) 
 E -> .item  	,  == <= != < > >= 
 B -> .B || M Ba  	,  || 
@@ -617,19 +808,67 @@ factor -> .id  	,  *
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I40
-S ->  if ( B.) { M L } N else { M L }  	,  # 
-S ->  if ( B.) { M L } N else { M L }  	,  id String while if int 
-S ->  if ( B.) { M L }  	,  id String while if int 
-B ->  B.|| M Ba  	,  || 
-B ->  B.|| M Ba  	,  ) 
-S ->  if ( B.) { M L }  	,  # 
+I43
+item ->  factor.  	,  + 
+item ->  factor.  	,  / 
+item ->  factor.  	,  * 
+item ->  factor.  	,  ) 
+item ->  factor.  	,  - 
 
-I41
+I44
+E ->  item.  	,  + 
+E ->  item.  	,  - 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  / 
+item ->  item./ factor  	,  + 
+E ->  item.  	,  == <= != < > >= 
+item ->  item./ factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  * 
+
+I45
+Bc ->  false.  	,  && 
+Bc ->  false.  	,  ) 
+Bc ->  false.  	,  || 
+
+I46
+E ->  item.  	,  + 
+E ->  item.  	,  ) 
+E ->  item.  	,  - 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  / 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  * 
+
+I47
+factor ->  ( E.)  	,  - 
+factor ->  ( E.)  	,  * 
+factor ->  ( E.)  	,  ; 
+factor ->  ( E.)  	,  + 
+factor ->  ( E.)  	,  / 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+
+I48
 factor -> .( E )  	,  * 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ; 
@@ -640,6 +879,10 @@ factor -> .id  	,  ;
 factor -> .id  	,  - 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
+E ->  E -.item  	,  ; 
+E ->  E -.item  	,  - 
+E ->  E -.item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  ; 
 item -> .item * factor  	,  - 
 item -> .item * factor  	,  + 
@@ -655,229 +898,73 @@ item -> .item / factor  	,  +
 item -> .item / factor  	,  / 
 item -> .factor  	,  * 
 factor -> .id  	,  * 
-E ->  E +.item  	,  ; 
-E ->  E +.item  	,  - 
-E ->  E +.item  	,  + 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
 factor -> .const  	,  ; 
 factor -> .const  	,  - 
 factor -> .const  	,  + 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 
-I42
-relop ->  <=.  	,  const ( id 
-
-I43
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-item ->  item *.factor  	,  == <= != < > >= 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  / 
-factor -> .id  	,  + 
-factor -> .id  	,  - 
-factor -> .id  	,  * 
-factor -> .id  	,  == <= != < > >= 
-item ->  item *.factor  	,  / 
-item ->  item *.factor  	,  + 
-item ->  item *.factor  	,  - 
-item ->  item *.factor  	,  * 
-factor -> .const  	,  / 
-factor -> .const  	,  + 
-factor -> .const  	,  - 
-factor -> .const  	,  * 
-
-I44
-M -> .  	,  ! const true ( false id 
-Ba ->  Ba &&.M Bb  	,  && 
-Ba ->  Ba &&.M Bb  	,  || 
-Ba ->  Ba &&.M Bb  	,  ) 
-
-I45
-factor ->  ( E.)  	,  * 
-factor ->  ( E.)  	,  ; 
-factor ->  ( E.)  	,  - 
-factor ->  ( E.)  	,  + 
-factor ->  ( E.)  	,  / 
-E ->  E.- item  	,  ) 
-E ->  E.- item  	,  - 
-E ->  E.- item  	,  + 
-E ->  E.+ item  	,  ) 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  + 
-
-I46
-Bc ->  E.relop E  	,  || 
-factor ->  ( E.)  	,  - 
-Bc ->  E.relop E  	,  && 
-factor ->  ( E.)  	,  * 
-Bc ->  E.relop E  	,  ) 
-factor ->  ( E.)  	,  / 
-factor ->  ( E.)  	,  + 
-relop -> .<=  	,  const ( id 
-factor ->  ( E.)  	,  == <= != < > >= 
-relop -> .>=  	,  const ( id 
-E ->  E.+ item  	,  == <= != < > >= 
-relop -> .<  	,  const ( id 
-relop -> .>  	,  const ( id 
-E ->  E.- item  	,  == <= != < > >= 
-relop -> .==  	,  const ( id 
-E ->  E.- item  	,  + 
-E ->  E.- item  	,  ) 
-E ->  E.- item  	,  - 
-relop -> .!=  	,  const ( id 
-E ->  E.+ item  	,  ) 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  + 
-
-I47
-factor ->  const.  	,  * 
-factor ->  const.  	,  ) 
-factor ->  const.  	,  - 
-factor ->  const.  	,  + 
-factor ->  const.  	,  / 
-
-I48
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  * 
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  == <= != < > >= 
-item ->  item /.factor  	,  - 
-item ->  item /.factor  	,  * 
-item ->  item /.factor  	,  / 
-item ->  item /.factor  	,  + 
-item ->  item /.factor  	,  == <= != < > >= 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  - 
-factor -> .id  	,  * 
-factor -> .id  	,  / 
-factor -> .id  	,  + 
-factor -> .id  	,  == <= != < > >= 
-factor -> .const  	,  - 
-factor -> .const  	,  * 
-factor -> .const  	,  / 
-factor -> .const  	,  + 
-
 I49
-S ->  while ( M B.) { M L }  	,  # 
-S ->  while ( M B.) { M L }  	,  id String while if int 
-B ->  B.|| M Ba  	,  || 
-B ->  B.|| M Ba  	,  ) 
+Bc ->  true.  	,  || 
+Bc ->  true.  	,  && 
+Bc ->  true.  	,  ) 
 
 I50
-relop ->  >.  	,  const ( id 
+item ->  factor.  	,  / 
+item ->  factor.  	,  + 
+item ->  factor.  	,  * 
+item ->  factor.  	,  - 
+item ->  factor.  	,  == <= != < > >= 
 
 I51
-factor -> .( E )  	,  * 
-factor ->  (.E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  ) 
-item -> .factor  	,  - 
-item -> .factor  	,  + 
-item -> .factor  	,  / 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-E -> .E - item  	,  ) 
-E -> .E - item  	,  - 
-E -> .E - item  	,  + 
-item -> .item * factor  	,  ) 
-item -> .item * factor  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-factor ->  (.E )  	,  ) 
-factor ->  (.E )  	,  - 
-factor ->  (.E )  	,  + 
-factor ->  (.E )  	,  / 
-E -> .item  	,  ) 
-E -> .item  	,  - 
-E -> .item  	,  + 
-item -> .item / factor  	,  ) 
-item -> .item / factor  	,  - 
-item -> .item / factor  	,  + 
-item -> .item / factor  	,  / 
-item -> .factor  	,  * 
-factor -> .id  	,  * 
-E -> .E + item  	,  ) 
-E -> .E + item  	,  - 
-E -> .E + item  	,  + 
-factor -> .const  	,  ) 
-item -> .item * factor  	,  * 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
+S ->  T id (.M' para ) { L }  	,  call void id String while if return int 
+S ->  T id (.M' para ) { L }  	,  # 
+M' -> .  	,  void String int 
 
 I52
-factor -> .( E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  + 
-item -> .factor  	,  - 
-item -> .factor  	,  / 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  + 
-factor -> .id  	,  - 
-factor -> .id  	,  / 
-item -> .item / factor  	,  == <= != < > >= 
-E ->  E -.item  	,  + 
-E ->  E -.item  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  - 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  / 
-item -> .item / factor  	,  + 
-item -> .item / factor  	,  - 
-item -> .item / factor  	,  / 
-item -> .factor  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-item -> .item * factor  	,  == <= != < > >= 
-item -> .factor  	,  == <= != < > >= 
-E ->  E -.item  	,  == <= != < > >= 
-factor -> .id  	,  * 
-factor -> .id  	,  == <= != < > >= 
-item -> .item * factor  	,  * 
-factor -> .const  	,  + 
-factor -> .const  	,  - 
-factor -> .const  	,  / 
+factor ->  call id.( Elist )  	,  * 
+factor ->  call id.( Elist )  	,  ; 
+factor ->  call id.( Elist )  	,  - 
+factor ->  call id.( Elist )  	,  + 
+factor ->  call id.( Elist )  	,  / 
 
 I53
-factor -> .( E )  	,  ; 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
 factor -> .( E )  	,  * 
 factor -> .id  	,  ; 
 factor -> .id  	,  - 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
-factor -> .id  	,  * 
 item ->  item *.factor  	,  ; 
 item ->  item *.factor  	,  - 
 item ->  item *.factor  	,  + 
 item ->  item *.factor  	,  / 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ; 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor -> .id  	,  * 
 item ->  item *.factor  	,  * 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
 factor -> .const  	,  ; 
 factor -> .const  	,  - 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
-factor -> .const  	,  * 
 
 I54
-T ->  String [ const ].  	,  id 
+Ba ->  Bb.  	,  ) 
+Ba ->  Bb.  	,  && 
+Ba ->  Bb.  	,  || 
 
 I55
-factor ->  id.  	,  == <= != < > >= 
 factor ->  id.  	,  + 
 factor ->  id.  	,  / 
 factor ->  id.  	,  ) 
@@ -885,220 +972,246 @@ factor ->  id.  	,  -
 factor ->  id.  	,  * 
 
 I56
-Bc ->  ( B.)  	,  && 
-Bc ->  ( B.)  	,  ) 
-Bc ->  ( B.)  	,  || 
+S ->  if ( B.) { M L } N else { M L }  	,  # 
+S ->  if ( B.) { M L } N else { M L }  	,  call void id String while if return int 
 B ->  B.|| M Ba  	,  || 
+S ->  if ( B.) { M L }  	,  call void id String while if return int 
 B ->  B.|| M Ba  	,  ) 
+S ->  if ( B.) { M L }  	,  # 
 
 I57
-factor ->  const.  	,  * 
-factor ->  const.  	,  ) 
-factor ->  const.  	,  - 
-factor ->  const.  	,  + 
-factor ->  const.  	,  / 
-factor ->  const.  	,  == <= != < > >= 
+Bc ->  E.relop E  	,  || 
+Bc ->  E.relop E  	,  && 
+Bc ->  E.relop E  	,  ) 
+relop -> .>  	,  call const ( id 
+relop -> .==  	,  call const ( id 
+relop -> .>=  	,  call const ( id 
+E ->  E.+ item  	,  == <= != < > >= 
+relop -> .<  	,  call const ( id 
+E ->  E.- item  	,  == <= != < > >= 
+relop -> .<=  	,  call const ( id 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+relop -> .!=  	,  call const ( id 
 
 I58
-factor -> .( E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  - 
-item -> .factor  	,  + 
-item -> .factor  	,  / 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-item -> .item / factor  	,  == <= != < > >= 
-item -> .item * factor  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-item -> .item / factor  	,  - 
-item -> .item / factor  	,  + 
-item -> .item / factor  	,  / 
-item -> .factor  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-E ->  E +.item  	,  == <= != < > >= 
-item -> .item * factor  	,  == <= != < > >= 
-item -> .factor  	,  == <= != < > >= 
-factor -> .id  	,  * 
-factor -> .id  	,  == <= != < > >= 
-E ->  E +.item  	,  - 
-E ->  E +.item  	,  + 
-item -> .item * factor  	,  * 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
+factor ->  call.id ( Elist )  	,  * 
+factor ->  call.id ( Elist )  	,  / 
+factor ->  call.id ( Elist )  	,  + 
+factor ->  call.id ( Elist )  	,  - 
+factor ->  call.id ( Elist )  	,  == <= != < > >= 
 
 I59
-relop ->  !=.  	,  const ( id 
+T ->  String [ const.]  	,  id 
 
 I60
-item ->  factor.  	,  ) 
-item ->  factor.  	,  - 
-item ->  factor.  	,  + 
-item ->  factor.  	,  / 
-item ->  factor.  	,  * 
-
-I61
 factor -> .( E )  	,  * 
-factor -> .( E )  	,  ; 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-item ->  item /.factor  	,  * 
-item ->  item /.factor  	,  ; 
-item ->  item /.factor  	,  - 
-item ->  item /.factor  	,  + 
-item ->  item /.factor  	,  / 
-factor -> .id  	,  * 
-factor -> .id  	,  ; 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-factor -> .const  	,  * 
-factor -> .const  	,  ; 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
-
-I62
-S ->  id = E ;.  	,  id String while if int 
-S ->  id = E ;.  	,  # 
-
-I63
-item ->  factor.  	,  + 
-item ->  factor.  	,  / 
-item ->  factor.  	,  * 
-item ->  factor.  	,  ) 
-item ->  factor.  	,  - 
-item ->  factor.  	,  == <= != < > >= 
-
-I64
-S ->  id = str ;.  	,  id String while if int 
-S ->  id = str ;.  	,  # 
-
-I65
-S ->  if ( B ).{ M L } N else { M L }  	,  id String while if int 
-S ->  if ( B ).{ M L } N else { M L }  	,  # 
-S ->  if ( B ).{ M L }  	,  id String while if int 
-S ->  if ( B ).{ M L }  	,  # 
-
-I66
-relop ->  <.  	,  const ( id 
-
-I67
-factor -> .( E )  	,  * 
-Ba -> .Ba && M Bb  	,  && 
-Ba -> .Ba && M Bb  	,  || 
-Ba -> .Bb  	,  ) 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
 item -> .factor  	,  + 
 item -> .factor  	,  / 
-Bc ->  (.B )  	,  ) 
+S ->  call id (.Elist ) ;  	,  # 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
-item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
 item -> .item * factor  	,  + 
 item -> .item * factor  	,  / 
 factor -> .const  	,  * 
 factor -> .( E )  	,  + 
 factor -> .( E )  	,  / 
-factor ->  (.E )  	,  ) 
-factor ->  (.E )  	,  - 
-Bc -> .E relop E  	,  || 
 E -> .item  	,  + 
-Bc -> .E relop E  	,  && 
-Bc -> .true  	,  && 
-Bc -> .true  	,  || 
-Bc -> .false  	,  || 
-Bc -> .false  	,  && 
 item -> .item / factor  	,  ) 
 item -> .item / factor  	,  - 
 item -> .factor  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-E -> .E + item  	,  == <= != < > >= 
-Bb -> .! Bb  	,  && 
-Bb -> .! Bb  	,  || 
-item -> .item * factor  	,  == <= != < > >= 
-Bc ->  (.B )  	,  && 
-E -> .E - item  	,  == <= != < > >= 
-Bc ->  (.B )  	,  || 
-B -> .Ba  	,  ) 
-factor -> .id  	,  == <= != < > >= 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
 E -> .E + item  	,  ) 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
 factor -> .const  	,  ) 
 factor -> .const  	,  - 
-factor ->  (.E )  	,  * 
-Bc -> .E relop E  	,  ) 
-Bc -> .false  	,  ) 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ) 
 item -> .factor  	,  - 
-B -> .B || M Ba  	,  ) 
-Bb -> .! Bb  	,  ) 
-B -> .Ba  	,  || 
-factor -> .const  	,  == <= != < > >= 
 factor -> .id  	,  ) 
 factor -> .id  	,  - 
-Bb -> .Bc  	,  && 
-Bc -> .( B )  	,  ) 
-Bb -> .Bc  	,  || 
 E -> .E - item  	,  ) 
 E -> .E - item  	,  - 
-Bc -> .true  	,  ) 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
 item -> .item * factor  	,  ) 
 item -> .item * factor  	,  - 
+factor -> .const  	,  , 
 factor -> .( E )  	,  ) 
 factor -> .( E )  	,  - 
-factor ->  (.E )  	,  + 
-factor ->  (.E )  	,  / 
+Elist -> .Elist , E  	,  ) 
 E -> .item  	,  ) 
 E -> .item  	,  - 
-factor ->  (.E )  	,  == <= != < > >= 
 item -> .item / factor  	,  + 
 item -> .item / factor  	,  / 
-Ba -> .Bb  	,  && 
-Ba -> .Bb  	,  || 
-Ba -> .Ba && M Bb  	,  ) 
-E -> .item  	,  == <= != < > >= 
-B -> .B || M Ba  	,  || 
-item -> .factor  	,  == <= != < > >= 
+item -> .factor  	,  , 
 factor -> .id  	,  * 
-Bc -> .( B )  	,  || 
-Bb -> .Bc  	,  ) 
-Bc -> .( B )  	,  && 
+S ->  call id (.Elist ) ;  	,  call void id String while if return int 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
 
-I68
-Bb ->  ! Bb.  	,  || 
-Bb ->  ! Bb.  	,  ) 
-Bb ->  ! Bb.  	,  && 
+I61
+L ->  L M S.  	,  # 
+L ->  L M S.  	,  call void id String while if return int 
 
-I69
-E ->  item.  	,  ) 
-E ->  item.  	,  - 
-E ->  item.  	,  + 
+I62
+S ->  id = str.;  	,  # 
+S ->  id = str.;  	,  call void id String while if return int 
+
+I63
+D -> .T id  	,  ) 
+D -> .T id  	,  , 
+S ->  T id ( M'.para ) { L }  	,  # 
+T -> .void  	,  id 
+T -> .int  	,  id 
+T -> .String [ const ]  	,  id 
+para -> .D  	,  ) 
+para -> .D  	,  , 
+para -> .para , D  	,  ) 
+para -> .para , D  	,  , 
+S ->  T id ( M'.para ) { L }  	,  call void id String while if return int 
+
+I64
 item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  ; 
 item ->  item./ factor  	,  - 
 item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  / 
-item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  ; 
 item ->  item.* factor  	,  - 
 item ->  item.* factor  	,  + 
 item ->  item.* factor  	,  / 
 item ->  item.* factor  	,  * 
+E ->  E - item.  	,  ; 
+E ->  E - item.  	,  - 
+E ->  E - item.  	,  + 
+
+I65
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  / 
+E ->  E -.item  	,  + 
+E ->  E -.item  	,  ) 
+E ->  E -.item  	,  - 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  / 
+item -> .factor  	,  * 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  + 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+
+I66
+factor ->  ( E.)  	,  ) 
+factor ->  ( E.)  	,  - 
+factor ->  ( E.)  	,  * 
+factor ->  ( E.)  	,  + 
+factor ->  ( E.)  	,  / 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+
+I67
+factor ->  call.id ( Elist )  	,  * 
+factor ->  call.id ( Elist )  	,  + 
+factor ->  call.id ( Elist )  	,  / 
+factor ->  call.id ( Elist )  	,  , 
+factor ->  call.id ( Elist )  	,  ) 
+factor ->  call.id ( Elist )  	,  - 
+
+I68
+relop ->  <=.  	,  call const ( id 
+
+I69
+item ->  factor.  	,  + 
+item ->  factor.  	,  / 
+item ->  factor.  	,  * 
+item ->  factor.  	,  ) 
+item ->  factor.  	,  - 
+item ->  factor.  	,  , 
 
 I70
+factor ->  call id.( Elist )  	,  * 
+factor ->  call id.( Elist )  	,  + 
+factor ->  call id.( Elist )  	,  / 
+factor ->  call id.( Elist )  	,  ) 
+factor ->  call id.( Elist )  	,  - 
+
+I71
+Bc ->  E.relop E  	,  || 
+factor ->  ( E.)  	,  - 
+Bc ->  E.relop E  	,  && 
+factor ->  ( E.)  	,  * 
+Bc ->  E.relop E  	,  ) 
+factor ->  ( E.)  	,  / 
+factor ->  ( E.)  	,  + 
+relop -> .>  	,  call const ( id 
+relop -> .==  	,  call const ( id 
+factor ->  ( E.)  	,  == <= != < > >= 
+relop -> .>=  	,  call const ( id 
+E ->  E.+ item  	,  == <= != < > >= 
+relop -> .<  	,  call const ( id 
+E ->  E.- item  	,  == <= != < > >= 
+relop -> .<=  	,  call const ( id 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+relop -> .!=  	,  call const ( id 
+
+I72
+S ->  id = E ;.  	,  call void id String while if return int 
+S ->  id = E ;.  	,  # 
+
+I73
 factor -> .( E )  	,  * 
 E -> .item  	,  || 
 E -> .item  	,  && 
@@ -1109,6 +1222,7 @@ item -> .item / factor  	,  &&
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -1128,6 +1242,8 @@ item -> .item * factor  	,  ||
 E -> .E - item  	,  && 
 E -> .E + item  	,  ) 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  ) 
 factor -> .const  	,  - 
 factor -> .( E )  	,  && 
@@ -1141,7 +1257,9 @@ factor -> .id  	,  -
 factor -> .const  	,  || 
 E -> .E - item  	,  ) 
 E -> .E - item  	,  - 
+factor -> .call id ( Elist )  	,  || 
 E -> .E + item  	,  && 
+factor -> .call id ( Elist )  	,  && 
 E -> .E + item  	,  || 
 item -> .item * factor  	,  ) 
 item -> .item * factor  	,  - 
@@ -1156,56 +1274,219 @@ item -> .item / factor  	,  +
 item -> .factor  	,  && 
 factor -> .id  	,  * 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I71
-relop ->  ==.  	,  const ( id 
-
-I72
+I74
 factor -> .( E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  ; 
-item -> .factor  	,  - 
+item ->  item /.factor  	,  * 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+item ->  item /.factor  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  - 
+factor -> .id  	,  / 
+factor -> .id  	,  + 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  == <= != < > >= 
+item ->  item /.factor  	,  - 
+item ->  item /.factor  	,  / 
+item ->  item /.factor  	,  + 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
+factor -> .const  	,  - 
+factor -> .const  	,  / 
+factor -> .const  	,  + 
+
+I75
+factor ->  id.  	,  == <= != < > >= 
+factor ->  id.  	,  + 
+factor ->  id.  	,  / 
+factor ->  id.  	,  ) 
+factor ->  id.  	,  - 
+factor ->  id.  	,  * 
+
+I76
+factor ->  id.  	,  + 
+factor ->  id.  	,  / 
+factor ->  id.  	,  , 
+factor ->  id.  	,  ) 
+factor ->  id.  	,  - 
+factor ->  id.  	,  * 
+
+I77
+factor ->  call id.( Elist )  	,  * 
+factor ->  call id.( Elist )  	,  / 
+factor ->  call id.( Elist )  	,  + 
+factor ->  call id.( Elist )  	,  - 
+factor ->  call id.( Elist )  	,  == <= != < > >= 
+
+I78
+relop ->  >=.  	,  call const ( id 
+
+I79
+S ->  id = str ;.  	,  # 
+S ->  id = str ;.  	,  call void id String while if return int 
+
+I80
+Bc ->  ( B.)  	,  && 
+Bc ->  ( B.)  	,  ) 
+Bc ->  ( B.)  	,  || 
+B ->  B.|| M Ba  	,  || 
+B ->  B.|| M Ba  	,  ) 
+
+I81
+relop ->  <.  	,  call const ( id 
+
+I82
+factor ->  ( E ).  	,  - 
+factor ->  ( E ).  	,  * 
+factor ->  ( E ).  	,  ; 
+factor ->  ( E ).  	,  + 
+factor ->  ( E ).  	,  / 
+
+I83
+factor ->  const.  	,  * 
+factor ->  const.  	,  ) 
+factor ->  const.  	,  - 
+factor ->  const.  	,  , 
+factor ->  const.  	,  + 
+factor ->  const.  	,  / 
+
+I84
+item ->  item * factor.  	,  ; 
+item ->  item * factor.  	,  - 
+item ->  item * factor.  	,  + 
+item ->  item * factor.  	,  / 
+item ->  item * factor.  	,  * 
+
+I85
+S ->  while ( M B.) { M L }  	,  call void id String while if return int 
+S ->  while ( M B.) { M L }  	,  # 
+B ->  B.|| M Ba  	,  || 
+B ->  B.|| M Ba  	,  ) 
+
+I86
+factor -> .( E )  	,  * 
+Ba -> .Ba && M Bb  	,  && 
+Ba -> .Ba && M Bb  	,  || 
+Ba -> .Bb  	,  ) 
 item -> .factor  	,  + 
 item -> .factor  	,  / 
-factor -> .id  	,  ; 
-factor -> .id  	,  - 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+Bc ->  (.B )  	,  ) 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
-E ->  E -.item  	,  ; 
-E ->  E -.item  	,  - 
-E ->  E -.item  	,  + 
-item -> .item * factor  	,  ; 
-item -> .item * factor  	,  - 
+item -> .item / factor  	,  == <= != < > >= 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  + 
 item -> .item * factor  	,  / 
 factor -> .const  	,  * 
-factor -> .( E )  	,  ; 
-factor -> .( E )  	,  - 
 factor -> .( E )  	,  + 
 factor -> .( E )  	,  / 
-item -> .item / factor  	,  ; 
+factor ->  (.E )  	,  ) 
+factor ->  (.E )  	,  - 
+Bc -> .E relop E  	,  || 
+E -> .item  	,  + 
+Bc -> .E relop E  	,  && 
+Bc -> .true  	,  && 
+Bc -> .true  	,  || 
+Bc -> .false  	,  || 
+Bc -> .false  	,  && 
+item -> .item / factor  	,  ) 
 item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .( E )  	,  == <= != < > >= 
+E -> .E + item  	,  == <= != < > >= 
+Bb -> .! Bb  	,  && 
+Bb -> .! Bb  	,  || 
+item -> .item * factor  	,  == <= != < > >= 
+Bc ->  (.B )  	,  && 
+E -> .E - item  	,  == <= != < > >= 
+Bc ->  (.B )  	,  || 
+B -> .Ba  	,  ) 
+factor -> .id  	,  == <= != < > >= 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  (.E )  	,  * 
+Bc -> .E relop E  	,  ) 
+Bc -> .false  	,  ) 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+B -> .B || M Ba  	,  ) 
+Bb -> .! Bb  	,  ) 
+B -> .Ba  	,  || 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+Bb -> .Bc  	,  && 
+Bc -> .( B )  	,  ) 
+Bb -> .Bc  	,  || 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+Bc -> .true  	,  ) 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor ->  (.E )  	,  + 
+factor ->  (.E )  	,  / 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+factor ->  (.E )  	,  == <= != < > >= 
 item -> .item / factor  	,  + 
 item -> .item / factor  	,  / 
-item -> .factor  	,  * 
+Ba -> .Bb  	,  && 
+Ba -> .Bb  	,  || 
+Ba -> .Ba && M Bb  	,  ) 
+E -> .item  	,  == <= != < > >= 
+B -> .B || M Ba  	,  || 
+item -> .factor  	,  == <= != < > >= 
 factor -> .id  	,  * 
-factor -> .const  	,  ; 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
+Bc -> .( B )  	,  || 
+Bb -> .Bc  	,  ) 
+Bc -> .( B )  	,  && 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
+factor -> .const  	,  + 
 factor -> .const  	,  / 
 
-I73
-factor ->  id.  	,  ) 
-factor ->  id.  	,  - 
-factor ->  id.  	,  + 
-factor ->  id.  	,  / 
-factor ->  id.  	,  * 
+I87
+Elist ->  E.  	,  ) 
+Elist ->  E.  	,  , 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  , 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  , 
+E ->  E.+ item  	,  + 
 
-I74
+I88
+M -> .  	,  call ! const true ( false id 
+Ba ->  Ba &&.M Bb  	,  && 
+Ba ->  Ba &&.M Bb  	,  || 
+Ba ->  Ba &&.M Bb  	,  ) 
+
+I89
 E ->  item.  	,  + 
 E ->  item.  	,  ) 
 E ->  item.  	,  - 
@@ -1223,63 +1504,202 @@ item ->  item.* factor  	,  )
 item ->  item.* factor  	,  - 
 item ->  item.* factor  	,  * 
 
-I75
-relop ->  >=.  	,  const ( id 
+I90
+Bb ->  ! Bb.  	,  || 
+Bb ->  ! Bb.  	,  ) 
+Bb ->  ! Bb.  	,  && 
 
-I76
-M -> .  	,  ! const true ( false id 
-B ->  B ||.M Ba  	,  || 
-B ->  B ||.M Ba  	,  ) 
-
-I77
-factor ->  (.E )  	,  && 
+I91
 factor -> .( E )  	,  * 
-factor ->  (.E )  	,  * 
-factor ->  (.E )  	,  || 
 item -> .item / factor  	,  * 
-item -> .factor  	,  ) 
 item -> .factor  	,  - 
 item -> .factor  	,  + 
 item -> .factor  	,  / 
-factor -> .id  	,  ) 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
 factor -> .id  	,  - 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
-E -> .E - item  	,  ) 
-E -> .E - item  	,  - 
-E -> .E - item  	,  + 
-item -> .item * factor  	,  ) 
+item -> .item / factor  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  - 
 item -> .item * factor  	,  + 
 item -> .item * factor  	,  / 
 factor -> .const  	,  * 
-factor -> .( E )  	,  ) 
 factor -> .( E )  	,  - 
 factor -> .( E )  	,  + 
 factor -> .( E )  	,  / 
-factor ->  (.E )  	,  / 
-factor ->  (.E )  	,  + 
-factor ->  (.E )  	,  ) 
-factor ->  (.E )  	,  - 
-E -> .item  	,  ) 
-E -> .item  	,  - 
-E -> .item  	,  + 
-item -> .item / factor  	,  ) 
 item -> .item / factor  	,  - 
 item -> .item / factor  	,  + 
 item -> .item / factor  	,  / 
 item -> .factor  	,  * 
+factor -> .( E )  	,  == <= != < > >= 
+E ->  E +.item  	,  == <= != < > >= 
+item -> .item * factor  	,  == <= != < > >= 
+item -> .factor  	,  == <= != < > >= 
 factor -> .id  	,  * 
-E -> .E + item  	,  ) 
-E -> .E + item  	,  - 
-E -> .E + item  	,  + 
-factor -> .const  	,  ) 
+factor -> .id  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+E ->  E +.item  	,  - 
+E ->  E +.item  	,  + 
 item -> .item * factor  	,  * 
 factor -> .const  	,  - 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
 
-I78
+I92
+E ->  item.  	,  , 
+E ->  item.  	,  + 
+E ->  item.  	,  ) 
+E ->  item.  	,  - 
+item ->  item./ factor  	,  , 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  / 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  , 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  * 
+
+I93
+relop ->  ==.  	,  call const ( id 
+
+I94
+S ->  if ( B ).{ M L } N else { M L }  	,  # 
+S ->  if ( B ).{ M L } N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ).{ M L }  	,  call void id String while if return int 
+S ->  if ( B ).{ M L }  	,  # 
+
+I95
+relop ->  >.  	,  call const ( id 
+
+I96
+factor ->  call.id ( Elist )  	,  * 
+factor ->  call.id ( Elist )  	,  + 
+factor ->  call.id ( Elist )  	,  / 
+factor ->  call.id ( Elist )  	,  ) 
+factor ->  call.id ( Elist )  	,  - 
+factor ->  call.id ( Elist )  	,  == <= != < > >= 
+
+I97
+factor -> .( E )  	,  * 
+item ->  item /.factor  	,  * 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item ->  item /.factor  	,  ) 
+item ->  item /.factor  	,  - 
+item ->  item /.factor  	,  + 
+item ->  item /.factor  	,  / 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I98
+item ->  factor.  	,  + 
+item ->  factor.  	,  / 
+item ->  factor.  	,  * 
+item ->  factor.  	,  ) 
+item ->  factor.  	,  - 
+item ->  factor.  	,  == <= != < > >= 
+
+I99
+item ->  item / factor.  	,  * 
+item ->  item / factor.  	,  ; 
+item ->  item / factor.  	,  - 
+item ->  item / factor.  	,  + 
+item ->  item / factor.  	,  / 
+
+I100
+factor ->  call id (.Elist )  	,  ; 
+factor ->  call id (.Elist )  	,  + 
+factor ->  call id (.Elist )  	,  / 
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  call id (.Elist )  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor ->  call id (.Elist )  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I101
+M -> .  	,  call ! const true ( false id 
+B ->  B ||.M Ba  	,  || 
+B ->  B ||.M Ba  	,  ) 
+
+I102
 factor -> .( E )  	,  * 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ) 
@@ -1290,6 +1710,7 @@ factor -> .id  	,  )
 factor -> .id  	,  - 
 factor -> .id  	,  + 
 factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  ) 
 item -> .item * factor  	,  - 
 item -> .item * factor  	,  + 
@@ -1305,6 +1726,10 @@ item -> .item / factor  	,  +
 item -> .item / factor  	,  / 
 item -> .factor  	,  * 
 factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
 E ->  E +.item  	,  ) 
 E ->  E +.item  	,  - 
 E ->  E +.item  	,  + 
@@ -1314,20 +1739,129 @@ factor -> .const  	,  +
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 
-I79
-factor ->  ( E.)  	,  * 
-factor ->  ( E.)  	,  ) 
-factor ->  ( E.)  	,  - 
-factor ->  ( E.)  	,  + 
-factor ->  ( E.)  	,  / 
-E ->  E.- item  	,  ) 
-E ->  E.- item  	,  - 
-E ->  E.- item  	,  + 
-E ->  E.+ item  	,  ) 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  + 
+I103
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  - 
+item -> .factor  	,  / 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  + 
+factor -> .id  	,  - 
+factor -> .id  	,  / 
+item -> .item / factor  	,  == <= != < > >= 
+E ->  E -.item  	,  + 
+E ->  E -.item  	,  - 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  / 
+item -> .factor  	,  * 
+factor -> .( E )  	,  == <= != < > >= 
+item -> .item * factor  	,  == <= != < > >= 
+item -> .factor  	,  == <= != < > >= 
+E ->  E -.item  	,  == <= != < > >= 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  / 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  - 
+factor -> .const  	,  / 
 
-I80
+I104
+factor -> .( E )  	,  * 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  - 
+item ->  item *.factor  	,  / 
+item ->  item *.factor  	,  + 
+item ->  item *.factor  	,  - 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  == <= != < > >= 
+item ->  item *.factor  	,  == <= != < > >= 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+item ->  item *.factor  	,  * 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  - 
+factor -> .const  	,  / 
+factor -> .const  	,  + 
+factor -> .const  	,  - 
+
+I105
+T ->  String [ const ].  	,  id 
+
+I106
+factor -> .( E )  	,  * 
+factor ->  (.E )  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor ->  (.E )  	,  ) 
+factor ->  (.E )  	,  - 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  (.E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor ->  (.E )  	,  + 
+factor ->  (.E )  	,  / 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I107
 item ->  item./ factor  	,  * 
 item ->  item./ factor  	,  ; 
 item ->  item./ factor  	,  - 
@@ -1342,14 +1876,960 @@ item ->  item.* factor  	,  +
 item ->  item.* factor  	,  / 
 item ->  item.* factor  	,  * 
 
-I81
+I108
+factor ->  const.  	,  * 
+factor ->  const.  	,  ) 
+factor ->  const.  	,  - 
+factor ->  const.  	,  + 
+factor ->  const.  	,  / 
+factor ->  const.  	,  == <= != < > >= 
+
+I109
+relop ->  !=.  	,  call const ( id 
+
+I110
 factor -> .( E )  	,  * 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+item ->  item *.factor  	,  + 
+item ->  item *.factor  	,  / 
+item ->  item *.factor  	,  ) 
+item ->  item *.factor  	,  - 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .id  	,  * 
+item ->  item *.factor  	,  * 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+
+I111
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+S ->  call id ( Elist.) ;  	,  call void id String while if return int 
+S ->  call id ( Elist.) ;  	,  # 
+
+I112
+factor -> .( E )  	,  , 
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  , 
+factor -> .call id ( Elist )  	,  * 
+E ->  E +.item  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  , 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+E ->  E +.item  	,  ) 
+E ->  E +.item  	,  - 
+E ->  E +.item  	,  + 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+
+I113
+factor -> .( E )  	,  * 
+item ->  item /.factor  	,  * 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+item ->  item /.factor  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  == <= != < > >= 
+item ->  item /.factor  	,  ) 
+item ->  item /.factor  	,  - 
+item ->  item /.factor  	,  + 
+item ->  item /.factor  	,  / 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I114
+item ->  item / factor.  	,  * 
+item ->  item / factor.  	,  ) 
+item ->  item / factor.  	,  - 
+item ->  item / factor.  	,  + 
+item ->  item / factor.  	,  / 
+
+I115
+E ->  item.  	,  + 
+E ->  item.  	,  ) 
+E ->  item.  	,  - 
+E ->  item.  	,  && 
+E ->  item.  	,  || 
+item ->  item./ factor  	,  && 
+item ->  item./ factor  	,  || 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  / 
+item ->  item./ factor  	,  + 
+item ->  item.* factor  	,  || 
+item ->  item.* factor  	,  && 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  * 
+
+I116
+factor -> .( E )  	,  * 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+item ->  item *.factor  	,  + 
+item ->  item *.factor  	,  / 
+item ->  item *.factor  	,  ) 
+item ->  item *.factor  	,  - 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  == <= != < > >= 
+item ->  item *.factor  	,  == <= != < > >= 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+item ->  item *.factor  	,  * 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+
+I117
+factor -> .( E )  	,  , 
+factor -> .( E )  	,  * 
+item ->  item /.factor  	,  , 
+item ->  item /.factor  	,  * 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .call id ( Elist )  	,  , 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  , 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item ->  item /.factor  	,  ) 
+item ->  item /.factor  	,  - 
+item ->  item /.factor  	,  + 
+item ->  item /.factor  	,  / 
+factor -> .id  	,  , 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I118
+factor ->  call id ( Elist.)  	,  ; 
+factor ->  call id ( Elist.)  	,  + 
+factor ->  call id ( Elist.)  	,  / 
+factor ->  call id ( Elist.)  	,  - 
+factor ->  call id ( Elist.)  	,  * 
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+
+I119
+Bc ->  E relop E.  	,  && 
+Bc ->  E relop E.  	,  ) 
+Bc ->  E relop E.  	,  || 
+E ->  E.+ item  	,  || 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  && 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.- item  	,  || 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  && 
+E ->  E.+ item  	,  + 
+
+I120
+factor ->  ( E ).  	,  ) 
+factor ->  ( E ).  	,  - 
+factor ->  ( E ).  	,  * 
+factor ->  ( E ).  	,  + 
+factor ->  ( E ).  	,  / 
+
+I121
+factor ->  call id (.Elist )  	,  + 
+factor ->  call id (.Elist )  	,  / 
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  call id (.Elist )  	,  ) 
+factor ->  call id (.Elist )  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor ->  call id (.Elist )  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I122
+factor ->  ( E ).  	,  - 
+factor ->  ( E ).  	,  * 
+factor ->  ( E ).  	,  / 
+factor ->  ( E ).  	,  + 
+factor ->  ( E ).  	,  == <= != < > >= 
+
+I123
+item ->  factor.  	,  / 
+item ->  factor.  	,  + 
+item ->  factor.  	,  * 
+item ->  factor.  	,  ) 
+item ->  factor.  	,  - 
+item ->  factor.  	,  && 
+item ->  factor.  	,  || 
+
+I124
+para ->  D.  	,  ) 
+para ->  D.  	,  , 
+
+I125
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+item -> .item / factor  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  * 
+factor -> .( E )  	,  == <= != < > >= 
+E ->  E +.item  	,  == <= != < > >= 
+item -> .item * factor  	,  == <= != < > >= 
+item -> .factor  	,  == <= != < > >= 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+E ->  E +.item  	,  ) 
+E ->  E +.item  	,  - 
+E ->  E +.item  	,  + 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+
+I126
+S ->  call id ( Elist ).;  	,  call void id String while if return int 
+S ->  call id ( Elist ).;  	,  # 
+
+I127
+S ->  T id ( M' para.) { L }  	,  # 
+para ->  para., D  	,  ) 
+para ->  para., D  	,  , 
+S ->  T id ( M' para.) { L }  	,  call void id String while if return int 
+
+I128
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  / 
+E ->  E - item.  	,  == <= != < > >= 
+item ->  item./ factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  * 
+E ->  E - item.  	,  + 
+E ->  E - item.  	,  - 
+
+I129
+factor -> .( E )  	,  * 
+Ba -> .Ba && M Bb  	,  && 
+Ba -> .Ba && M Bb  	,  || 
+B ->  B || M.Ba  	,  ) 
+Ba -> .Bb  	,  ) 
 item -> .factor  	,  / 
 item -> .factor  	,  + 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  / 
+item -> .item * factor  	,  + 
+factor -> .const  	,  * 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  + 
+Bc -> .E relop E  	,  || 
+Bc -> .E relop E  	,  && 
+E -> .item  	,  + 
+Bc -> .true  	,  && 
+Bc -> .true  	,  || 
+Bc -> .false  	,  || 
+Bc -> .false  	,  && 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .( E )  	,  == <= != < > >= 
+B ->  B || M.Ba  	,  || 
+E -> .E + item  	,  == <= != < > >= 
+Bb -> .! Bb  	,  && 
+Bb -> .! Bb  	,  || 
+item -> .item * factor  	,  == <= != < > >= 
+E -> .E - item  	,  == <= != < > >= 
+factor -> .id  	,  == <= != < > >= 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
+factor -> .const  	,  - 
+Bc -> .E relop E  	,  ) 
+Bc -> .false  	,  ) 
+item -> .item / factor  	,  * 
+item -> .factor  	,  - 
+Bb -> .! Bb  	,  ) 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  - 
+Bc -> .( B )  	,  ) 
+Bb -> .Bc  	,  && 
+Bb -> .Bc  	,  || 
+E -> .E - item  	,  - 
+Bc -> .true  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .( E )  	,  - 
+E -> .item  	,  - 
+Ba -> .Bb  	,  && 
+item -> .item / factor  	,  / 
+item -> .item / factor  	,  + 
+Ba -> .Bb  	,  || 
+Ba -> .Ba && M Bb  	,  ) 
+E -> .item  	,  == <= != < > >= 
+item -> .factor  	,  == <= != < > >= 
+Bc -> .( B )  	,  || 
+factor -> .id  	,  * 
+Bb -> .Bc  	,  ) 
+Bc -> .( B )  	,  && 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+factor -> .const  	,  + 
+
+I130
+Bc ->  E.relop E  	,  || 
+factor ->  ( E.)  	,  ) 
+factor ->  ( E.)  	,  - 
+Bc ->  E.relop E  	,  && 
+factor ->  ( E.)  	,  * 
+Bc ->  E.relop E  	,  ) 
+factor ->  ( E.)  	,  + 
+factor ->  ( E.)  	,  / 
+relop -> .>  	,  call const ( id 
+relop -> .==  	,  call const ( id 
+factor ->  ( E.)  	,  == <= != < > >= 
+relop -> .>=  	,  call const ( id 
+E ->  E.+ item  	,  == <= != < > >= 
+relop -> .<  	,  call const ( id 
+E ->  E.- item  	,  == <= != < > >= 
+relop -> .<=  	,  call const ( id 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+relop -> .!=  	,  call const ( id 
+
+I131
+factor ->  call id.( Elist )  	,  * 
+factor ->  call id.( Elist )  	,  + 
+factor ->  call id.( Elist )  	,  / 
+factor ->  call id.( Elist )  	,  , 
+factor ->  call id.( Elist )  	,  ) 
+factor ->  call id.( Elist )  	,  - 
+
+I132
+S ->  while ( M B ).{ M L }  	,  call void id String while if return int 
+S ->  while ( M B ).{ M L }  	,  # 
+
+I133
+item ->  item / factor.  	,  == <= != < > >= 
+item ->  item / factor.  	,  * 
+item ->  item / factor.  	,  - 
+item ->  item / factor.  	,  / 
+item ->  item / factor.  	,  + 
+
+I134
+D ->  T.id  	,  ) 
+D ->  T.id  	,  , 
+
+I135
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+item -> .factor  	,  / 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .const  	,  == <= != < > >= 
+factor -> .id  	,  + 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  / 
+item -> .item / factor  	,  == <= != < > >= 
+E ->  E -.item  	,  + 
+E ->  E -.item  	,  ) 
+E ->  E -.item  	,  - 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  / 
+item -> .factor  	,  * 
+factor -> .( E )  	,  == <= != < > >= 
+item -> .item * factor  	,  == <= != < > >= 
+item -> .factor  	,  == <= != < > >= 
+E ->  E -.item  	,  == <= != < > >= 
+factor -> .id  	,  * 
+factor -> .id  	,  == <= != < > >= 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  + 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+
+I136
+factor -> .( E )  	,  , 
+factor -> .( E )  	,  * 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+item ->  item *.factor  	,  + 
+item ->  item *.factor  	,  / 
+item ->  item *.factor  	,  ) 
+item ->  item *.factor  	,  - 
+factor -> .call id ( Elist )  	,  , 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  , 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .id  	,  , 
+factor -> .id  	,  * 
+item ->  item *.factor  	,  , 
+item ->  item *.factor  	,  * 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+
+I137
+factor ->  (.E )  	,  && 
+factor -> .( E )  	,  * 
+factor ->  (.E )  	,  || 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor ->  (.E )  	,  ) 
+factor ->  (.E )  	,  - 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  (.E )  	,  * 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor ->  (.E )  	,  / 
+factor ->  (.E )  	,  + 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I138
+item ->  item * factor.  	,  / 
+item ->  item * factor.  	,  + 
+item ->  item * factor.  	,  - 
+item ->  item * factor.  	,  * 
+item ->  item * factor.  	,  == <= != < > >= 
+
+I139
+S ->  if ( B ) {.M L } N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) {.M L } N else { M L }  	,  # 
+S ->  if ( B ) {.M L }  	,  call void id String while if return int 
+S ->  if ( B ) {.M L }  	,  # 
+M -> .  	,  call void id String while if return int 
+
+I140
+factor ->  call id (.Elist )  	,  / 
+factor ->  call id (.Elist )  	,  + 
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  call id (.Elist )  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor ->  call id (.Elist )  	,  == <= != < > >= 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor ->  call id (.Elist )  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I141
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  / 
+E ->  E + item.  	,  ) 
+E ->  E + item.  	,  - 
+E ->  E + item.  	,  + 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  * 
+
+I142
+factor ->  const.  	,  || 
+factor ->  const.  	,  * 
+factor ->  const.  	,  ) 
+factor ->  const.  	,  - 
+factor ->  const.  	,  && 
+factor ->  const.  	,  / 
+factor ->  const.  	,  + 
+
+I143
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+Elist ->  Elist ,.E  	,  , 
+factor -> .( E )  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+Elist ->  Elist ,.E  	,  ) 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I144
+factor ->  call id.( Elist )  	,  * 
+factor ->  call id.( Elist )  	,  + 
+factor ->  call id.( Elist )  	,  / 
+factor ->  call id.( Elist )  	,  ) 
+factor ->  call id.( Elist )  	,  - 
+factor ->  call id.( Elist )  	,  == <= != < > >= 
+
+I145
+item ->  item * factor.  	,  + 
+item ->  item * factor.  	,  / 
+item ->  item * factor.  	,  ) 
+item ->  item * factor.  	,  - 
+item ->  item * factor.  	,  * 
+
+I146
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  / 
+E ->  E + item.  	,  == <= != < > >= 
+item ->  item./ factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  == <= != < > >= 
+E ->  E + item.  	,  - 
+E ->  E + item.  	,  + 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  * 
+
+I147
+factor ->  call.id ( Elist )  	,  * 
+factor ->  call.id ( Elist )  	,  / 
+factor ->  call.id ( Elist )  	,  + 
+factor ->  call.id ( Elist )  	,  ) 
+factor ->  call.id ( Elist )  	,  - 
+factor ->  call.id ( Elist )  	,  && 
+factor ->  call.id ( Elist )  	,  || 
+
+I148
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  / 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  * 
+E ->  E - item.  	,  + 
+E ->  E - item.  	,  ) 
+E ->  E - item.  	,  - 
+
+I149
+factor ->  id.  	,  || 
+factor ->  id.  	,  / 
+factor ->  id.  	,  + 
+factor ->  id.  	,  ) 
+factor ->  id.  	,  - 
+factor ->  id.  	,  * 
+factor ->  id.  	,  && 
+
+I150
+factor -> .( E )  	,  , 
+factor -> .( E )  	,  * 
+item -> .item / factor  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  / 
+E ->  E -.item  	,  + 
+E ->  E -.item  	,  ) 
+E ->  E -.item  	,  - 
+factor -> .call id ( Elist )  	,  , 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  / 
+factor -> .const  	,  , 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+factor -> .id  	,  * 
+E ->  E -.item  	,  , 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  / 
+item -> .item * factor  	,  , 
+factor -> .const  	,  + 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  / 
+
+I151
+factor ->  ( E.)  	,  , 
+factor ->  ( E.)  	,  ) 
+factor ->  ( E.)  	,  - 
+factor ->  ( E.)  	,  * 
+factor ->  ( E.)  	,  + 
+factor ->  ( E.)  	,  / 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+
+I152
+factor -> .( E )  	,  * 
+item -> .factor  	,  / 
+item -> .factor  	,  + 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
+factor -> .id  	,  / 
+factor -> .id  	,  + 
+item -> .item / factor  	,  == <= != < > >= 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -1373,6 +2853,8 @@ item -> .item * factor  	,  == <= != < > >=
 E -> .E - item  	,  == <= != < > >= 
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  - 
 Bc -> .E relop E  	,  ) 
 Ba ->  Ba && M.Bb  	,  || 
@@ -1400,637 +2882,98 @@ factor -> .id  	,  *
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I82
+I153
 Bc ->  ( B ).  	,  || 
 Bc ->  ( B ).  	,  ) 
 Bc ->  ( B ).  	,  && 
 
-I83
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  * 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  == <= != < > >= 
-item ->  item /.factor  	,  ) 
-item ->  item /.factor  	,  - 
-item ->  item /.factor  	,  * 
-item ->  item /.factor  	,  + 
-item ->  item /.factor  	,  / 
-item ->  item /.factor  	,  == <= != < > >= 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  * 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-factor -> .id  	,  == <= != < > >= 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  * 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
-
-I84
-factor ->  const.  	,  || 
-factor ->  const.  	,  * 
-factor ->  const.  	,  ) 
-factor ->  const.  	,  - 
-factor ->  const.  	,  && 
-factor ->  const.  	,  / 
-factor ->  const.  	,  + 
-
-I85
-S ->  while ( M B ).{ M L }  	,  id String while if int 
-S ->  while ( M B ).{ M L }  	,  # 
-
-I86
-factor -> .( E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  ) 
-item -> .factor  	,  - 
-item -> .factor  	,  + 
-item -> .factor  	,  / 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-item -> .item / factor  	,  == <= != < > >= 
-item -> .item * factor  	,  ) 
-item -> .item * factor  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-item -> .item / factor  	,  ) 
-item -> .item / factor  	,  - 
-item -> .item / factor  	,  + 
-item -> .item / factor  	,  / 
-item -> .factor  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-E ->  E +.item  	,  == <= != < > >= 
-item -> .item * factor  	,  == <= != < > >= 
-item -> .factor  	,  == <= != < > >= 
-factor -> .id  	,  * 
-factor -> .id  	,  == <= != < > >= 
-E ->  E +.item  	,  ) 
-E ->  E +.item  	,  - 
-E ->  E +.item  	,  + 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-item -> .item * factor  	,  * 
-factor -> .const  	,  / 
-
-I87
-item ->  factor.  	,  / 
-item ->  factor.  	,  + 
-item ->  factor.  	,  * 
-item ->  factor.  	,  ) 
-item ->  factor.  	,  - 
-item ->  factor.  	,  && 
-item ->  factor.  	,  || 
-
-I88
+I154
 item ->  item / factor.  	,  == <= != < > >= 
-item ->  item / factor.  	,  - 
 item ->  item / factor.  	,  * 
-item ->  item / factor.  	,  / 
-item ->  item / factor.  	,  + 
-
-I89
-E ->  item.  	,  + 
-E ->  item.  	,  ) 
-E ->  item.  	,  - 
-E ->  item.  	,  && 
-E ->  item.  	,  || 
-item ->  item./ factor  	,  && 
-item ->  item./ factor  	,  || 
-item ->  item./ factor  	,  ) 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  / 
-item ->  item./ factor  	,  + 
-item ->  item.* factor  	,  || 
-item ->  item.* factor  	,  && 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  ) 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  * 
-
-I90
-Bc ->  E relop E.  	,  && 
-Bc ->  E relop E.  	,  ) 
-Bc ->  E relop E.  	,  || 
-E ->  E.+ item  	,  || 
-E ->  E.- item  	,  + 
-E ->  E.- item  	,  && 
-E ->  E.- item  	,  ) 
-E ->  E.- item  	,  - 
-E ->  E.- item  	,  || 
-E ->  E.+ item  	,  ) 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  && 
-E ->  E.+ item  	,  + 
-
-I91
-factor ->  ( E ).  	,  * 
-factor ->  ( E ).  	,  ; 
-factor ->  ( E ).  	,  - 
-factor ->  ( E ).  	,  + 
-factor ->  ( E ).  	,  / 
-
-I92
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  * 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-factor -> .id  	,  * 
-item ->  item *.factor  	,  ) 
-item ->  item *.factor  	,  - 
-item ->  item *.factor  	,  + 
-item ->  item *.factor  	,  / 
-item ->  item *.factor  	,  * 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
-factor -> .const  	,  * 
-
-I93
-factor -> .( E )  	,  * 
-Ba -> .Ba && M Bb  	,  && 
-Ba -> .Ba && M Bb  	,  || 
-B ->  B || M.Ba  	,  ) 
-Ba -> .Bb  	,  ) 
-item -> .factor  	,  / 
-item -> .factor  	,  + 
-factor -> .id  	,  / 
-factor -> .id  	,  + 
-item -> .item / factor  	,  == <= != < > >= 
-E -> .E - item  	,  + 
-item -> .item * factor  	,  / 
-item -> .item * factor  	,  + 
-factor -> .const  	,  * 
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  + 
-Bc -> .E relop E  	,  || 
-Bc -> .E relop E  	,  && 
-E -> .item  	,  + 
-Bc -> .true  	,  && 
-Bc -> .true  	,  || 
-Bc -> .false  	,  || 
-Bc -> .false  	,  && 
-item -> .item / factor  	,  - 
-item -> .factor  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-B ->  B || M.Ba  	,  || 
-E -> .E + item  	,  == <= != < > >= 
-Bb -> .! Bb  	,  && 
-Bb -> .! Bb  	,  || 
-item -> .item * factor  	,  == <= != < > >= 
-E -> .E - item  	,  == <= != < > >= 
-factor -> .id  	,  == <= != < > >= 
-E -> .E + item  	,  - 
-factor -> .const  	,  - 
-Bc -> .E relop E  	,  ) 
-Bc -> .false  	,  ) 
-item -> .item / factor  	,  * 
-item -> .factor  	,  - 
-Bb -> .! Bb  	,  ) 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  - 
-Bc -> .( B )  	,  ) 
-Bb -> .Bc  	,  && 
-Bb -> .Bc  	,  || 
-E -> .E - item  	,  - 
-Bc -> .true  	,  ) 
-item -> .item * factor  	,  - 
-factor -> .( E )  	,  - 
-E -> .item  	,  - 
-Ba -> .Bb  	,  && 
-item -> .item / factor  	,  / 
-item -> .item / factor  	,  + 
-Ba -> .Bb  	,  || 
-Ba -> .Ba && M Bb  	,  ) 
-E -> .item  	,  == <= != < > >= 
-item -> .factor  	,  == <= != < > >= 
-Bc -> .( B )  	,  || 
-factor -> .id  	,  * 
-Bb -> .Bc  	,  ) 
-Bc -> .( B )  	,  && 
-E -> .E + item  	,  + 
-item -> .item * factor  	,  * 
-factor -> .const  	,  / 
-factor -> .const  	,  + 
-
-I94
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-item ->  item *.factor  	,  == <= != < > >= 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  * 
-factor -> .id  	,  == <= != < > >= 
-item ->  item *.factor  	,  + 
-item ->  item *.factor  	,  / 
-item ->  item *.factor  	,  ) 
-item ->  item *.factor  	,  - 
-item ->  item *.factor  	,  * 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  * 
-
-I95
-factor -> .( E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  ) 
-item -> .factor  	,  - 
-item -> .factor  	,  + 
-item -> .factor  	,  / 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-E ->  E -.item  	,  ) 
-E ->  E -.item  	,  - 
-E ->  E -.item  	,  + 
-item -> .item * factor  	,  ) 
-item -> .item * factor  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-item -> .item / factor  	,  ) 
-item -> .item / factor  	,  - 
-item -> .item / factor  	,  + 
-item -> .item / factor  	,  / 
-item -> .factor  	,  * 
-factor -> .id  	,  * 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-item -> .item * factor  	,  * 
-factor -> .const  	,  / 
-
-I96
-factor -> .( E )  	,  * 
-item -> .item / factor  	,  * 
-item -> .factor  	,  + 
-item -> .factor  	,  ) 
-item -> .factor  	,  - 
-item -> .factor  	,  / 
-factor -> .const  	,  == <= != < > >= 
-factor -> .id  	,  + 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  / 
-item -> .item / factor  	,  == <= != < > >= 
-E ->  E -.item  	,  + 
-E ->  E -.item  	,  ) 
-E ->  E -.item  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  ) 
-item -> .item * factor  	,  - 
-item -> .item * factor  	,  / 
-factor -> .const  	,  * 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  / 
-item -> .item / factor  	,  + 
-item -> .item / factor  	,  ) 
-item -> .item / factor  	,  - 
-item -> .item / factor  	,  / 
-item -> .factor  	,  * 
-factor -> .( E )  	,  == <= != < > >= 
-item -> .item * factor  	,  == <= != < > >= 
-item -> .factor  	,  == <= != < > >= 
-E ->  E -.item  	,  == <= != < > >= 
-factor -> .id  	,  * 
-factor -> .id  	,  == <= != < > >= 
-factor -> .const  	,  + 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-item -> .item * factor  	,  * 
-factor -> .const  	,  / 
-
-I97
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  + 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  / 
-E ->  E - item.  	,  == <= != < > >= 
-item ->  item./ factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  * 
-E ->  E - item.  	,  + 
-E ->  E - item.  	,  - 
-
-I98
-item ->  item / factor.  	,  * 
-item ->  item / factor.  	,  ; 
+item ->  item / factor.  	,  ) 
 item ->  item / factor.  	,  - 
 item ->  item / factor.  	,  + 
 item ->  item / factor.  	,  / 
 
-I99
+I155
 factor -> .( E )  	,  * 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-item ->  item /.factor  	,  * 
-item ->  item /.factor  	,  ) 
-item ->  item /.factor  	,  - 
-item ->  item /.factor  	,  + 
-item ->  item /.factor  	,  / 
-factor -> .id  	,  * 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
-factor -> .const  	,  * 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  + 
-factor -> .const  	,  / 
-
-I100
-item ->  item * factor.  	,  / 
-item ->  item * factor.  	,  + 
-item ->  item * factor.  	,  - 
-item ->  item * factor.  	,  * 
-item ->  item * factor.  	,  == <= != < > >= 
-
-I101
-factor ->  ( E ).  	,  - 
-factor ->  ( E ).  	,  * 
-factor ->  ( E ).  	,  / 
-factor ->  ( E ).  	,  + 
-factor ->  ( E ).  	,  == <= != < > >= 
-
-I102
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  ; 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  + 
-item ->  item./ factor  	,  / 
-item ->  item.* factor  	,  ; 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  * 
-E ->  E - item.  	,  ; 
-E ->  E - item.  	,  - 
-E ->  E - item.  	,  + 
-
-I103
-Bc ->  E.relop E  	,  || 
-factor ->  ( E.)  	,  ) 
-factor ->  ( E.)  	,  - 
-Bc ->  E.relop E  	,  && 
-factor ->  ( E.)  	,  * 
-Bc ->  E.relop E  	,  ) 
-factor ->  ( E.)  	,  + 
-factor ->  ( E.)  	,  / 
-relop -> .<=  	,  const ( id 
-factor ->  ( E.)  	,  == <= != < > >= 
-relop -> .>=  	,  const ( id 
-E ->  E.+ item  	,  == <= != < > >= 
-relop -> .<  	,  const ( id 
-relop -> .>  	,  const ( id 
-E ->  E.- item  	,  == <= != < > >= 
-relop -> .==  	,  const ( id 
-E ->  E.- item  	,  + 
-E ->  E.- item  	,  ) 
-E ->  E.- item  	,  - 
-relop -> .!=  	,  const ( id 
-E ->  E.+ item  	,  ) 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  + 
-
-I104
-S ->  if ( B ) {.M L }  	,  id String while if int 
-S ->  if ( B ) {.M L } N else { M L }  	,  # 
-M -> .  	,  id String while if int 
-S ->  if ( B ) {.M L }  	,  # 
-S ->  if ( B ) {.M L } N else { M L }  	,  id String while if int 
-
-I105
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  + 
-item ->  item./ factor  	,  / 
-E ->  E + item.  	,  == <= != < > >= 
-item ->  item./ factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  == <= != < > >= 
-E ->  E + item.  	,  - 
-E ->  E + item.  	,  + 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  * 
-
-I106
-item ->  item * factor.  	,  ; 
-item ->  item * factor.  	,  - 
-item ->  item * factor.  	,  + 
-item ->  item * factor.  	,  / 
-item ->  item * factor.  	,  * 
-
-I107
-factor ->  id.  	,  || 
-factor ->  id.  	,  / 
-factor ->  id.  	,  + 
-factor ->  id.  	,  ) 
-factor ->  id.  	,  - 
-factor ->  id.  	,  * 
-factor ->  id.  	,  && 
-
-I108
-factor ->  ( E.)  	,  || 
-factor ->  ( E.)  	,  * 
-factor ->  ( E.)  	,  / 
-factor ->  ( E.)  	,  + 
-factor ->  ( E.)  	,  ) 
-factor ->  ( E.)  	,  - 
-factor ->  ( E.)  	,  && 
-E ->  E.- item  	,  ) 
-E ->  E.- item  	,  - 
-E ->  E.- item  	,  + 
-E ->  E.+ item  	,  ) 
-E ->  E.+ item  	,  - 
-E ->  E.+ item  	,  + 
-
-I109
-L -> .S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
-L -> .L M S  	,  } 
-S ->  if ( B ) { M.L } N else { M L }  	,  # 
-D -> .T id ;  	,  } 
-S -> .id = E ;  	,  } 
-S ->  if ( B ) { M.L }  	,  # 
-L -> .S  	,  } 
-L -> .L M S  	,  id String while if int 
-S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  } 
-S ->  if ( B ) { M.L }  	,  id String while if int 
-T -> .int  	,  id 
-S -> .while ( M B ) { M L }  	,  } 
-S -> .id = E ;  	,  id String while if int 
-T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  } 
-S ->  if ( B ) { M.L } N else { M L }  	,  id String while if int 
-
-I110
-item ->  item * factor.  	,  ) 
-item ->  item * factor.  	,  - 
-item ->  item * factor.  	,  + 
-item ->  item * factor.  	,  / 
-item ->  item * factor.  	,  * 
-
-I111
-factor ->  ( E ).  	,  ) 
-factor ->  ( E ).  	,  - 
-factor ->  ( E ).  	,  * 
-factor ->  ( E ).  	,  + 
-factor ->  ( E ).  	,  / 
-factor ->  ( E ).  	,  == <= != < > >= 
-
-I112
-factor -> .( E )  	,  * 
-factor -> .( E )  	,  && 
-factor -> .( E )  	,  || 
-item -> .item / factor  	,  * 
 item -> .factor  	,  + 
-item -> .factor  	,  ) 
-item -> .factor  	,  - 
 item -> .factor  	,  / 
 item -> .item / factor  	,  || 
 item -> .item / factor  	,  && 
 factor -> .id  	,  + 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
 factor -> .id  	,  / 
-factor -> .const  	,  || 
-E ->  E -.item  	,  + 
-E ->  E -.item  	,  ) 
-E ->  E -.item  	,  - 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  + 
-item -> .item * factor  	,  ) 
-item -> .item * factor  	,  - 
 item -> .item * factor  	,  / 
-factor -> .const  	,  && 
 factor -> .const  	,  * 
 factor -> .( E )  	,  + 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
 factor -> .( E )  	,  / 
-item -> .item / factor  	,  + 
 item -> .item / factor  	,  ) 
 item -> .item / factor  	,  - 
-item -> .factor  	,  || 
-item -> .item / factor  	,  / 
-item -> .factor  	,  && 
 item -> .factor  	,  * 
 factor -> .id  	,  && 
-factor -> .id  	,  * 
 factor -> .id  	,  || 
 item -> .item * factor  	,  && 
 item -> .item * factor  	,  || 
-E ->  E -.item  	,  && 
-E ->  E -.item  	,  || 
-factor -> .const  	,  + 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+E ->  E +.item  	,  ) 
+E ->  E +.item  	,  - 
 factor -> .const  	,  ) 
 factor -> .const  	,  - 
+factor -> .( E )  	,  && 
+factor -> .( E )  	,  || 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .const  	,  || 
+factor -> .call id ( Elist )  	,  || 
+E ->  E +.item  	,  || 
+factor -> .call id ( Elist )  	,  && 
+E ->  E +.item  	,  && 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  && 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+item -> .factor  	,  || 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  && 
+factor -> .id  	,  * 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+E ->  E +.item  	,  + 
+factor -> .const  	,  + 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 
-I113
-item ->  item * factor.  	,  + 
-item ->  item * factor.  	,  / 
-item ->  item * factor.  	,  ) 
-item ->  item * factor.  	,  - 
-item ->  item * factor.  	,  * 
-item ->  item * factor.  	,  == <= != < > >= 
+I156
+factor ->  call id ( Elist.)  	,  / 
+factor ->  call id ( Elist.)  	,  + 
+factor ->  call id ( Elist.)  	,  - 
+factor ->  call id ( Elist.)  	,  * 
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+factor ->  call id ( Elist.)  	,  == <= != < > >= 
 
-I114
-factor -> .( E )  	,  * 
-factor -> .( E )  	,  && 
-factor -> .( E )  	,  || 
-item ->  item /.factor  	,  || 
-item ->  item /.factor  	,  && 
-item ->  item /.factor  	,  * 
-factor -> .id  	,  ) 
-factor -> .id  	,  - 
-factor -> .id  	,  / 
-factor -> .id  	,  + 
-factor -> .const  	,  || 
-factor -> .const  	,  && 
-factor -> .const  	,  * 
-factor -> .( E )  	,  ) 
-factor -> .( E )  	,  - 
-factor -> .( E )  	,  / 
-factor -> .( E )  	,  + 
-item ->  item /.factor  	,  ) 
-item ->  item /.factor  	,  - 
-item ->  item /.factor  	,  / 
-item ->  item /.factor  	,  + 
-factor -> .id  	,  && 
-factor -> .id  	,  * 
-factor -> .id  	,  || 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
-factor -> .const  	,  / 
-factor -> .const  	,  + 
+I157
+item ->  item / factor.  	,  , 
+item ->  item / factor.  	,  * 
+item ->  item / factor.  	,  ) 
+item ->  item / factor.  	,  - 
+item ->  item / factor.  	,  + 
+item ->  item / factor.  	,  / 
 
-I115
-M -> .  	,  id String while if int 
-S ->  while ( M B ) {.M L }  	,  # 
-S ->  while ( M B ) {.M L }  	,  id String while if int 
-
-I116
-Ba ->  Ba && M Bb.  	,  && 
-Ba ->  Ba && M Bb.  	,  || 
-Ba ->  Ba && M Bb.  	,  ) 
-
-I117
+I158
 factor -> .( E )  	,  * 
 factor -> .( E )  	,  && 
 factor -> .( E )  	,  || 
@@ -2039,10 +2982,13 @@ factor -> .id  	,  +
 factor -> .id  	,  ) 
 factor -> .id  	,  - 
 factor -> .const  	,  || 
+factor -> .call id ( Elist )  	,  || 
+factor -> .call id ( Elist )  	,  && 
 item ->  item *.factor  	,  / 
 item ->  item *.factor  	,  + 
 item ->  item *.factor  	,  ) 
 item ->  item *.factor  	,  - 
+factor -> .call id ( Elist )  	,  * 
 factor -> .const  	,  && 
 factor -> .const  	,  * 
 factor -> .( E )  	,  / 
@@ -2055,30 +3001,256 @@ factor -> .id  	,  ||
 item ->  item *.factor  	,  && 
 item ->  item *.factor  	,  || 
 item ->  item *.factor  	,  * 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 factor -> .const  	,  ) 
 factor -> .const  	,  - 
 
-I118
+I159
+Elist ->  Elist , E.  	,  , 
+Elist ->  Elist , E.  	,  ) 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  , 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  , 
+E ->  E.+ item  	,  + 
+
+I160
+factor ->  ( E ).  	,  ) 
+factor ->  ( E ).  	,  - 
+factor ->  ( E ).  	,  * 
+factor ->  ( E ).  	,  + 
+factor ->  ( E ).  	,  / 
+factor ->  ( E ).  	,  == <= != < > >= 
+
+I161
+item ->  item./ factor  	,  , 
 item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  ) 
 item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  / 
-E ->  E - item.  	,  == <= != < > >= 
-item ->  item./ factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  == <= != < > >= 
-item ->  item.* factor  	,  + 
+E ->  E + item.  	,  , 
+E ->  E + item.  	,  ) 
+E ->  E + item.  	,  - 
+E ->  E + item.  	,  + 
 item ->  item.* factor  	,  ) 
 item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  + 
 item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  , 
 item ->  item.* factor  	,  * 
-E ->  E - item.  	,  + 
-E ->  E - item.  	,  ) 
-E ->  E - item.  	,  - 
 
-I119
+I162
+item ->  item * factor.  	,  + 
+item ->  item * factor.  	,  / 
+item ->  item * factor.  	,  ) 
+item ->  item * factor.  	,  - 
+item ->  item * factor.  	,  * 
+item ->  item * factor.  	,  == <= != < > >= 
+
+I163
+D ->  T id.  	,  ) 
+D ->  T id.  	,  , 
+
+I164
+factor ->  call id.( Elist )  	,  && 
+factor ->  call id.( Elist )  	,  * 
+factor ->  call id.( Elist )  	,  / 
+factor ->  call id.( Elist )  	,  + 
+factor ->  call id.( Elist )  	,  ) 
+factor ->  call id.( Elist )  	,  - 
+factor ->  call id.( Elist )  	,  || 
+
+I165
+factor ->  call id ( Elist ).  	,  ; 
+factor ->  call id ( Elist ).  	,  + 
+factor ->  call id ( Elist ).  	,  / 
+factor ->  call id ( Elist ).  	,  - 
+factor ->  call id ( Elist ).  	,  * 
+
+I166
+S ->  call id ( Elist ) ;.  	,  call void id String while if return int 
+S ->  call id ( Elist ) ;.  	,  # 
+
+I167
+factor ->  call id ( Elist.)  	,  + 
+factor ->  call id ( Elist.)  	,  / 
+factor ->  call id ( Elist.)  	,  ) 
+factor ->  call id ( Elist.)  	,  - 
+factor ->  call id ( Elist.)  	,  * 
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+
+I168
+factor ->  call id (.Elist )  	,  + 
+factor ->  call id (.Elist )  	,  / 
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor ->  call id (.Elist )  	,  , 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  call id (.Elist )  	,  ) 
+factor ->  call id (.Elist )  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor ->  call id (.Elist )  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I169
+item ->  item * factor.  	,  + 
+item ->  item * factor.  	,  / 
+item ->  item * factor.  	,  ) 
+item ->  item * factor.  	,  - 
+item ->  item * factor.  	,  , 
+item ->  item * factor.  	,  * 
+
+I170
+Ba ->  Ba && M Bb.  	,  && 
+Ba ->  Ba && M Bb.  	,  || 
+Ba ->  Ba && M Bb.  	,  ) 
+
+I171
+S ->  T id ( M' para ).{ L }  	,  call void id String while if return int 
+S ->  T id ( M' para ).{ L }  	,  # 
+
+I172
+Ba ->  Ba.&& M Bb  	,  || 
+Ba ->  Ba.&& M Bb  	,  && 
+B ->  B || M Ba.  	,  ) 
+B ->  B || M Ba.  	,  || 
+Ba ->  Ba.&& M Bb  	,  ) 
+
+I173
+factor ->  call id (.Elist )  	,  + 
+factor ->  call id (.Elist )  	,  / 
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  call id (.Elist )  	,  ) 
+factor ->  call id (.Elist )  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor ->  call id (.Elist )  	,  == <= != < > >= 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor ->  call id (.Elist )  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I174
+S ->  while ( M B ) {.M L }  	,  # 
+M -> .  	,  call void id String while if return int 
+S ->  while ( M B ) {.M L }  	,  call void id String while if return int 
+
+I175
 item ->  item./ factor  	,  * 
 item ->  item./ factor  	,  ) 
 item ->  item./ factor  	,  - 
@@ -2096,289 +3268,404 @@ item ->  item.* factor  	,  +
 item ->  item.* factor  	,  / 
 item ->  item.* factor  	,  * 
 
-I120
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  ) 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  + 
-item ->  item./ factor  	,  / 
-item ->  item.* factor  	,  ) 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  * 
-E ->  E - item.  	,  ) 
-E ->  E - item.  	,  - 
-E ->  E - item.  	,  + 
-
-I121
-Ba ->  Ba.&& M Bb  	,  || 
-Ba ->  Ba.&& M Bb  	,  && 
-B ->  B || M Ba.  	,  ) 
-B ->  B || M Ba.  	,  || 
-Ba ->  Ba.&& M Bb  	,  ) 
-
-I122
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  ) 
-item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  + 
-item ->  item./ factor  	,  / 
-E ->  E + item.  	,  ) 
-E ->  E + item.  	,  - 
-E ->  E + item.  	,  + 
-item ->  item.* factor  	,  ) 
-item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  + 
-item ->  item.* factor  	,  / 
-item ->  item.* factor  	,  * 
-
-I123
-item ->  item / factor.  	,  == <= != < > >= 
-item ->  item / factor.  	,  ) 
-item ->  item / factor.  	,  - 
-item ->  item / factor.  	,  * 
-item ->  item / factor.  	,  + 
-item ->  item / factor.  	,  / 
-
-I124
-factor ->  ( E ).  	,  * 
+I176
+factor ->  ( E ).  	,  , 
 factor ->  ( E ).  	,  ) 
 factor ->  ( E ).  	,  - 
+factor ->  ( E ).  	,  * 
 factor ->  ( E ).  	,  + 
 factor ->  ( E ).  	,  / 
 
-I125
+I177
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  / 
+E ->  E - item.  	,  == <= != < > >= 
+item ->  item./ factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  == <= != < > >= 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  * 
+E ->  E - item.  	,  + 
+E ->  E - item.  	,  ) 
+E ->  E - item.  	,  - 
+
+I178
+D -> .T id  	,  ) 
+D -> .T id  	,  , 
+T -> .void  	,  id 
+T -> .int  	,  id 
+T -> .String [ const ]  	,  id 
+para ->  para ,.D  	,  ) 
+para ->  para ,.D  	,  , 
+
+I179
+factor ->  ( E.)  	,  || 
+factor ->  ( E.)  	,  ) 
+factor ->  ( E.)  	,  - 
+factor ->  ( E.)  	,  * 
+factor ->  ( E.)  	,  / 
+factor ->  ( E.)  	,  + 
+factor ->  ( E.)  	,  && 
+E ->  E.- item  	,  + 
+E ->  E.- item  	,  ) 
+E ->  E.- item  	,  - 
+E ->  E.+ item  	,  ) 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+
+I180
 factor -> .( E )  	,  * 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+item -> .item / factor  	,  || 
+item -> .item / factor  	,  && 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E ->  E -.item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  && 
+factor -> .id  	,  || 
+item -> .item * factor  	,  && 
+item -> .item * factor  	,  || 
+E ->  E -.item  	,  && 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+E ->  E -.item  	,  || 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
 factor -> .( E )  	,  && 
 factor -> .( E )  	,  || 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ) 
 item -> .factor  	,  - 
-item -> .factor  	,  + 
-item -> .factor  	,  / 
-item -> .item / factor  	,  || 
-item -> .item / factor  	,  && 
 factor -> .id  	,  ) 
 factor -> .id  	,  - 
-factor -> .id  	,  + 
-factor -> .id  	,  / 
 factor -> .const  	,  || 
-E ->  E +.item  	,  || 
-E ->  E +.item  	,  && 
+factor -> .call id ( Elist )  	,  || 
+E ->  E -.item  	,  ) 
+E ->  E -.item  	,  - 
+factor -> .call id ( Elist )  	,  && 
 item -> .item * factor  	,  ) 
 item -> .item * factor  	,  - 
-item -> .item * factor  	,  + 
-item -> .item * factor  	,  / 
 factor -> .const  	,  && 
-factor -> .const  	,  * 
 factor -> .( E )  	,  ) 
 factor -> .( E )  	,  - 
-factor -> .( E )  	,  + 
-factor -> .( E )  	,  / 
-item -> .factor  	,  || 
-item -> .item / factor  	,  ) 
-item -> .item / factor  	,  - 
 item -> .item / factor  	,  + 
+item -> .factor  	,  || 
 item -> .item / factor  	,  / 
 item -> .factor  	,  && 
-item -> .factor  	,  * 
-factor -> .id  	,  && 
 factor -> .id  	,  * 
-factor -> .id  	,  || 
-item -> .item * factor  	,  && 
-item -> .item * factor  	,  || 
-E ->  E +.item  	,  ) 
-E ->  E +.item  	,  - 
-E ->  E +.item  	,  + 
-factor -> .const  	,  ) 
-factor -> .const  	,  - 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
 factor -> .const  	,  + 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 
-I126
-D ->  T.id ;  	,  id String while if int 
-D ->  T.id ;  	,  } 
+I181
+factor -> .( E )  	,  * 
+factor -> .( E )  	,  && 
+factor -> .( E )  	,  || 
+item ->  item /.factor  	,  || 
+item ->  item /.factor  	,  && 
+item ->  item /.factor  	,  * 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+factor -> .id  	,  / 
+factor -> .id  	,  + 
+factor -> .const  	,  || 
+factor -> .call id ( Elist )  	,  || 
+factor -> .call id ( Elist )  	,  && 
+factor -> .call id ( Elist )  	,  * 
+factor -> .const  	,  && 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  / 
+factor -> .( E )  	,  + 
+item ->  item /.factor  	,  ) 
+item ->  item /.factor  	,  - 
+item ->  item /.factor  	,  / 
+item ->  item /.factor  	,  + 
+factor -> .id  	,  && 
+factor -> .id  	,  * 
+factor -> .id  	,  || 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .const  	,  / 
+factor -> .const  	,  + 
 
-I127
-item ->  item./ factor  	,  && 
-item ->  item./ factor  	,  || 
+I182
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
+L -> .L M S  	,  } 
+L -> .S  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
+T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S ->  if ( B ) { M.L }  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M.L } N else { M L }  	,  # 
+S -> .id = E ;  	,  } 
+S ->  if ( B ) { M.L }  	,  # 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M.L } N else { M L }  	,  call void id String while if return int 
+S -> .while ( M B ) { M L }  	,  } 
+T -> .String [ const ]  	,  id 
+S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
+
+I183
+item ->  item./ factor  	,  , 
 item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  ) 
 item ->  item./ factor  	,  - 
-item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  / 
-item ->  item.* factor  	,  || 
-E ->  E + item.  	,  && 
-item ->  item.* factor  	,  && 
-E ->  E + item.  	,  ) 
-E ->  E + item.  	,  - 
-E ->  E + item.  	,  + 
-E ->  E + item.  	,  || 
+item ->  item.* factor  	,  + 
 item ->  item.* factor  	,  ) 
 item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  + 
 item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  , 
 item ->  item.* factor  	,  * 
+E ->  E - item.  	,  + 
+E ->  E - item.  	,  ) 
+E ->  E - item.  	,  - 
+E ->  E - item.  	,  , 
 
-I128
-S ->  D.  	,  } 
-S ->  D.  	,  id String while if int 
-
-I129
-S ->  id.= str ;  	,  id String while if int 
-S ->  id.= E ;  	,  } 
-S ->  id.= E ;  	,  id String while if int 
-S ->  id.= str ;  	,  } 
-
-I130
-item ->  item / factor.  	,  * 
-item ->  item / factor.  	,  ) 
-item ->  item / factor.  	,  - 
-item ->  item / factor.  	,  / 
-item ->  item / factor.  	,  + 
-item ->  item / factor.  	,  && 
-item ->  item / factor.  	,  || 
-
-I131
-factor ->  ( E ).  	,  || 
-factor ->  ( E ).  	,  && 
-factor ->  ( E ).  	,  * 
-factor ->  ( E ).  	,  / 
-factor ->  ( E ).  	,  + 
-factor ->  ( E ).  	,  ) 
-factor ->  ( E ).  	,  - 
-
-I132
-L -> .S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
+I184
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
 L -> .L M S  	,  } 
-S ->  while ( M B ) { M.L }  	,  id String while if int 
-D -> .T id ;  	,  } 
-S -> .id = E ;  	,  } 
 L -> .S  	,  } 
-L -> .L M S  	,  id String while if int 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
 S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
 S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
 T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  } 
+S ->  while ( M B ) { M.L }  	,  call void id String while if return int 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
 S -> .while ( M B ) { M L }  	,  } 
 S ->  while ( M B ) { M.L }  	,  # 
-S -> .id = E ;  	,  id String while if int 
 T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
 S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I133
-L ->  S.  	,  id String while if int 
-L ->  S.  	,  } 
+I185
+S ->  id.= str ;  	,  call void id String while if return int 
+S ->  id.= E ;  	,  } 
+S ->  id.= str ;  	,  } 
+S ->  id.= E ;  	,  call void id String while if return int 
 
-I134
-S ->  while.( M B ) { M L }  	,  } 
-S ->  while.( M B ) { M L }  	,  id String while if int 
+I186
+factor ->  call id ( Elist ).  	,  / 
+factor ->  call id ( Elist ).  	,  + 
+factor ->  call id ( Elist ).  	,  - 
+factor ->  call id ( Elist ).  	,  * 
+factor ->  call id ( Elist ).  	,  == <= != < > >= 
 
-I135
+I187
+factor ->  call id ( Elist.)  	,  + 
+factor ->  call id ( Elist.)  	,  / 
+factor ->  call id ( Elist.)  	,  , 
+factor ->  call id ( Elist.)  	,  ) 
+factor ->  call id ( Elist.)  	,  - 
+factor ->  call id ( Elist.)  	,  * 
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+
+I188
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
+L -> .L M S  	,  } 
+S ->  T id ( M' para ) {.L }  	,  # 
+L -> .S  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
+T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S ->  T id ( M' para ) {.L }  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  } 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S -> .while ( M B ) { M L }  	,  } 
+T -> .String [ const ]  	,  id 
+S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
+
+I189
+para ->  para , D.  	,  ) 
+para ->  para , D.  	,  , 
+
+I190
+factor ->  call id ( Elist ).  	,  + 
+factor ->  call id ( Elist ).  	,  / 
+factor ->  call id ( Elist ).  	,  ) 
+factor ->  call id ( Elist ).  	,  - 
+factor ->  call id ( Elist ).  	,  * 
+
+I191
+factor ->  call id (.Elist )  	,  / 
+factor ->  call id (.Elist )  	,  + 
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+factor ->  call id (.Elist )  	,  && 
+E -> .item  	,  + 
+factor ->  call id (.Elist )  	,  || 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor ->  call id (.Elist )  	,  ) 
+factor ->  call id (.Elist )  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor ->  call id (.Elist )  	,  * 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I192
 item ->  item./ factor  	,  && 
 item ->  item./ factor  	,  || 
-item ->  item./ factor  	,  * 
-item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  ) 
 item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
 item ->  item./ factor  	,  / 
 item ->  item.* factor  	,  || 
 item ->  item.* factor  	,  && 
 E ->  E - item.  	,  || 
 item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
 item ->  item.* factor  	,  ) 
 item ->  item.* factor  	,  - 
-item ->  item.* factor  	,  / 
 item ->  item.* factor  	,  * 
 E ->  E - item.  	,  + 
+E ->  E - item.  	,  && 
 E ->  E - item.  	,  ) 
 E ->  E - item.  	,  - 
-E ->  E - item.  	,  && 
 
-I136
+I193
+D ->  T.id  	,  ; 
+S ->  T.id ( M' para ) { L }  	,  call void id String while if return int 
+S ->  T.id ( M' para ) { L }  	,  } 
+
+I194
+L ->  L.M S  	,  call void id String while if return int 
 L ->  L.M S  	,  } 
-L ->  L.M S  	,  id String while if int 
 S ->  if ( B ) { M L.} N else { M L }  	,  # 
-M -> .  	,  id String while if int 
+S ->  if ( B ) { M L.}  	,  call void id String while if return int 
 S ->  if ( B ) { M L.}  	,  # 
-S ->  if ( B ) { M L.}  	,  id String while if int 
-S ->  if ( B ) { M L.} N else { M L }  	,  id String while if int 
+S ->  if ( B ) { M L.} N else { M L }  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
 
-I137
-S ->  if.( B ) { M L }  	,  } 
-S ->  if.( B ) { M L }  	,  id String while if int 
-S ->  if.( B ) { M L } N else { M L }  	,  } 
-S ->  if.( B ) { M L } N else { M L }  	,  id String while if int 
-
-I138
-item ->  item * factor.  	,  || 
-item ->  item * factor.  	,  && 
-item ->  item * factor.  	,  / 
-item ->  item * factor.  	,  + 
-item ->  item * factor.  	,  ) 
-item ->  item * factor.  	,  - 
-item ->  item * factor.  	,  * 
-
-I139
-M -> .  	,  ! const true ( false id 
-S ->  while (.M B ) { M L }  	,  } 
-S ->  while (.M B ) { M L }  	,  id String while if int 
-
-I140
-S ->  if ( B ) { M L }.N else { M L }  	,  # 
-S ->  if ( B ) { M L }.  	,  id String while if int 
-S ->  if ( B ) { M L }.  	,  # 
-S ->  if ( B ) { M L }.N else { M L }  	,  id String while if int 
-N -> .  	,  else 
-
-I141
-L ->  L.M S  	,  } 
-L ->  L.M S  	,  id String while if int 
-S ->  while ( M B ) { M L.}  	,  id String while if int 
-M -> .  	,  id String while if int 
-S ->  while ( M B ) { M L.}  	,  # 
-
-I142
-D ->  T id.;  	,  id String while if int 
-D ->  T id.;  	,  } 
-
-I143
-L ->  L M.S  	,  } 
-L ->  L M.S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
-D -> .T id ;  	,  } 
-S -> .id = E ;  	,  } 
-S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  } 
-T -> .int  	,  id 
-S -> .while ( M B ) { M L }  	,  } 
-S -> .id = E ;  	,  id String while if int 
-D -> .T id ;  	,  id String while if int 
-T -> .String [ const ]  	,  id 
-S -> .D  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  } 
-
-I144
+I195
 factor -> .( E )  	,  * 
-S ->  id =.str ;  	,  } 
+S ->  return.E ;  	,  } 
 item -> .item / factor  	,  * 
 item -> .factor  	,  ; 
 item -> .factor  	,  - 
 item -> .factor  	,  + 
 item -> .factor  	,  / 
-S ->  id =.E ;  	,  id String while if int 
+S ->  return.E ;  	,  call void id String while if return int 
 factor -> .id  	,  ; 
 factor -> .id  	,  - 
 factor -> .id  	,  + 
@@ -2386,6 +3673,7 @@ factor -> .id  	,  /
 E -> .E - item  	,  ; 
 E -> .E - item  	,  - 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  ; 
 item -> .item * factor  	,  - 
 item -> .item * factor  	,  + 
@@ -2395,7 +3683,6 @@ factor -> .( E )  	,  ;
 factor -> .( E )  	,  - 
 factor -> .( E )  	,  + 
 factor -> .( E )  	,  / 
-S ->  id =.str ;  	,  id String while if int 
 E -> .item  	,  ; 
 E -> .item  	,  - 
 E -> .item  	,  + 
@@ -2404,30 +3691,189 @@ item -> .item / factor  	,  -
 item -> .item / factor  	,  + 
 item -> .item / factor  	,  / 
 item -> .factor  	,  * 
-S ->  id =.E ;  	,  } 
 factor -> .id  	,  * 
 E -> .E + item  	,  ; 
 E -> .E + item  	,  - 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
 factor -> .const  	,  ; 
 item -> .item * factor  	,  * 
 factor -> .const  	,  - 
 factor -> .const  	,  + 
 factor -> .const  	,  / 
 
-I145
+I196
+item ->  item * factor.  	,  || 
+item ->  item * factor.  	,  && 
+item ->  item * factor.  	,  / 
+item ->  item * factor.  	,  + 
+item ->  item * factor.  	,  ) 
+item ->  item * factor.  	,  - 
+item ->  item * factor.  	,  * 
+
+I197
+S ->  D.;  	,  } 
+S ->  D.;  	,  call void id String while if return int 
+
+I198
+item ->  item./ factor  	,  && 
+item ->  item./ factor  	,  || 
+item ->  item./ factor  	,  ) 
+item ->  item./ factor  	,  - 
+item ->  item./ factor  	,  * 
+item ->  item./ factor  	,  + 
+item ->  item./ factor  	,  / 
+item ->  item.* factor  	,  || 
+item ->  item.* factor  	,  && 
+E ->  E + item.  	,  ) 
+E ->  E + item.  	,  - 
+E ->  E + item.  	,  && 
+E ->  E + item.  	,  + 
+E ->  E + item.  	,  || 
+item ->  item.* factor  	,  + 
+item ->  item.* factor  	,  / 
+item ->  item.* factor  	,  ) 
+item ->  item.* factor  	,  - 
+item ->  item.* factor  	,  * 
+
+I199
+item ->  item / factor.  	,  * 
+item ->  item / factor.  	,  ) 
+item ->  item / factor.  	,  - 
+item ->  item / factor.  	,  / 
+item ->  item / factor.  	,  + 
+item ->  item / factor.  	,  && 
+item ->  item / factor.  	,  || 
+
+I200
+S ->  if.( B ) { M L }  	,  } 
+S ->  if.( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S ->  if.( B ) { M L } N else { M L }  	,  } 
+S ->  if.( B ) { M L }  	,  call void id String while if return int 
+
+I201
+S ->  call.id ( Elist ) ;  	,  call void id String while if return int 
+S ->  call.id ( Elist ) ;  	,  } 
+
+I202
+factor ->  ( E ).  	,  || 
+factor ->  ( E ).  	,  && 
+factor ->  ( E ).  	,  ) 
+factor ->  ( E ).  	,  - 
+factor ->  ( E ).  	,  * 
+factor ->  ( E ).  	,  / 
+factor ->  ( E ).  	,  + 
+
+I203
+L ->  S.  	,  call void id String while if return int 
+L ->  S.  	,  } 
+
+I204
+factor ->  call id ( Elist.)  	,  + 
+factor ->  call id ( Elist.)  	,  / 
+factor ->  call id ( Elist.)  	,  ) 
+factor ->  call id ( Elist.)  	,  - 
+factor ->  call id ( Elist.)  	,  * 
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+factor ->  call id ( Elist.)  	,  == <= != < > >= 
+
+I205
+S ->  while.( M B ) { M L }  	,  call void id String while if return int 
+S ->  while.( M B ) { M L }  	,  } 
+
+I206
+S ->  call id.( Elist ) ;  	,  call void id String while if return int 
+S ->  call id.( Elist ) ;  	,  } 
+
+I207
+factor ->  call id ( Elist ).  	,  + 
+factor ->  call id ( Elist ).  	,  / 
+factor ->  call id ( Elist ).  	,  ) 
+factor ->  call id ( Elist ).  	,  - 
+factor ->  call id ( Elist ).  	,  * 
+factor ->  call id ( Elist ).  	,  == <= != < > >= 
+
+I208
+S ->  D ;.  	,  } 
+S ->  D ;.  	,  call void id String while if return int 
+
+I209
+S ->  T id.( M' para ) { L }  	,  call void id String while if return int 
+S ->  T id.( M' para ) { L }  	,  } 
+D ->  T id.  	,  ; 
+
+I210
+S ->  if ( B ) { M L }.N else { M L }  	,  # 
+S ->  if ( B ) { M L }.  	,  call void id String while if return int 
+S ->  if ( B ) { M L }.N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M L }.  	,  # 
+N -> .  	,  else 
+
+I211
+L ->  L.M S  	,  call void id String while if return int 
+L ->  L.M S  	,  } 
+S ->  while ( M B ) { M L.}  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
+S ->  while ( M B ) { M L.}  	,  # 
+
+I212
+L ->  L M.S  	,  } 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+D -> .T id  	,  ; 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L ->  L M.S  	,  call void id String while if return int 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+T -> .int  	,  id 
+S -> .while ( M B ) { M L }  	,  } 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+T -> .String [ const ]  	,  id 
+S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
+
+I213
+factor ->  call id ( Elist ).  	,  + 
+factor ->  call id ( Elist ).  	,  / 
+factor ->  call id ( Elist ).  	,  , 
+factor ->  call id ( Elist ).  	,  ) 
+factor ->  call id ( Elist ).  	,  - 
+factor ->  call id ( Elist ).  	,  * 
+
+I214
+M -> .  	,  call ! const true ( false id 
+S ->  while (.M B ) { M L }  	,  } 
+S ->  while (.M B ) { M L }  	,  call void id String while if return int 
+
+I215
 factor -> .( E )  	,  * 
-S ->  if (.B ) { M L } N else { M L }  	,  id String while if int 
 Ba -> .Ba && M Bb  	,  && 
 Ba -> .Ba && M Bb  	,  || 
 Ba -> .Bb  	,  ) 
 item -> .factor  	,  / 
 item -> .factor  	,  + 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 S ->  if (.B ) { M L }  	,  } 
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+S ->  if (.B ) { M L }  	,  call void id String while if return int 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -2446,13 +3892,14 @@ item -> .factor  	,  *
 factor -> .( E )  	,  == <= != < > >= 
 E -> .E + item  	,  == <= != < > >= 
 Bb -> .! Bb  	,  && 
-S ->  if (.B ) { M L }  	,  id String while if int 
 Bb -> .! Bb  	,  || 
 item -> .item * factor  	,  == <= != < > >= 
 E -> .E - item  	,  == <= != < > >= 
 B -> .Ba  	,  ) 
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  - 
 Bc -> .E relop E  	,  ) 
 Bc -> .false  	,  ) 
@@ -2478,49 +3925,113 @@ Ba -> .Bb  	,  ||
 Ba -> .Ba && M Bb  	,  ) 
 E -> .item  	,  == <= != < > >= 
 B -> .B || M Ba  	,  || 
+S ->  if (.B ) { M L } N else { M L }  	,  call void id String while if return int 
 item -> .factor  	,  == <= != < > >= 
 Bc -> .( B )  	,  || 
 factor -> .id  	,  * 
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I146
-S ->  if ( B ) { M L } N.else { M L }  	,  # 
-S ->  if ( B ) { M L } N.else { M L }  	,  id String while if int 
+I216
+factor -> .( E )  	,  * 
+S ->  id =.str ;  	,  } 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ; 
+item -> .factor  	,  - 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  ; 
+factor -> .id  	,  - 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  ; 
+E -> .E - item  	,  - 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+item -> .item * factor  	,  ; 
+item -> .item * factor  	,  - 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  ; 
+factor -> .( E )  	,  - 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  ; 
+E -> .item  	,  - 
+E -> .item  	,  + 
+item -> .item / factor  	,  ; 
+item -> .item / factor  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  * 
+S ->  id =.E ;  	,  } 
+S ->  id =.str ;  	,  call void id String while if return int 
+factor -> .id  	,  * 
+S ->  id =.E ;  	,  call void id String while if return int 
+E -> .E + item  	,  ; 
+E -> .E + item  	,  - 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ; 
+factor -> .call id ( Elist )  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+factor -> .const  	,  ; 
+item -> .item * factor  	,  * 
+factor -> .const  	,  - 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
 
-I147
-S ->  id = E.;  	,  id String while if int 
-S ->  id = E.;  	,  } 
+I217
+factor ->  call id ( Elist.)  	,  && 
+factor ->  call id ( Elist.)  	,  / 
+factor ->  call id ( Elist.)  	,  + 
+factor ->  call id ( Elist.)  	,  ) 
+factor ->  call id ( Elist.)  	,  - 
+factor ->  call id ( Elist.)  	,  * 
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+factor ->  call id ( Elist.)  	,  || 
+
+I218
+L ->  L.M S  	,  call void id String while if return int 
+L ->  L.M S  	,  } 
+S ->  T id ( M' para ) { L.}  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
+S ->  T id ( M' para ) { L.}  	,  # 
+
+I219
+S ->  return E.;  	,  } 
 E ->  E.- item  	,  ; 
 E ->  E.- item  	,  - 
 E ->  E.- item  	,  + 
+S ->  return E.;  	,  call void id String while if return int 
 E ->  E.+ item  	,  ; 
 E ->  E.+ item  	,  - 
 E ->  E.+ item  	,  + 
 
-I148
-L ->  L M S.  	,  id String while if int 
-L ->  L M S.  	,  } 
+I220
+S ->  while ( M B ) { M L }.  	,  call void id String while if return int 
+S ->  while ( M B ) { M L }.  	,  # 
 
-I149
-D ->  T id ;.  	,  id String while if int 
-D ->  T id ;.  	,  } 
-
-I150
+I221
 factor -> .( E )  	,  * 
 Ba -> .Ba && M Bb  	,  && 
 Ba -> .Ba && M Bb  	,  || 
 Ba -> .Bb  	,  ) 
 item -> .factor  	,  / 
 item -> .factor  	,  + 
+factor -> .call id ( Elist )  	,  == <= != < > >= 
 factor -> .id  	,  / 
 factor -> .id  	,  + 
 item -> .item / factor  	,  == <= != < > >= 
 E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
 item -> .item * factor  	,  / 
 item -> .item * factor  	,  + 
 factor -> .const  	,  * 
@@ -2536,6 +4047,7 @@ Bc -> .false  	,  &&
 item -> .item / factor  	,  - 
 item -> .factor  	,  * 
 factor -> .( E )  	,  == <= != < > >= 
+S ->  while ( M.B ) { M L }  	,  call void id String while if return int 
 E -> .E + item  	,  == <= != < > >= 
 Bb -> .! Bb  	,  && 
 Bb -> .! Bb  	,  || 
@@ -2544,6 +4056,8 @@ E -> .E - item  	,  == <= != < > >=
 B -> .Ba  	,  ) 
 factor -> .id  	,  == <= != < > >= 
 E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  / 
+factor -> .call id ( Elist )  	,  + 
 factor -> .const  	,  - 
 Bc -> .E relop E  	,  ) 
 Bc -> .false  	,  ) 
@@ -2566,7 +4080,6 @@ Ba -> .Bb  	,  &&
 item -> .item / factor  	,  / 
 item -> .item / factor  	,  + 
 Ba -> .Bb  	,  || 
-S ->  while ( M.B ) { M L }  	,  id String while if int 
 Ba -> .Ba && M Bb  	,  ) 
 E -> .item  	,  == <= != < > >= 
 B -> .B || M Ba  	,  || 
@@ -2577,228 +4090,429 @@ factor -> .id  	,  *
 Bb -> .Bc  	,  ) 
 Bc -> .( B )  	,  && 
 E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  - 
 item -> .item * factor  	,  * 
 factor -> .const  	,  / 
 factor -> .const  	,  + 
 
-I151
-S ->  while ( M B ) { M L }.  	,  id String while if int 
-S ->  while ( M B ) { M L }.  	,  # 
+I222
+S ->  return E ;.  	,  } 
+S ->  return E ;.  	,  call void id String while if return int 
 
-I152
-S ->  id = str.;  	,  } 
-S ->  id = str.;  	,  id String while if int 
-
-I153
+I223
 S ->  if ( B.) { M L } N else { M L }  	,  } 
-S ->  if ( B.) { M L } N else { M L }  	,  id String while if int 
-S ->  if ( B.) { M L }  	,  id String while if int 
+S ->  if ( B.) { M L } N else { M L }  	,  call void id String while if return int 
 B ->  B.|| M Ba  	,  || 
+S ->  if ( B.) { M L }  	,  call void id String while if return int 
 S ->  if ( B.) { M L }  	,  } 
 B ->  B.|| M Ba  	,  ) 
 
-I154
+I224
+S ->  id = E.;  	,  } 
+E ->  E.- item  	,  ; 
+E ->  E.- item  	,  - 
+E ->  E.- item  	,  + 
+S ->  id = E.;  	,  call void id String while if return int 
+E ->  E.+ item  	,  ; 
+E ->  E.+ item  	,  - 
+E ->  E.+ item  	,  + 
+
+I225
+S ->  if ( B ) { M L } N.else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N.else { M L }  	,  # 
+
+I226
+S ->  id = str.;  	,  } 
+S ->  id = str.;  	,  call void id String while if return int 
+
+I227
+factor -> .( E )  	,  * 
+E -> .item  	,  , 
+item -> .item / factor  	,  , 
+item -> .factor  	,  + 
+item -> .factor  	,  / 
+factor -> .id  	,  + 
+factor -> .id  	,  / 
+E -> .E - item  	,  + 
+factor -> .call id ( Elist )  	,  * 
+Elist -> .E  	,  ) 
+item -> .item * factor  	,  + 
+item -> .item * factor  	,  / 
+factor -> .const  	,  * 
+factor -> .( E )  	,  + 
+factor -> .( E )  	,  / 
+E -> .item  	,  + 
+item -> .item / factor  	,  ) 
+item -> .item / factor  	,  - 
+item -> .factor  	,  * 
+factor -> .id  	,  , 
+E -> .E - item  	,  , 
+E -> .E + item  	,  ) 
+E -> .E + item  	,  - 
+factor -> .call id ( Elist )  	,  + 
+factor -> .call id ( Elist )  	,  / 
+Elist -> .E  	,  , 
+item -> .item * factor  	,  , 
+factor -> .const  	,  ) 
+factor -> .const  	,  - 
+factor -> .( E )  	,  , 
+Elist -> .Elist , E  	,  , 
+item -> .item / factor  	,  * 
+item -> .factor  	,  ) 
+item -> .factor  	,  - 
+S ->  call id (.Elist ) ;  	,  } 
+factor -> .id  	,  ) 
+factor -> .id  	,  - 
+E -> .E - item  	,  ) 
+E -> .E - item  	,  - 
+E -> .E + item  	,  , 
+factor -> .call id ( Elist )  	,  , 
+item -> .item * factor  	,  ) 
+item -> .item * factor  	,  - 
+factor -> .const  	,  , 
+factor -> .( E )  	,  ) 
+factor -> .( E )  	,  - 
+Elist -> .Elist , E  	,  ) 
+E -> .item  	,  ) 
+E -> .item  	,  - 
+item -> .item / factor  	,  + 
+item -> .item / factor  	,  / 
+item -> .factor  	,  , 
+factor -> .id  	,  * 
+S ->  call id (.Elist ) ;  	,  call void id String while if return int 
+E -> .E + item  	,  + 
+factor -> .call id ( Elist )  	,  ) 
+factor -> .call id ( Elist )  	,  - 
+item -> .item * factor  	,  * 
+factor -> .const  	,  + 
+factor -> .const  	,  / 
+
+I228
+S ->  T id (.M' para ) { L }  	,  } 
+S ->  T id (.M' para ) { L }  	,  call void id String while if return int 
+M' -> .  	,  void String int 
+
+I229
+S ->  T id ( M' para ) { L }.  	,  call void id String while if return int 
+S ->  T id ( M' para ) { L }.  	,  # 
+
+I230
+factor ->  call id ( Elist ).  	,  || 
+factor ->  call id ( Elist ).  	,  && 
+factor ->  call id ( Elist ).  	,  / 
+factor ->  call id ( Elist ).  	,  + 
+factor ->  call id ( Elist ).  	,  ) 
+factor ->  call id ( Elist ).  	,  - 
+factor ->  call id ( Elist ).  	,  * 
+
+I231
+L ->  L M S.  	,  } 
+L ->  L M S.  	,  call void id String while if return int 
+
+I232
+S ->  if ( B ) { M L } N else.{ M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N else.{ M L }  	,  # 
+
+I233
+D -> .T id  	,  ) 
+D -> .T id  	,  , 
+S ->  T id ( M'.para ) { L }  	,  } 
+T -> .void  	,  id 
+T -> .int  	,  id 
+T -> .String [ const ]  	,  id 
+para -> .D  	,  ) 
+para -> .D  	,  , 
+para -> .para , D  	,  ) 
+para -> .para , D  	,  , 
+S ->  T id ( M'.para ) { L }  	,  call void id String while if return int 
+
+I234
+S ->  if ( B ).{ M L } N else { M L }  	,  } 
+S ->  if ( B ).{ M L } N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ).{ M L }  	,  call void id String while if return int 
+S ->  if ( B ).{ M L }  	,  } 
+
+I235
+S ->  id = str ;.  	,  } 
+S ->  id = str ;.  	,  call void id String while if return int 
+
+I236
+S ->  id = E ;.  	,  call void id String while if return int 
+S ->  id = E ;.  	,  } 
+
+I237
+Elist ->  Elist., E  	,  , 
+Elist ->  Elist., E  	,  ) 
+S ->  call id ( Elist.) ;  	,  call void id String while if return int 
+S ->  call id ( Elist.) ;  	,  } 
+
+I238
+S ->  while ( M B.) { M L }  	,  call void id String while if return int 
 S ->  while ( M B.) { M L }  	,  } 
-S ->  while ( M B.) { M L }  	,  id String while if int 
 B ->  B.|| M Ba  	,  || 
 B ->  B.|| M Ba  	,  ) 
 
-I155
-S ->  if ( B ) { M L } N else.{ M L }  	,  id String while if int 
-S ->  if ( B ) { M L } N else.{ M L }  	,  # 
+I239
+S ->  T id ( M' para.) { L }  	,  } 
+para ->  para., D  	,  ) 
+para ->  para., D  	,  , 
+S ->  T id ( M' para.) { L }  	,  call void id String while if return int 
 
-I156
-S ->  id = E ;.  	,  id String while if int 
-S ->  id = E ;.  	,  } 
-
-I157
-S ->  id = str ;.  	,  } 
-S ->  id = str ;.  	,  id String while if int 
-
-I158
-S ->  if ( B ).{ M L } N else { M L }  	,  id String while if int 
-S ->  if ( B ).{ M L } N else { M L }  	,  } 
-S ->  if ( B ).{ M L }  	,  id String while if int 
-S ->  if ( B ).{ M L }  	,  } 
-
-I159
-S ->  if ( B ) {.M L }  	,  id String while if int 
+I240
+S ->  if ( B ) {.M L } N else { M L }  	,  call void id String while if return int 
 S ->  if ( B ) {.M L } N else { M L }  	,  } 
-M -> .  	,  id String while if int 
+S ->  if ( B ) {.M L }  	,  call void id String while if return int 
 S ->  if ( B ) {.M L }  	,  } 
-S ->  if ( B ) {.M L } N else { M L }  	,  id String while if int 
+M -> .  	,  call void id String while if return int 
 
-I160
-S ->  while ( M B ).{ M L }  	,  id String while if int 
+I241
+S ->  call id ( Elist ).;  	,  call void id String while if return int 
+S ->  call id ( Elist ).;  	,  } 
+
+I242
+S ->  if ( B ) { M L } N else {.M L }  	,  # 
+M -> .  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N else {.M L }  	,  call void id String while if return int 
+
+I243
+S ->  while ( M B ).{ M L }  	,  call void id String while if return int 
 S ->  while ( M B ).{ M L }  	,  } 
 
-I161
-M -> .  	,  id String while if int 
-S ->  if ( B ) { M L } N else {.M L }  	,  # 
-S ->  if ( B ) { M L } N else {.M L }  	,  id String while if int 
-
-I162
-L -> .S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
+I244
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
 L -> .L M S  	,  } 
-D -> .T id ;  	,  } 
+L -> .S  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
+T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
 S ->  if ( B ) { M L } N else { M.L }  	,  # 
 S -> .id = E ;  	,  } 
-L -> .S  	,  } 
-L -> .L M S  	,  id String while if int 
-S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  } 
-T -> .int  	,  id 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
 S -> .while ( M B ) { M L }  	,  } 
-S ->  if ( B ) { M L } N else { M.L }  	,  id String while if int 
-S -> .id = E ;  	,  id String while if int 
 T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
 S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N else { M.L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I163
-M -> .  	,  id String while if int 
-S ->  while ( M B ) {.M L }  	,  } 
-S ->  while ( M B ) {.M L }  	,  id String while if int 
-
-I164
-L -> .S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
+I245
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
 L -> .L M S  	,  } 
+L -> .S  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
+T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S ->  if ( B ) { M.L }  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
 S ->  if ( B ) { M.L } N else { M L }  	,  } 
-D -> .T id ;  	,  } 
 S -> .id = E ;  	,  } 
 S ->  if ( B ) { M.L }  	,  } 
-L -> .S  	,  } 
-L -> .L M S  	,  id String while if int 
-S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  } 
-S ->  if ( B ) { M.L }  	,  id String while if int 
-T -> .int  	,  id 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M.L } N else { M L }  	,  call void id String while if return int 
 S -> .while ( M B ) { M L }  	,  } 
-S -> .id = E ;  	,  id String while if int 
 T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
 S -> .if ( B ) { M L } N else { M L }  	,  } 
-S ->  if ( B ) { M.L } N else { M L }  	,  id String while if int 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I165
-L ->  L.M S  	,  } 
-L ->  L.M S  	,  id String while if int 
-S ->  if ( B ) { M L } N else { M L.}  	,  id String while if int 
-M -> .  	,  id String while if int 
-S ->  if ( B ) { M L } N else { M L.}  	,  # 
+I246
+S ->  T id ( M' para ).{ L }  	,  call void id String while if return int 
+S ->  T id ( M' para ).{ L }  	,  } 
 
-I166
-L -> .S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
+I247
+S ->  call id ( Elist ) ;.  	,  call void id String while if return int 
+S ->  call id ( Elist ) ;.  	,  } 
+
+I248
+S ->  while ( M B ) {.M L }  	,  } 
+M -> .  	,  call void id String while if return int 
+S ->  while ( M B ) {.M L }  	,  call void id String while if return int 
+
+I249
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
 L -> .L M S  	,  } 
-S ->  while ( M B ) { M.L }  	,  id String while if int 
-D -> .T id ;  	,  } 
-S -> .id = E ;  	,  } 
 L -> .S  	,  } 
-L -> .L M S  	,  id String while if int 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
 S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
 S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
 T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  } 
+S ->  while ( M B ) { M.L }  	,  call void id String while if return int 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
 S -> .while ( M B ) { M L }  	,  } 
 S ->  while ( M B ) { M.L }  	,  } 
-S -> .id = E ;  	,  id String while if int 
 T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
 S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I167
+I250
+L ->  L.M S  	,  call void id String while if return int 
 L ->  L.M S  	,  } 
-L ->  L.M S  	,  id String while if int 
 S ->  if ( B ) { M L.} N else { M L }  	,  } 
-M -> .  	,  id String while if int 
+S ->  if ( B ) { M L.}  	,  call void id String while if return int 
 S ->  if ( B ) { M L.}  	,  } 
-S ->  if ( B ) { M L.}  	,  id String while if int 
-S ->  if ( B ) { M L.} N else { M L }  	,  id String while if int 
+S ->  if ( B ) { M L.} N else { M L }  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
 
-I168
+I251
+L ->  L.M S  	,  call void id String while if return int 
 L ->  L.M S  	,  } 
-L ->  L.M S  	,  id String while if int 
-S ->  while ( M B ) { M L.}  	,  id String while if int 
-M -> .  	,  id String while if int 
-S ->  while ( M B ) { M L.}  	,  } 
+S ->  if ( B ) { M L } N else { M L.}  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N else { M L.}  	,  # 
 
-I169
-S ->  if ( B ) { M L }.N else { M L }  	,  } 
-S ->  if ( B ) { M L }.  	,  id String while if int 
-S ->  if ( B ) { M L }.  	,  } 
-S ->  if ( B ) { M L }.N else { M L }  	,  id String while if int 
-N -> .  	,  else 
+I252
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
+L -> .L M S  	,  } 
+S ->  T id ( M' para ) {.L }  	,  } 
+L -> .S  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
+T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S ->  T id ( M' para ) {.L }  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  } 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
+S -> .while ( M B ) { M L }  	,  } 
+T -> .String [ const ]  	,  id 
+S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I170
-S ->  if ( B ) { M L } N else { M L }.  	,  id String while if int 
+I253
+S ->  if ( B ) { M L } N else { M L }.  	,  call void id String while if return int 
 S ->  if ( B ) { M L } N else { M L }.  	,  # 
 
-I171
-S ->  while ( M B ) { M L }.  	,  id String while if int 
+I254
+L ->  L.M S  	,  call void id String while if return int 
+L ->  L.M S  	,  } 
+S ->  while ( M B ) { M L.}  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
+S ->  while ( M B ) { M L.}  	,  } 
+
+I255
+L ->  L.M S  	,  call void id String while if return int 
+L ->  L.M S  	,  } 
+S ->  T id ( M' para ) { L.}  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
+S ->  T id ( M' para ) { L.}  	,  } 
+
+I256
+S ->  if ( B ) { M L }.N else { M L }  	,  } 
+S ->  if ( B ) { M L }.  	,  call void id String while if return int 
+S ->  if ( B ) { M L }.N else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M L }.  	,  } 
+N -> .  	,  else 
+
+I257
+S ->  if ( B ) { M L } N.else { M L }  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N.else { M L }  	,  } 
+
+I258
+S ->  T id ( M' para ) { L }.  	,  call void id String while if return int 
+S ->  T id ( M' para ) { L }.  	,  } 
+
+I259
+S ->  while ( M B ) { M L }.  	,  call void id String while if return int 
 S ->  while ( M B ) { M L }.  	,  } 
 
-I172
-S ->  if ( B ) { M L } N.else { M L }  	,  } 
-S ->  if ( B ) { M L } N.else { M L }  	,  id String while if int 
-
-I173
-S ->  if ( B ) { M L } N else.{ M L }  	,  id String while if int 
+I260
+S ->  if ( B ) { M L } N else.{ M L }  	,  call void id String while if return int 
 S ->  if ( B ) { M L } N else.{ M L }  	,  } 
 
-I174
-M -> .  	,  id String while if int 
+I261
 S ->  if ( B ) { M L } N else {.M L }  	,  } 
-S ->  if ( B ) { M L } N else {.M L }  	,  id String while if int 
+M -> .  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N else {.M L }  	,  call void id String while if return int 
 
-I175
-L -> .S  	,  id String while if int 
-S -> .D  	,  } 
-S -> .id = str ;  	,  id String while if int 
-S -> .if ( B ) { M L } N else { M L }  	,  id String while if int 
+I262
+D -> .T id  	,  ; 
+S -> .if ( B ) { M L }  	,  call void id String while if return int 
+S -> .return E ;  	,  } 
 L -> .L M S  	,  } 
-D -> .T id ;  	,  } 
+L -> .S  	,  } 
+S -> .return E ;  	,  call void id String while if return int 
+S -> .call id ( Elist ) ;  	,  } 
+S -> .id = str ;  	,  } 
+S -> .D ;  	,  } 
+L -> .L M S  	,  call void id String while if return int 
+S -> .if ( B ) { M L }  	,  } 
+L -> .S  	,  call void id String while if return int 
+T -> .int  	,  id 
+S -> .T id ( M' para ) { L }  	,  } 
+S -> .D ;  	,  call void id String while if return int 
+S -> .T id ( M' para ) { L }  	,  call void id String while if return int 
+T -> .void  	,  id 
+S -> .while ( M B ) { M L }  	,  call void id String while if return int 
 S ->  if ( B ) { M L } N else { M.L }  	,  } 
 S -> .id = E ;  	,  } 
-L -> .S  	,  } 
-L -> .L M S  	,  id String while if int 
-S -> .id = str ;  	,  } 
-S -> .while ( M B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  id String while if int 
-S -> .if ( B ) { M L }  	,  } 
-T -> .int  	,  id 
+S -> .id = str ;  	,  call void id String while if return int 
+S -> .if ( B ) { M L } N else { M L }  	,  call void id String while if return int 
 S -> .while ( M B ) { M L }  	,  } 
-S ->  if ( B ) { M L } N else { M.L }  	,  id String while if int 
-S -> .id = E ;  	,  id String while if int 
 T -> .String [ const ]  	,  id 
-D -> .T id ;  	,  id String while if int 
-S -> .D  	,  id String while if int 
 S -> .if ( B ) { M L } N else { M L }  	,  } 
+S -> .call id ( Elist ) ;  	,  call void id String while if return int 
+S ->  if ( B ) { M L } N else { M.L }  	,  call void id String while if return int 
+S -> .id = E ;  	,  call void id String while if return int 
 
-I176
+I263
+L ->  L.M S  	,  call void id String while if return int 
 L ->  L.M S  	,  } 
-L ->  L.M S  	,  id String while if int 
-S ->  if ( B ) { M L } N else { M L.}  	,  id String while if int 
-M -> .  	,  id String while if int 
+S ->  if ( B ) { M L } N else { M L.}  	,  call void id String while if return int 
+M -> .  	,  call void id String while if return int 
 S ->  if ( B ) { M L } N else { M L.}  	,  } 
 
-I177
-S ->  if ( B ) { M L } N else { M L }.  	,  id String while if int 
+I264
+S ->  if ( B ) { M L } N else { M L }.  	,  call void id String while if return int 
 S ->  if ( B ) { M L } N else { M L }.  	,  } 
 

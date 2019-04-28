@@ -11,15 +11,18 @@ id
 if
 ==
 !
+void
 (
 false
 )
 *
 +
+,
 -
 int
 /
 str
+call
 true
 ;
 {
@@ -28,4 +31,5 @@ true
 =
 }
 >
+return
 >=

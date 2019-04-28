@@ -2,14 +2,15 @@ P' -> P
 P -> L
 L -> L M S
 L -> S
-S -> D
+S -> D ;
 
 
-D -> T id ;
+D -> T id 
 T -> int
 T -> String [ const ]
 
 
+S -> id = str ;
 S -> id = E ;
 E -> E + item
 E -> E - item
@@ -44,8 +45,18 @@ N -> ε
 
 S -> if ( B ) { M L }
 S -> if ( B ) { M L } N else { M L }
-
-
 S -> while ( M B ) { M L }
 
-S -> id = str ;
+
+S -> T id ( M' para ) { L }
+T -> void
+M' -> ε
+para -> D
+para -> para , D
+S -> return E ;
+
+
+factor -> call id ( Elist )
+S -> call id ( Elist ) ;
+Elist -> Elist , E
+Elist -> E

@@ -1,0 +1,5 @@
+SymbolTable [Main]	 offset = 4
+	SymbolTable [myFunc]	 offset = 8
+	id=0    name=x        offset=0    type=int     
+	id=1    name=y        offset=4    type=int     
+id=0    name=a        offset=0    type=int     

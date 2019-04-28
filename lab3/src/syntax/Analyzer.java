@@ -88,6 +88,10 @@ public class Analyzer {
 			}
 			// 报错
 			else if (act.equals("err")) {
+				for (Symbol s : symbolStack) {
+					System.out.print(s.symbol + " ");
+				}
+				System.out.println();
 				errorTbMd.addRow(new String[] {
 						String.format("Error at Line %3d: Grammatical errors.", tokens.get(inputIdx).getRow()) });
 				while (GOTO.get(stateStack.peek()).size() == 0) {

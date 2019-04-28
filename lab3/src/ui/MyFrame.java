@@ -29,15 +29,16 @@ public class MyFrame extends JFrame {
 
 	private JPanel mainPanel = new JPanel();
 	private JTextArea inputText = new JTextArea();
+	private JTextArea symbolTable = new JTextArea();
 
-	private JTable tokenTb, errorTb, symbolTb, productionTb, threeAddrTb;
-	private DefaultTableModel tokenTbMd, errorTbMd, symbolTbMd, productionTbMd, threeAddrTbMd;
+	private JTable tokenTb, errorTb, productionTb, threeAddrTb;
+	private DefaultTableModel tokenTbMd, errorTbMd, productionTbMd, threeAddrTbMd;
 
 	private JScrollPane actionScrollPane = null;
 	private JScrollPane gotoScrollPane = null;
 
 	public MyFrame() {
-		setTitle("Syntax Analyzer");
+		setTitle("Semantic Analyzer");
 		setSize(1500, 800);
 		setPanel();
 		addButton();
@@ -55,21 +56,13 @@ public class MyFrame extends JFrame {
 		textScrollPane.setBounds(20, 10, 320, 260);
 		textScrollPane.setRowHeaderView(new LineNumberHeaderView());
 
-		// 符号表
-		String[] symbolColName = { "序号", "符号表" };
-		symbolTbMd = new DefaultTableModel(null, symbolColName);
-		symbolTb = new JTable(symbolTbMd);
-		symbolTb.setEnabled(false);// 不可修改
-		JScrollPane symbolScrollPane = new JScrollPane(symbolTb);
-		symbolScrollPane.setBounds(360, 280, 110, 260);
-
 		// token序列
 		String[] tokenColName = { "行号", "TOKEN", "种别码", "属性值" };
 		tokenTbMd = new DefaultTableModel(null, tokenColName);
 		tokenTb = new JTable(tokenTbMd);
 		tokenTb.setEnabled(false);// 不可修改
 		JScrollPane tokenScrollPane = new JScrollPane(tokenTb);
-		tokenScrollPane.setBounds(20, 280, 320, 260);
+		tokenScrollPane.setBounds(20, 280, 450, 260);
 
 		// 错误分析
 		String[] errorColName = { "错误说明" };
@@ -93,7 +86,16 @@ public class MyFrame extends JFrame {
 
 		// GOTO
 		JLabel gotoLabel = new JLabel("GOTO");
-		gotoLabel.setBounds(670, 390, 100, 40);
+		gotoLabel.setBounds(1200, 10, 100, 40);
+
+		// 符号表
+		JLabel symbolLabel = new JLabel("符号表");
+		symbolLabel.setBounds(670, 390, 100, 40);
+
+		// 符号表
+//		symbolTable.setEnabled(false);// 不可修改
+		JScrollPane symbolScrollPane = new JScrollPane(symbolTable);
+		symbolScrollPane.setBounds(670, 430, 510, 320);
 
 		// 三地址码
 		String[] threeAddrColName = { "三地址码" };
@@ -101,15 +103,16 @@ public class MyFrame extends JFrame {
 		threeAddrTb = new JTable(threeAddrTbMd);
 		threeAddrTb.setEnabled(false);// 不可修改
 		JScrollPane threeAddrScrollPane = new JScrollPane(threeAddrTb);
-		threeAddrScrollPane.setBounds(1280, 20, 200, 730);
+		threeAddrScrollPane.setBounds(1200, 400, 280, 350);
 
 		mainPanel.add(textScrollPane);
 		mainPanel.add(tokenScrollPane);
 		mainPanel.add(errorScrollPane);
-		mainPanel.add(symbolScrollPane);
 		mainPanel.add(productionScrollPane);
 		mainPanel.add(actionLabel);
 		mainPanel.add(gotoLabel);
+		mainPanel.add(symbolLabel);
+		mainPanel.add(symbolScrollPane);
 		mainPanel.add(threeAddrScrollPane);
 		mainPanel.setLayout(null);
 		this.add(mainPanel);
@@ -190,12 +193,12 @@ public class MyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				clearAll();
 				// 词法分析
-				LexicalAnalysis lex = new LexicalAnalysis(inputText, tokenTbMd, errorTbMd, symbolTbMd);
+				LexicalAnalysis lex = new LexicalAnalysis(inputText, tokenTbMd, errorTbMd);
 				List<Symbol> tokens = lex.run();
 
 				// 语法&语义分析
 				SyntaxAnalysis sa = new SyntaxAnalysis();
-				List<String> actions = sa.analyze(tokens, errorTbMd,threeAddrTbMd);
+				List<String> actions = sa.analyze(tokens, errorTbMd, threeAddrTbMd);
 				for (String s : actions) {
 					productionTbMd.addRow(new String[] { s });
 				}
@@ -227,7 +230,7 @@ public class MyFrame extends JFrame {
 				JTable actionTb = new JTable(actionTbMd);
 				actionTb.setEnabled(false);// 不可修改
 				JScrollPane newActionScrollPane = new JScrollPane(actionTb);
-				newActionScrollPane.setBounds(670, 50, 600, 320);
+				newActionScrollPane.setBounds(670, 50, 510, 320);
 				actionScrollPane = newActionScrollPane;
 				mainPanel.add(newActionScrollPane);
 
@@ -257,9 +260,23 @@ public class MyFrame extends JFrame {
 				JTable gotoTb = new JTable(gotoTbMd);
 				gotoTb.setEnabled(false);// 不可修改
 				JScrollPane newGotoScrollPane = new JScrollPane(gotoTb);
-				newGotoScrollPane.setBounds(670, 430, 600, 320);
+				newGotoScrollPane.setBounds(1200, 50, 280, 320);
 				gotoScrollPane = newGotoScrollPane;
 				mainPanel.add(newGotoScrollPane);
+
+				// 读取符号表
+				try {
+					BufferedReader in = new BufferedReader(new FileReader("./data/symbol.txt"));
+					String symbols = "";
+					String str;
+					while ((str = in.readLine()) != null) {
+						symbols += str + "\n";
+					}
+					in.close();
+					symbolTable.setText(symbols);
+				} catch (IOException e1) {
+					System.out.println("ERROR when read GOTO.");
+				}
 			}
 		};
 
@@ -269,7 +286,7 @@ public class MyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				clearAll();
-				LexicalAnalysis lex = new LexicalAnalysis(inputText, tokenTbMd, errorTbMd, symbolTbMd);
+				LexicalAnalysis lex = new LexicalAnalysis(inputText, tokenTbMd, errorTbMd);
 				lex.run();
 			}
 		});
@@ -285,9 +302,9 @@ public class MyFrame extends JFrame {
 	private void clearAll() {
 		clear(tokenTbMd, tokenTb);
 		clear(errorTbMd, errorTb);
-		clear(symbolTbMd, symbolTb);
 		clear(productionTbMd, productionTb);
 		clear(threeAddrTbMd, threeAddrTb);
+		symbolTable.setText("");
 	}
 
 	private void clear(DefaultTableModel TbMd, JTable Tb) {

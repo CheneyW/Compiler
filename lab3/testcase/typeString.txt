@@ -1,0 +1,11 @@
+String[5] s;
+s = "aaa";
+
+/*字符串长度越界*/
+s = "aaaaaaaaaaaaaaa";
+
+
+int a;
+
+/*未定义的变量*/
+a = c+1;

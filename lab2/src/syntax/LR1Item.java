@@ -57,17 +57,17 @@ public class LR1Item extends Production {
 		}
 		return beta;
 	}
-
-	public boolean addExpectedSymbol(List<String> newSymbol) {
-		boolean flag = false;
-		for (String s : newSymbol) {
-			if (!expectedSymbol.contains(s)) {
-				expectedSymbol.add(s);
-				flag = true;
-			}
-		}
-		return flag;
-	}
+//
+//	public boolean addExpectedSymbol(List<String> newSymbol) {
+//		boolean flag = false;
+//		for (String s : newSymbol) {
+//			if (!expectedSymbol.contains(s)) {
+//				expectedSymbol.add(s);
+//				flag = true;
+//			}
+//		}
+//		return flag;
+//	}
 
 	@Override
 	public String toString() {

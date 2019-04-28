@@ -1,11 +1,13 @@
+{t=maketable(nil); tblptr.push(t); offset.push(0) } 
+
 P' -> P
-P -> L
+P -> L	{addwidth(tblptr.top(),offset.top()); tblptr.pop(); offset.pop() }
 L -> L M S	{backpatch(L1.nextlist,M.quad); L.nextlist=S.nextlist}
 L -> S	{L.nextlist=S.nextlist}
-S -> D
+S -> D ;
 
 // 声明
-D -> T id ;	{enter(id.name, T.type, T.width, offset); offset=offset+T.width}
+D -> T id 	{enter(tblptr.top(),id.name,T.type,T.width,offset.top()); offset.top()+=T.width }
 T -> int	{T.type=int;T.width=4}
 T -> String [ const ]	{T.type=String;T.width=const}
 
@@ -42,9 +44,21 @@ relop -> <=	{relop.op = <=}
 M -> ε	{M.quad=nextquad}
 N -> ε	{N.nextlist=makelist(nextquad); gencode("goto ")}
 
-//分支	
+//控制语句	
 S -> if ( B ) { M L }	{backpatch(B.truelist,M.quad); S.nextlist=merge(B.falselist,L.nextlist)}
 S -> if ( B ) { M L } N else { M L }	{backpatch(B.truelist,M1.quad); backpatch(B.falselist,M2.quad); S.nextlist=merge(L1.nextlist,merge(N.nextlist,L2.nextlist))}
-
-//循环
 S -> while ( M B ) { M L }	{backpatch(L.nextlist,M1.quad); backpatch(B.truelist,M2.quad); S.nextlist=B.falselist; gencode("goto" M1.quad)}
+
+// 函数定义
+S -> T id ( M' para ) { L }	{t=tblptr.top(); addwidth(t,offset.top()); tblptr.pop(); offset.pop(); enterproc(tblptr.top()id.name,t) }
+T -> void	{T.type=void}
+M' -> ε	{t=maketable(tblptr.top()); tblptr.push(t); offset.push(0) }
+para -> D	{para.len=1}
+para -> para , D	{para.len+=1 }
+S -> return E ;
+
+//过程调用
+factor -> call id ( Elist )
+S -> call id ( Elist ) ;	{n=0;for(;queue非空;n++){从 queue队首取出一个实参地址p;gencode("param",p);} gencode("call",id.addr,n) }
+Elist -> Elist , E	{将E.addr添加到queue的队尾}
+Elist -> E	{初始化queue,然后将E.addr加入到queue的队尾 }

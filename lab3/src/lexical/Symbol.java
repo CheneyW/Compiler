@@ -2,18 +2,20 @@ package lexical;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 
 public class Symbol {
 	public static final List<String> keyWords = Arrays.asList("if", "else", "for", "do", "while", "switch", "case",
 			"default", "break", "continue", "return", "void", "int", "boolean", "char", "short", "long", "unsigned",
-			"true", "false", "String");
+			"true", "false", "String", "call");
 
-	public static final List<String> codeOfKind = Arrays.asList("id", "const", "if", "else", "for", "do", "while", "switch", "case",
-			"default", "break", "continue", "return", "void", "int", "boolean", "char", "short", "long", "unsigned",
-			"true", "false", "String", "str", "%", "+", "-", "*", "/", ":", ";", ",", "{", "}", "(", ")", "[",
-			"]", "=", "&&", "||", "!", ">", ">=", "<", "<=", "!=", "==");
+	public static final List<String> codeOfKind = Arrays.asList("id", "const", "if", "else", "for", "do", "while",
+			"switch", "case", "default", "break", "continue", "return", "void", "int", "boolean", "char", "short",
+			"long", "unsigned", "true", "false", "String", "call", "str", "%", "+", "-", "*", "/", ":", ";", ",", "{",
+			"}", "(", ")", "[", "]", "=", "&&", "||", "!", ">", ">=", "<", "<=", "!=", "==");
 
 	public String symbol; // 符号
 	public String val = ""; // 非终结符的token值
@@ -22,12 +24,15 @@ public class Symbol {
 	public String addr = "";
 	public String type = "";
 	public int width = 0;
+	public int offset;
 
 	public int quad = 0;
 
 	public Set<Integer> falselist = new HashSet<Integer>();
 	public Set<Integer> truelist = new HashSet<Integer>();
 	public Set<Integer> nextlist = new HashSet<Integer>();
+
+	public Queue<String> paraQueue = new LinkedList<String>();
 
 	public String op = ""; // relop
 

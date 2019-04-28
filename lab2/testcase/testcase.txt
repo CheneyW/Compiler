@@ -1,3 +1,4 @@
+/*函数调用*/
 int mult(int x, int y){
     return x*y;
 }
@@ -6,12 +7,13 @@ int mian(){
     int a=0;
     int b[5];
     
+    /*分支语句-if*/
     if(a>=1){
         a = a+1;
     }else{
         a = a+2;
     }
-    
+    /*分支语句-switch*/
     switch(a){
     case 1:
         b[0] = 10;
@@ -20,10 +22,15 @@ int mian(){
         b[0] = 20;
         break;
     }
-    
+    /*循环*/
     do{
         a = mult(a,2);
     }while(a<100);
+    
+    /*错误检查并恢复*/
+    a = 10；  /* 中文字符*/
+    a = 10  /* 未加分号*/
+    a = 10;
     
     return 0;
 }

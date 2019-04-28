@@ -1,19 +1,22 @@
-Bb 	! const true ( false id 
-Bc 	const true ( false id 
-item 	const ( id 
-B 	! const true ( false id 
-D 	String int 
-E 	const ( id 
-L 	id String while if int 
+Bb 	call ! const true ( false id 
+Bc 	call const true ( false id 
+item 	call const ( id 
+B 	call ! const true ( false id 
+D 	void String int 
+E 	call const ( id 
+L 	call void id String while if return int 
 relop 	== <= != < > >= 
 M 	ε 
 N 	ε 
-P 	id String while if int 
-S 	id String while if int 
-T 	String int 
-P' 	id String while if int 
-factor 	const ( id 
-Ba 	! const true ( false id 
+P 	call void id String while if return int 
+S 	call void id String while if return int 
+T 	void String int 
+para 	void String int 
+P' 	call void id String while if return int 
+M' 	ε 
+factor 	call const ( id 
+Elist 	call const ( id 
+Ba 	call ! const true ( false id 
 || 	|| 
 && 	&& 
 <= 	<= 
@@ -27,15 +30,18 @@ id 	id
 if 	if 
 == 	== 
 ! 	! 
+void 	void 
 ( 	( 
 false 	false 
 ) 	) 
 * 	* 
 + 	+ 
+, 	, 
 - 	- 
 int 	int 
 / 	/ 
 str 	str 
+call 	call 
 true 	true 
 ; 	; 
 { 	{ 
@@ -44,4 +50,5 @@ true 	true
 = 	= 
 } 	} 
 > 	> 
+return 	return 
 >= 	>= 
